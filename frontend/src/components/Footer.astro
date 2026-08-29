@@ -1,0 +1,65 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-zinc-800/80 bg-dark-bg/90 py-16 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-zinc-800/80">
+      
+      <!-- Brand & Info -->
+      <div class="md:col-span-2 space-y-4">
+        <a href="/" class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-blue-600 flex items-center justify-center text-white font-bold text-base shadow-glow-sm">
+            M
+          </div>
+          <div class="flex flex-col">
+            <span class="font-bold tracking-tight text-lg text-white font-display">
+              Molinaz<span class="text-indigo-400">Dev</span>
+            </span>
+            <span class="text-[10px] uppercase tracking-widest text-zinc-400 font-semibold -mt-1">Digital Services</span>
+          </div>
+        </a>
+        <p class="text-xs sm:text-sm text-zinc-400 max-w-sm leading-relaxed">
+          Diseño e ingeniería de software de alto impacto. Sitios web, chatbots de inteligencia artificial y automatizaciones que potencian negocios en Perú y Latinoamérica.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <span class="text-xs uppercase tracking-widest text-white font-bold block mb-4">Servicios</span>
+        <ul class="space-y-2.5 text-xs sm:text-sm text-zinc-400">
+          <li><a href="/servicios/desarrollo-web" class="hover:text-indigo-400 transition-colors">Desarrollo Web</a></li>
+          <li><a href="/servicios/chatbots-con-ia" class="hover:text-indigo-400 transition-colors">Chatbots con IA</a></li>
+          <li><a href="/servicios/automatizaciones" class="hover:text-indigo-400 transition-colors">Automatizaciones</a></li>
+          <li><a href="/servicios/software-a-medida" class="hover:text-indigo-400 transition-colors">Software a Medida</a></li>
+        </ul>
+      </div>
+
+      <!-- Security & Trust -->
+      <div>
+        <span class="text-xs uppercase tracking-widest text-white font-bold block mb-4">Seguridad & Pago</span>
+        <div class="space-y-3">
+          <div class="p-3.5 rounded-xl glass-card border-zinc-800 text-xs text-zinc-300">
+            <div class="font-semibold text-white flex items-center gap-1.5 mb-1">
+              <span>💳</span> Mercado Pago Checkout Pro
+            </div>
+            <p class="text-[11px] text-zinc-400 leading-tight">
+              Pagos con tarjeta, Yape, Plin y transferencia bancaria protegidos de extremo a extremo.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
+      <p>&copy; {year} MolinazDev. Todos los derechos reservados.</p>
+      <div class="flex items-center gap-6">
+        <span>Lima, Perú</span>
+        <span>&bull;</span>
+        <span>Tecnología ASP.NET Core 8 & Astro</span>
+      </div>
+    </div>
+  </div>
+</footer>

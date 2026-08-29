@@ -44,6 +44,8 @@ packages/
 project.lock.json
 project.fragment.lock.json
 
-# JetBrains Rider
-*.sln.iml
+# Node / Astro Frontend
+**/node_modules/
+**/dist/
+.astro/
 

@@ -1,0 +1,49 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import CheckoutModal from '../components/CheckoutModal.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "MolinazDev — Soluciones Digitales de Alta Gama",
+  description = "Desarrollo Web moderno, Chatbots con Inteligencia Artificial, Automatizaciones y Software a Medida con entrega garantizada y pagos protegidos por Mercado Pago."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://molinazdev.lat" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-dark-bg text-zinc-100 min-h-screen flex flex-col font-sans selection:bg-indigo-600 selection:text-white antialiased overflow-x-hidden">
+    <Navbar />
+    
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+    <CheckoutModal />
+  </body>
+</html>

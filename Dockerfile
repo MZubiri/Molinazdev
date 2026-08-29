@@ -1,5 +1,16 @@
 # syntax=docker/dockerfile:1
 
+# Stage 1: Build Astro Frontend
+FROM node:20-alpine AS build-frontend
+WORKDIR /app/frontend
+
+COPY frontend/package*.json ./
+RUN npm install
+
+COPY frontend/ ./
+RUN npm run build
+
+# Stage 2: Restore .NET Dependencies
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS restore
 WORKDIR /src
 
@@ -12,13 +23,15 @@ COPY ["src/DigitalServices.Infrastructure/DigitalServices.Infrastructure.csproj"
 COPY ["src/DigitalServices.Web/DigitalServices.Web.csproj", "src/DigitalServices.Web/"]
 RUN dotnet restore "src/DigitalServices.Web/DigitalServices.Web.csproj"
 
+# Stage 3: Build .NET Backend
 FROM restore AS build
-COPY . .
+COPY src/ src/
 RUN dotnet build "src/DigitalServices.Web/DigitalServices.Web.csproj" \
     --configuration Release \
     --no-restore \
     --output /app/build
 
+# Stage 4: Publish .NET Backend & Bundle Frontend
 FROM build AS publish
 RUN dotnet publish "src/DigitalServices.Web/DigitalServices.Web.csproj" \
     --configuration Release \
@@ -26,6 +39,10 @@ RUN dotnet publish "src/DigitalServices.Web/DigitalServices.Web.csproj" \
     --output /app/publish \
     /p:UseAppHost=false
 
+# Copy compiled Astro frontend into ASP.NET Core wwwroot
+COPY --from=build-frontend /app/frontend/dist /app/publish/wwwroot
+
+# Stage 5: Final Runtime Image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 

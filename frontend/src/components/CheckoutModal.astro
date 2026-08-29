@@ -1,0 +1,247 @@
+---
+---
+
+<!-- Checkout Modal Overlay -->
+<div 
+  id="checkout-modal" 
+  class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md transition-opacity duration-300"
+  aria-modal="true"
+  role="dialog"
+>
+  <div 
+    id="checkout-card"
+    class="relative w-full max-w-lg rounded-3xl bg-dark-surface border border-zinc-700/80 p-6 sm:p-8 shadow-2xl shadow-black/80 max-h-[90vh] overflow-y-auto"
+  >
+    <!-- Close Button -->
+    <button 
+      id="close-checkout-btn"
+      type="button" 
+      class="absolute top-6 right-6 p-2 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none"
+      aria-label="Cerrar modal"
+    >
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Header -->
+    <div class="space-y-2 pr-8">
+      <span id="modal-service-title" class="text-xs uppercase tracking-widest text-indigo-400 font-bold">Servicio Seleccionado</span>
+      <h3 id="modal-package-name" class="text-2xl font-bold text-white font-display">Contratar Paquete</h3>
+      <div class="flex items-center gap-2 pt-1">
+        <span class="text-xs text-zinc-400">Total a pagar:</span>
+        <span id="modal-package-price" class="text-xl font-extrabold text-white font-display">PEN 0.00</span>
+      </div>
+    </div>
+
+    <!-- Error Alert Container -->
+    <div id="checkout-error-box" class="hidden mt-4 p-3.5 rounded-xl bg-red-950/60 border border-red-800/80 text-xs text-red-300">
+      <span id="checkout-error-msg"></span>
+    </div>
+
+    <!-- Checkout Form -->
+    <form id="checkout-form" class="mt-6 space-y-4" novalidate>
+      <input type="hidden" id="form-package-id" name="packageId" value="" />
+
+      <div>
+        <label for="form-name" class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1.5">
+          Nombre completo <span class="text-indigo-400">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="form-name" 
+          name="fullName" 
+          required 
+          autocomplete="name"
+          placeholder="Ej. Carlos Mendoza" 
+          class="w-full px-4 py-3 rounded-xl bg-dark-bg/90 border border-zinc-700/80 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="form-email" class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1.5">
+          Correo electrónico <span class="text-indigo-400">*</span>
+        </label>
+        <input 
+          type="email" 
+          id="form-email" 
+          name="email" 
+          required 
+          autocomplete="email"
+          placeholder="nombre@empresa.com" 
+          class="w-full px-4 py-3 rounded-xl bg-dark-bg/90 border border-zinc-700/80 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="form-phone" class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1.5">
+            Teléfono / WhatsApp
+          </label>
+          <input 
+            type="tel" 
+            id="form-phone" 
+            name="phoneNumber" 
+            autocomplete="tel"
+            placeholder="+51 987 654 321" 
+            class="w-full px-4 py-3 rounded-xl bg-dark-bg/90 border border-zinc-700/80 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+          />
+        </div>
+
+        <div>
+          <label for="form-company" class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1.5">
+            Empresa (Opcional)
+          </label>
+          <input 
+            type="text" 
+            id="form-company" 
+            name="companyName" 
+            autocomplete="organization"
+            placeholder="Mi Empresa S.A.C." 
+            class="w-full px-4 py-3 rounded-xl bg-dark-bg/90 border border-zinc-700/80 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+          />
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-4">
+        <button 
+          id="submit-checkout-btn"
+          type="submit" 
+          class="w-full py-4 px-6 rounded-2xl text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-600 hover:from-indigo-500 hover:to-blue-500 transition-all duration-300 shadow-glow-sm hover:shadow-glow-md flex items-center justify-center gap-2"
+        >
+          <span id="btn-text">Continuar a Mercado Pago</span>
+          <span id="btn-spinner" class="hidden animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span>
+        </button>
+      </div>
+
+      <p class="text-[11px] text-zinc-400 text-center pt-2">
+        🔒 Tus datos están protegidos. El precio se valida en el servidor y serás redirigido a Mercado Pago para completar la operación.
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('checkout-modal');
+  const closeBtn = document.getElementById('close-checkout-btn');
+  const form = document.getElementById('checkout-form') as HTMLFormElement;
+  const packageIdInput = document.getElementById('form-package-id') as HTMLInputElement;
+  const serviceTitleElem = document.getElementById('modal-service-title');
+  const packageNameElem = document.getElementById('modal-package-name');
+  const packagePriceElem = document.getElementById('modal-package-price');
+  const errorBox = document.getElementById('checkout-error-box');
+  const errorMsg = document.getElementById('checkout-error-msg');
+  const submitBtn = document.getElementById('submit-checkout-btn') as HTMLButtonElement;
+  const btnText = document.getElementById('btn-text');
+  const btnSpinner = document.getElementById('btn-spinner');
+
+  function openModal(packageId: string, packageName: string, packagePrice: string, serviceTitle: string) {
+    if (!modal) return;
+    if (packageIdInput) packageIdInput.value = packageId;
+    if (serviceTitleElem) serviceTitleElem.textContent = serviceTitle || 'Servicio Digital';
+    if (packageNameElem) packageNameElem.textContent = packageName || 'Paquete';
+    if (packagePriceElem) packagePriceElem.textContent = packagePrice || '';
+    if (errorBox) errorBox.classList.add('hidden');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    if (form) form.reset();
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest('[data-open-checkout]');
+    if (target) {
+      const packageId = target.getAttribute('data-package-id') || '';
+      const packageName = target.getAttribute('data-package-name') || '';
+      const packagePrice = target.getAttribute('data-package-price') || '';
+      const serviceTitle = target.getAttribute('data-service-title') || '';
+      openModal(packageId, packageName, packagePrice, serviceTitle);
+    }
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const packageId = packageIdInput.value;
+    const fullName = (document.getElementById('form-name') as HTMLInputElement).value;
+    const email = (document.getElementById('form-email') as HTMLInputElement).value;
+    const phoneNumber = (document.getElementById('form-phone') as HTMLInputElement).value;
+    const companyName = (document.getElementById('form-company') as HTMLInputElement).value;
+
+    if (!packageId) {
+      showError('Por favor selecciona un paquete válido.');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          packageId,
+          fullName,
+          email,
+          phoneNumber: phoneNumber || null,
+          companyName: companyName || null
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'No se pudo iniciar el checkout.');
+      }
+
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+      } else {
+        throw new Error('No se recibió la URL de pago de Mercado Pago.');
+      }
+    } catch (err: any) {
+      showError(err.message || 'Ocurrió un error al procesar el pago.');
+      setLoading(false);
+    }
+  });
+
+  function showError(msg: string) {
+    if (errorBox && errorMsg) {
+      errorMsg.textContent = msg;
+      errorBox.classList.remove('hidden');
+    }
+  }
+
+  function setLoading(isLoading: boolean) {
+    if (submitBtn && btnText && btnSpinner) {
+      submitBtn.disabled = isLoading;
+      if (isLoading) {
+        btnText.textContent = 'Generando orden segura...';
+        btnSpinner.classList.remove('hidden');
+      } else {
+        btnText.textContent = 'Continuar a Mercado Pago';
+        btnSpinner.classList.add('hidden');
+      }
+    }
+  }
+</script>

@@ -28,3 +28,6 @@ docker-compose*.yml
 docker-compose*.yaml
 README.md
 LICENSE*
+**/node_modules/
+**/dist/
+.astro/

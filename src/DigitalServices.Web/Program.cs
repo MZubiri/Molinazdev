@@ -30,6 +30,21 @@ builder.Services.AddAntiforgery(options =>
     options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontendPolicy", policy =>
+    {
+        policy.WithOrigins(
+                "https://molinazdev.lat",
+                "https://www.molinazdev.lat",
+                "http://localhost:4321",
+                "http://localhost:3000",
+                "http://127.0.0.1:4321")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("mysql");
@@ -95,13 +110,15 @@ app.Use(async (context, next) =>
     context.Response.Headers.XFrameOptions = "DENY";
     context.Response.Headers.Append("Referrer-Policy", "strict-origin-when-cross-origin");
     context.Response.Headers.ContentSecurityPolicy =
-        "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; " +
-        "img-src 'self' https: data:; object-src 'none'; script-src 'self'; style-src 'self'";
+        "default-src 'self'; base-uri 'self'; form-action 'self' https://*.mercadopago.com https://*.mercadopago.com.pe; frame-ancestors 'none'; " +
+        "img-src 'self' https: data:; font-src 'self' https: data:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://*.mercadopago.com https://*.mercadopago.com.pe";
     context.Response.Headers.Append("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
     await next();
 });
 
+app.UseCors("FrontendPolicy");
+app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
@@ -119,9 +136,11 @@ app.MapHealthChecks("/health", new HealthCheckOptions
     }
 });
 
+app.MapControllers();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapFallbackToFile("index.html");
 
 app.Run();
 
