@@ -4,32 +4,32 @@ import { getCatalog, type ServiceCatalog } from '../lib/api';
 const services: ServiceCatalog[] = await getCatalog();
 ---
 
-<section id="servicios" class="py-20 md:py-28 border-b-2 border-ink bg-paper">
+<section id="servicios" class="py-16 md:py-24 border-b-2 border-ink bg-paper">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Index -->
-    <div class="text-xs font-extrabold tracking-widest text-ink/60 uppercase mb-4 text-center md:text-left">
-      02 / SERVICIOS & PRECIOS CLAROS
+    <div class="text-xs font-extrabold tracking-widest text-ink/60 uppercase mb-3 text-center md:text-left">
+      02 / CATÁLOGO &amp; TARIFAS
     </div>
 
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-      <div class="max-w-2xl space-y-3">
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-ink font-display leading-[1.1]">
-          Elige el plan ideal para tu empresa
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div class="max-w-2xl space-y-2 text-center md:text-left">
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-ink font-display leading-[1.12]">
+          Planes diseñados a la medida de tu presupuesto
         </h2>
-        <p class="text-base text-ink/80">
-          Alcance, entregables y precio final confirmados. Sin costos ocultos y con pasarela de pago segura.
+        <p class="text-sm sm:text-base text-ink/80 font-medium">
+          Precios transparentes y validados en el servidor. Incluyen dominio, hosting y soporte por 60 días.
         </p>
       </div>
 
-      <!-- Service Selector Tabs -->
-      <div class="flex flex-wrap gap-2">
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap justify-center md:justify-end gap-2">
         {services.map((service, index) => (
           <button
             type="button"
             data-service-tab={service.slug}
-            class={`category-tab px-4 py-2 rounded-full text-xs font-bold transition-all duration-150 border-2 border-ink ${
+            class={`category-tab px-4 py-2 rounded-full text-xs font-extrabold transition-all duration-150 border-2 border-ink ${
               index === 0
                 ? 'bg-ink text-white shadow-brutal-sm -translate-y-0.5'
                 : 'bg-white text-ink hover:bg-paper-subtle hover:shadow-brutal-sm'
@@ -41,66 +41,83 @@ const services: ServiceCatalog[] = await getCatalog();
       </div>
     </div>
 
-    <!-- Services Container -->
-    <div class="space-y-16">
+    <!-- Services Panels -->
+    <div class="space-y-12">
       {services.map((service, sIndex) => (
         <div 
           id={`service-panel-${service.slug}`}
           class={`service-panel ${sIndex === 0 ? 'block' : 'hidden'}`}
         >
-          <!-- Service Intro Bar -->
-          <div class="mb-8 p-6 rounded-2xl bg-paper-subtle border-2 border-ink flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <!-- Category Header Bar -->
+          <div class="mb-8 p-5 sm:p-6 rounded-2xl bg-paper-subtle border-2 border-ink flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <span class="text-xs font-extrabold uppercase tracking-wider text-brand">Categoría</span>
+              <span class="text-xs font-extrabold uppercase tracking-wider text-brand">Solución Digital</span>
               <h3 class="text-2xl font-extrabold text-ink font-display">{service.title}</h3>
               {service.description && (
-                <p class="text-xs sm:text-sm text-ink/80 mt-1 max-w-2xl">{service.description}</p>
+                <p class="text-xs sm:text-sm text-ink/80 mt-1 font-medium max-w-2xl">{service.description}</p>
               )}
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs font-bold text-ink">
+              <span class="px-3 py-1 bg-acid rounded-full border border-ink shadow-brutal-sm">
+                ✓ 1er año Dominio + Hosting
+              </span>
+              <span class="px-3 py-1 bg-white rounded-full border border-ink shadow-brutal-sm">
+                ✓ 60 Días de Soporte
+              </span>
             </div>
           </div>
 
           <!-- Packages Grid -->
-          <div class={`grid gap-8 ${service.packages.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto'}`}>
+          <div class={`grid gap-6 ${
+            service.packages.length === 4 
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' 
+              : service.packages.length === 3 
+                ? 'grid-cols-1 md:grid-cols-3' 
+                : 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto'
+          }`}>
             {service.packages.map((pkg, pIndex) => {
-              const isPopular = pIndex === 1 || service.packages.length === 1;
+              const isHighlight = (service.slug === 'desarrollo-web' && pkg.name === 'Web Autoadministrable') ||
+                                  (service.slug !== 'desarrollo-web' && pIndex === 1);
               return (
                 <div 
-                  class={`card-brutal p-8 flex flex-col justify-between relative ${
-                    isPopular ? 'bg-white ring-2 ring-ink ring-offset-2' : 'bg-white'
+                  class={`card-brutal p-6 sm:p-7 flex flex-col justify-between relative bg-white ${
+                    isHighlight ? 'ring-2 ring-ink ring-offset-2' : ''
                   }`}
                 >
-                  {isPopular && (
-                    <div class="absolute -top-3.5 right-6 px-3 py-0.5 rounded-full bg-acid border-2 border-ink text-ink text-[11px] font-extrabold uppercase tracking-wider shadow-brutal-sm">
-                      ★ Más Solicitado
+                  {isHighlight && (
+                    <div class="absolute -top-3.5 right-4 px-3 py-0.5 rounded-full bg-acid border-2 border-ink text-ink text-[11px] font-extrabold uppercase tracking-wider shadow-brutal-sm">
+                      ★ Más Popular
                     </div>
                   )}
 
                   <div>
-                    <h4 class="text-2xl font-extrabold text-ink font-display">{pkg.name}</h4>
+                    <h4 class="text-xl sm:text-2xl font-extrabold text-ink font-display">{pkg.name}</h4>
                     {pkg.description && (
-                      <p class="text-xs text-ink/70 mt-2 min-h-[32px] font-medium leading-relaxed">{pkg.description}</p>
+                      <p class="text-xs text-ink/70 mt-2 min-h-[36px] font-medium leading-relaxed">{pkg.description}</p>
                     )}
 
-                    <!-- Price & Days -->
-                    <div class="mt-6 pt-6 border-t-2 border-ink/10">
+                    <!-- Price & Delivery -->
+                    <div class="mt-5 pt-5 border-t-2 border-ink/10">
                       <div class="flex items-baseline gap-1.5">
-                        <span class="text-xs font-bold text-ink/60">{pkg.currency}</span>
-                        <span class="text-3xl sm:text-4xl font-extrabold text-ink font-display tracking-tight">
+                        <span class="text-xs font-bold text-ink/60">
+                          {pkg.name === 'Plataforma Personalizada' ? 'Desde S/.' : pkg.currency}
+                        </span>
+                        <span class="text-2xl sm:text-3xl font-extrabold text-ink font-display tracking-tight">
                           {pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                         </span>
                       </div>
-                      <div class="inline-flex items-center gap-1.5 mt-2 text-xs font-bold text-ink bg-paper-subtle px-3 py-1 rounded-full border border-ink/30">
+                      <div class="inline-flex items-center gap-1 mt-2 text-[11px] font-bold text-ink bg-paper-subtle px-2.5 py-1 rounded-full border border-ink/30">
                         <span>⏱️ Plazo: ~{pkg.deliveryDays} días hábiles</span>
                       </div>
                     </div>
 
-                    <!-- Checklist -->
-                    <div class="mt-8 space-y-3">
-                      <span class="text-xs font-extrabold uppercase tracking-wider text-ink/70 block">Incluye en el paquete:</span>
-                      <ul class="space-y-2.5">
+                    <!-- Features -->
+                    <div class="mt-6 space-y-2.5">
+                      <span class="text-[11px] font-extrabold uppercase tracking-wider text-ink/70 block">Qué incluye:</span>
+                      <ul class="space-y-2">
                         {pkg.features.map(feature => (
-                          <li class="flex items-start gap-2.5 text-xs sm:text-sm text-ink/90 font-medium">
-                            <span class="text-emerald-600 font-extrabold text-base leading-none">✓</span>
+                          <li class="flex items-start gap-2 text-xs text-ink/90 font-medium leading-snug">
+                            <span class="text-emerald-600 font-extrabold text-sm flex-shrink-0">✓</span>
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -108,8 +125,8 @@ const services: ServiceCatalog[] = await getCatalog();
                     </div>
                   </div>
 
-                  <!-- CTA Button -->
-                  <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                  <!-- Action CTA -->
+                  <div class="mt-6 pt-5 border-t-2 border-ink/10">
                     <button
                       type="button"
                       data-open-checkout
@@ -117,15 +134,15 @@ const services: ServiceCatalog[] = await getCatalog();
                       data-package-name={pkg.name}
                       data-package-price={`${pkg.currency} ${pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}`}
                       data-service-title={service.title}
-                      class={`w-full py-4 px-6 text-xs sm:text-sm uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 ${
-                        isPopular ? 'btn-brutal-acid' : 'btn-brutal-primary'
+                      class={`w-full py-3.5 px-4 text-xs uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 ${
+                        isHighlight ? 'btn-brutal-acid' : 'btn-brutal-primary'
                       }`}
                     >
-                      <span>Contratar Paquete</span>
+                      <span>Contratar {pkg.name}</span>
                       <span class="font-bold">↗</span>
                     </button>
-                    <p class="text-[11px] text-ink/60 text-center mt-2.5 font-medium">
-                      🔒 Pago verificado por Mercado Pago
+                    <p class="text-[10px] text-ink/60 text-center mt-2 font-medium">
+                      🔒 Pago 100% Protegido
                     </p>
                   </div>
 
@@ -135,6 +152,22 @@ const services: ServiceCatalog[] = await getCatalog();
           </div>
         </div>
       ))}
+    </div>
+
+    <!-- Payment Methods Information Banner -->
+    <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-white border-2 border-ink shadow-brutal flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-1 text-center md:text-left">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-brand block">Facilidades y Seguridad</span>
+        <h3 class="text-lg sm:text-xl font-extrabold text-ink font-display">Múltiples métodos de pago a tu alcance</h3>
+        <p class="text-xs sm:text-sm text-ink/80 font-medium">
+          Aceptamos <strong>Efectivo, Transferencia Bancaria, Yape, Plin</strong> y <strong>Tarjetas de Débito y Crédito</strong> con opción a meses sin intereses a través de Mercado Pago.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-2 flex-shrink-0">
+        <span class="px-3 py-1.5 rounded-lg bg-paper-subtle border border-ink font-extrabold text-xs text-ink">💵 Efectivo / Transf.</span>
+        <span class="px-3 py-1.5 rounded-lg bg-purple-100 border border-ink font-extrabold text-xs text-purple-900">📱 Yape / Plin</span>
+        <span class="px-3 py-1.5 rounded-lg bg-acid rounded-lg border border-ink font-extrabold text-xs text-ink">💳 TC sin intereses</span>
+      </div>
     </div>
 
   </div>

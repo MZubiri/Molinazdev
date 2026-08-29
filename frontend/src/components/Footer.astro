@@ -2,12 +2,12 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-paper border-t-2 border-ink py-16">
+<footer class="bg-paper border-t-2 border-ink py-12 md:py-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b-2 border-ink/10">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b-2 border-ink/10">
       
       <!-- Brand (6 cols) -->
-      <div class="md:col-span-6 space-y-4">
+      <div class="md:col-span-6 space-y-3">
         <a href="/" class="flex items-center gap-2.5">
           <div class="w-8 h-8 rounded-lg bg-ink flex items-center justify-center text-acid font-extrabold text-base border-2 border-ink shadow-brutal-sm">
             M
@@ -16,31 +16,31 @@ const year = new Date().getFullYear();
             Molinaz<span class="text-brand">Dev</span>
           </span>
         </a>
-        <p class="text-sm text-ink/80 max-w-md font-medium leading-relaxed">
-          Diseño web, desarrollo de software y chatbots con inteligencia artificial en Lima, Perú y para todo el mundo.
+        <p class="text-xs sm:text-sm text-ink/80 max-w-md font-medium leading-relaxed">
+          Diseño web, tiendas virtuales ecommerce, chatbots con inteligencia artificial y automatizaciones a medida en Lima, Perú y para todo el mundo.
         </p>
       </div>
 
       <!-- Links (3 cols) -->
       <div class="md:col-span-3">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-ink block mb-4">Servicios</span>
-        <ul class="space-y-2.5 text-sm font-semibold text-ink/80">
-          <li><a href="/servicios/desarrollo-web" class="hover:text-brand hover:underline">Desarrollo Web</a></li>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-ink block mb-3">Servicios</span>
+        <ul class="space-y-2 text-xs sm:text-sm font-semibold text-ink/80">
+          <li><a href="/servicios/desarrollo-web" class="hover:text-brand hover:underline">Desarrollo Web &amp; Ecommerce</a></li>
           <li><a href="/servicios/chatbots-con-ia" class="hover:text-brand hover:underline">Chatbots con IA</a></li>
           <li><a href="/servicios/automatizaciones" class="hover:text-brand hover:underline">Automatizaciones</a></li>
           <li><a href="/servicios/software-a-medida" class="hover:text-brand hover:underline">Software a Medida</a></li>
         </ul>
       </div>
 
-      <!-- Trust (3 cols) -->
+      <!-- Trust & Payment Methods (3 cols) -->
       <div class="md:col-span-3">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-ink block mb-4">Garantía y Pagos</span>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-ink block mb-3">Garantía &amp; Pagos</span>
         <div class="card-brutal p-4 space-y-1.5 bg-paper-subtle">
           <div class="font-extrabold text-xs text-ink flex items-center gap-1.5">
-            <span>🛡️</span> Mercado Pago Checkout Pro
+            <span>🛡️</span> Pagos 100% Protegidos
           </div>
           <p class="text-[11px] text-ink/70 leading-tight font-medium">
-            Tarjetas, Yape, Plin y transferencias con protección al comprador.
+            Efectivo, Transferencia, Yape, Plin y Tarjetas de Crédito a meses sin intereses vía Mercado Pago.
           </p>
         </div>
       </div>
@@ -50,10 +50,10 @@ const year = new Date().getFullYear();
     <!-- Bottom -->
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold text-ink/70">
       <p>&copy; {year} MolinazDev. Todos los derechos reservados.</p>
-      <div class="flex items-center gap-4">
+      <div class="flex flex-wrap items-center gap-3 sm:gap-4">
         <span>Lima, Perú</span>
         <span>&bull;</span>
-        <span>Tecnología ASP.NET Core 8 & Astro</span>
+        <span>Dominio + Hosting + Soporte 60 Días</span>
       </div>
     </div>
   </div>

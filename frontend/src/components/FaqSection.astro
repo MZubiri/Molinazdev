@@ -1,43 +1,47 @@
 ---
 const faqs = [
   {
-    q: "¿Cómo se procesa mi pago y qué métodos aceptan?",
-    a: "El pago se procesa a través de Mercado Pago Checkout Pro con encriptación bancaria TLS. Puedes pagar con Tarjetas de Crédito o Débito, Yape, Plin, PagoEfectivo o Transferencia Bancaria."
+    q: "¿Qué medios de pago aceptan y tienen opción a cuotas sin intereses?",
+    a: "Aceptamos Efectivo, Transferencia Bancaria, Yape, Plin, Tarjetas de Débito y Tarjetas de Crédito con financiamiento en cuotas a meses sin intereses (según los bancos asociados a Mercado Pago)."
   },
   {
-    q: "¿Qué sucede después de completar el pago?",
-    a: "Nuestro sistema recibe la confirmación mediante webhooks seguros en tiempo real. Te enviaremos un correo formal de confirmación y nuestro equipo te contactará por WhatsApp/Email en menos de 24 horas para agendar la llamada de kick-off y coordinar accesos y contenidos."
+    q: "¿El dominio y hosting están incluidos en el precio?",
+    a: "Sí, absolutamente todos nuestros desarrollos web incluyen el registro de tu dominio (.com o .lat) y el primer año completo de hosting de alta velocidad configurado y listo para usar sin cargos sorpresa."
   },
   {
-    q: "¿El precio que veo en la página es el precio final?",
-    a: "Sí. Cada paquete tiene un alcance técnico claramente delimitado y un precio cerrado en PEN. El monto se valida directamente en nuestro servidor para garantizar que no existan cobros sorpresa ni modificaciones arbitrarias."
+    q: "¿Qué cubre el soporte técnico de 60 días tras la entrega?",
+    a: "Te acompañamos durante 60 días posteriores al lanzamiento para resolver cualquier duda, capacitarte en el uso del panel autoadministrable, realizar ajustes menores y garantizar que tu sitio web opere de forma óptima."
   },
   {
-    q: "¿El código y la web me pertenecen al 100% al finalizar?",
-    a: "Totalmente. Una vez entregado el proyecto, todos los derechos, repositorios de código, accesos y diseños pasan a ser propiedad exclusiva de tu empresa sin cobros de mantenimiento forzoso."
+    q: "¿Cuál es la diferencia entre una Landing Page y una Web Autoadministrable?",
+    a: "La Landing Page (S/. 799) es una página de conversión rápida diseñada para captar prospectos o vender un servicio puntual mediante WhatsApp. La Web Autoadministrable (S/. 1,800) tiene hasta 8 secciones y un panel fácil para que tú mismo actualices contenidos, fotos y servicios sin saber programar."
   },
   {
-    q: "¿Qué incluye el soporte post-entrega?",
-    a: "Incluye resolución de fallos, monitoreo de servidor, capacitación técnica sobre el uso del sistema o chatbot y acompañamiento durante los primeros 30 a 60 días según el paquete contratado."
+    q: "¿El Ecommerce incluye pasarela de pagos para cobrar por internet?",
+    a: "Sí, nuestro paquete Ecommerce (S/. 2,400) viene con catálogo de productos, carrito de compras y pasarela integrada para que tus clientes paguen directamente con Tarjeta, Yape, Plin o Transferencia de forma automática."
+  },
+  {
+    q: "¿El sitio web y código serán 100% de mi propiedad?",
+    a: "Sí. Una vez entregado el proyecto, todos los accesos al servidor, dominio, base de datos y diseño son de tu exclusiva propiedad, sin contratos de permanencia ni cobros de mantenimiento forzoso."
   }
 ];
 ---
 
-<section id="preguntas" class="py-20 md:py-28 border-b-2 border-ink bg-paper">
+<section id="preguntas" class="py-16 md:py-24 border-b-2 border-ink bg-paper">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Index -->
-    <div class="text-xs font-extrabold tracking-widest text-ink/60 uppercase mb-4 text-center md:text-left">
+    <div class="text-xs font-extrabold tracking-widest text-ink/60 uppercase mb-3 text-center md:text-left">
       04 / PREGUNTAS FRECUENTES
     </div>
 
     <!-- Header -->
-    <div class="max-w-2xl space-y-3 mb-14 text-center md:text-left">
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-ink font-display leading-[1.1]">
-        Preguntas frecuentes
+    <div class="max-w-2xl space-y-2 mb-10 text-center md:text-left">
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-ink font-display leading-[1.12]">
+        Todo lo que necesitas saber
       </h2>
-      <p class="text-base text-ink/80">
-        Resolvemos tus dudas principales antes de contratar.
+      <p class="text-sm sm:text-base text-ink/80 font-medium">
+        Respuestas claras sobre métodos de pago, plazos, dominios y garantías.
       </p>
     </div>
 
@@ -47,13 +51,13 @@ const faqs = [
         <details 
           class="group bg-white border-2 border-ink rounded-xl shadow-brutal transition-all duration-150 open:bg-paper-subtle"
         >
-          <summary class="flex items-center justify-between cursor-pointer p-6 font-extrabold text-base sm:text-lg text-ink font-display list-none focus:outline-none">
-            <span class="pr-4 group-hover:text-brand transition-colors">{faq.q}</span>
+          <summary class="flex items-center justify-between cursor-pointer p-5 sm:p-6 font-extrabold text-base sm:text-lg text-ink font-display list-none focus:outline-none">
+            <span class="pr-4 group-hover:text-brand transition-colors leading-snug">{faq.q}</span>
             <div class="w-8 h-8 rounded-full border-2 border-ink bg-white group-open:bg-acid flex items-center justify-center text-ink text-lg font-bold flex-shrink-0 transition-transform duration-200 group-open:rotate-45 shadow-brutal-sm">
               +
             </div>
           </summary>
-          <div class="px-6 pb-6 pt-2 text-sm sm:text-base text-ink/80 leading-relaxed border-t-2 border-ink/10 font-medium">
+          <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-ink/80 leading-relaxed border-t-2 border-ink/10 font-medium">
             {faq.a}
           </div>
         </details>

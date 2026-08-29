@@ -1,53 +1,73 @@
 ---
 ---
 
-<section class="relative pt-12 pb-16 md:pt-20 md:pb-24 border-b-2 border-ink overflow-hidden bg-paper">
+<section class="relative pt-10 pb-14 md:pt-16 md:pb-20 border-b-2 border-ink bg-paper overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <!-- Location & Status Kicker -->
-    <div class="mb-6">
+    <!-- Location & Identity Tag -->
+    <div class="mb-5 flex flex-wrap items-center gap-2">
       <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border-2 border-ink bg-paper-subtle text-xs font-extrabold uppercase tracking-wider text-ink shadow-brutal-sm">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
-        Lima, Perú &middot; Soluciones para todo el mundo
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+        MolinazDev &middot; Desarrollo Digital en Lima &amp; LATAM
+      </span>
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-ink/40 bg-acid/40 text-[11px] font-bold text-ink">
+        💳 Pagos con Yape, Plin, Tarjetas (Hasta meses sin intereses) y Transferencia
       </span>
     </div>
 
     <!-- Editorial Hero Layout (Headline + Aside) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
       
-      <!-- Giant Headline (7 cols) -->
-      <div class="lg:col-span-8 space-y-4">
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-ink font-display leading-[1.05]">
-          Diseño web,<br />
-          chatbots con IA y<br />
-          <span class="outline-text">software a medida que</span><br />
-          <span class="highlight-acid">sí convierten.</span>
+      <!-- Main Headline (7 cols) -->
+      <div class="lg:col-span-7 space-y-4">
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-ink font-display leading-[1.12]">
+          Ingeniería web, <br />
+          chatbots con IA y <br />
+          <span class="outline-text">software a medida que</span> <br />
+          <span class="highlight-acid">impulsan tu negocio.</span>
         </h1>
+        <p class="text-base sm:text-lg text-ink/80 max-w-xl font-medium leading-relaxed pt-1">
+          Desarrollamos plataformas digitales modernas, rápidas y orientadas a resultados. Diseñadas para que vendas más, atiendas 24/7 y optimices tu tiempo.
+        </p>
       </div>
 
-      <!-- Aside Box (4 cols) -->
-      <div class="lg:col-span-4 space-y-6 bg-white p-6 sm:p-8 rounded-2xl border-2 border-ink shadow-brutal">
-        <div class="text-xs font-bold uppercase tracking-widest text-ink/60 flex items-center gap-2">
-          <span>🎯</span> Propuesta de Valor
+      <!-- Aside Conversion Card (5 cols) -->
+      <div class="lg:col-span-5 space-y-5 bg-white p-6 sm:p-8 rounded-2xl border-2 border-ink shadow-brutal">
+        <div class="flex items-center justify-between pb-3 border-b-2 border-ink/10">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-brand flex items-center gap-1.5">
+            <span>🚀</span> Paquetes Web desde S/. 799
+          </span>
+          <span class="text-[11px] font-bold bg-acid px-2.5 py-0.5 rounded-full border border-ink">
+            Todo incluido
+          </span>
         </div>
-        <p class="text-sm sm:text-base text-ink leading-relaxed font-medium">
-          Creamos herramientas digitales sólidas que aumentan tus ventas y automatizan tu operación. Alcance, plazos y precios confirmados por escrito antes de empezar.
-        </p>
 
-        <div class="pt-2 flex flex-col gap-3">
+        <ul class="space-y-2.5 text-xs sm:text-sm text-ink font-semibold">
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-extrabold text-base leading-none">✓</span>
+            <span><strong>Dominio + 1er año de Hosting</strong> gratis incluido.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-extrabold text-base leading-none">✓</span>
+            <span><strong>Soporte técnico por 60 días</strong> tras el lanzamiento.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-extrabold text-base leading-none">✓</span>
+            <span><strong>Plazos y precios cerrados</strong> por escrito antes de empezar.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-extrabold text-base leading-none">✓</span>
+            <span><strong>Múltiples métodos de pago:</strong> Efectivo, Transferencia, Yape, Plin y TC a meses sin intereses.</span>
+          </li>
+        </ul>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-3">
           <a 
             href="#servicios" 
-            class="btn-brutal-primary inline-flex items-center justify-center gap-2 py-3.5 px-6 text-xs uppercase tracking-wider text-center"
+            class="btn-brutal-primary w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 text-xs uppercase tracking-wider text-center"
           >
-            <span>Ver Paquetes y Precios</span>
+            <span>Ver Planes y Precios</span>
             <span class="text-acid font-bold">↗</span>
-          </a>
-          
-          <a 
-            href="#por-que" 
-            class="inline-flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-bold text-ink hover:underline text-center"
-          >
-            ¿Por qué elegir MolinazDev? &darr;
           </a>
         </div>
       </div>

@@ -19,16 +19,16 @@ const { service } = Astro.props;
 
 <Layout title={`${service.title} — MolinazDev`} description={service.description || ''}>
   <!-- Hero Section for Service -->
-  <section class="pt-12 pb-16 md:pt-20 md:pb-24 border-b-2 border-ink bg-paper-subtle">
+  <section class="pt-10 pb-14 md:pt-16 md:pb-20 border-b-2 border-ink bg-paper-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl space-y-4">
+      <div class="max-w-3xl space-y-3">
         <a href="/#servicios" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-ink/70 hover:text-brand transition-colors mb-2">
-          <span>&larr;</span> Volver al catálogo
+          <span>&larr;</span> Volver al catálogo principal
         </a>
         <div class="inline-block px-3 py-1 rounded-full bg-acid border-2 border-ink text-xs font-extrabold uppercase tracking-wider text-ink shadow-brutal-sm">
-          Servicio Especializado
+          Solución Especializada
         </div>
-        <h1 class="text-4xl sm:text-6xl font-extrabold text-ink font-display tracking-tight leading-tight">
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-ink font-display tracking-tight leading-tight">
           {service.title}
         </h1>
         {service.description && (
@@ -41,51 +41,63 @@ const { service } = Astro.props;
   </section>
 
   <!-- Packages Section -->
-  <section class="py-20 bg-paper">
+  <section class="py-16 md:py-24 bg-paper">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-12 space-y-2">
+      <div class="mb-10 space-y-1">
         <span class="text-xs font-extrabold tracking-widest text-ink/60 uppercase block">Opciones disponibles</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink font-display">Paquetes para {service.title}</h2>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-ink font-display">Paquetes para {service.title}</h2>
+        <p class="text-xs sm:text-sm text-ink/80 font-medium">
+          Todos los planes web incluyen 1er año de hosting y dominio gratis, además de 60 días de soporte.
+        </p>
       </div>
 
-      <div class={`grid gap-8 ${service.packages.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2 max-w-4xl'}`}>
+      <div class={`grid gap-6 ${
+        service.packages.length === 4 
+          ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' 
+          : service.packages.length === 3 
+            ? 'grid-cols-1 md:grid-cols-3' 
+            : 'grid-cols-1 md:grid-cols-2 max-w-4xl'
+      }`}>
         {service.packages.map((pkg, index) => {
-          const isHighlight = index === 1 || service.packages.length === 1;
+          const isHighlight = (service.slug === 'desarrollo-web' && pkg.name === 'Web Autoadministrable') ||
+                              (service.slug !== 'desarrollo-web' && index === 1);
           return (
             <div 
-              class={`card-brutal p-8 flex flex-col justify-between relative bg-white ${
+              class={`card-brutal p-6 sm:p-7 flex flex-col justify-between relative bg-white ${
                 isHighlight ? 'ring-2 ring-ink ring-offset-2' : ''
               }`}
             >
               <div>
                 {isHighlight && (
-                  <span class="inline-block px-3 py-0.5 rounded-full bg-acid border-2 border-ink text-ink text-[11px] font-extrabold uppercase tracking-wider mb-4 shadow-brutal-sm">
-                    ★ Recomendado
+                  <span class="inline-block px-3 py-0.5 rounded-full bg-acid border-2 border-ink text-ink text-[11px] font-extrabold uppercase tracking-wider mb-3 shadow-brutal-sm">
+                    ★ Más Solicitado
                   </span>
                 )}
-                <h3 class="text-2xl font-extrabold text-ink font-display">{pkg.name}</h3>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-ink font-display">{pkg.name}</h3>
                 {pkg.description && (
-                  <p class="text-xs text-ink/70 mt-2 font-medium leading-relaxed">{pkg.description}</p>
+                  <p class="text-xs text-ink/70 mt-2 font-medium min-h-[36px] leading-relaxed">{pkg.description}</p>
                 )}
 
-                <div class="mt-6 pt-6 border-t-2 border-ink/10">
+                <div class="mt-5 pt-5 border-t-2 border-ink/10">
                   <div class="flex items-baseline gap-1.5">
-                    <span class="text-xs font-bold text-ink/60">{pkg.currency}</span>
-                    <span class="text-3xl sm:text-4xl font-extrabold text-ink font-display tracking-tight">
+                    <span class="text-xs font-bold text-ink/60">
+                      {pkg.name === 'Plataforma Personalizada' ? 'Desde S/.' : pkg.currency}
+                    </span>
+                    <span class="text-2xl sm:text-3xl font-extrabold text-ink font-display tracking-tight">
                       {pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
-                  <div class="inline-flex items-center gap-1.5 mt-2 text-xs font-bold text-ink bg-paper-subtle px-3 py-1 rounded-full border border-ink/30">
-                    <span>⏱️ Entrega estimada: ~{pkg.deliveryDays} días hábiles</span>
+                  <div class="inline-flex items-center gap-1 mt-2 text-[11px] font-bold text-ink bg-paper-subtle px-2.5 py-1 rounded-full border border-ink/30">
+                    <span>⏱️ Plazo estimado: ~{pkg.deliveryDays} días</span>
                   </div>
                 </div>
 
-                <div class="mt-8 space-y-3">
-                  <span class="text-xs font-extrabold uppercase tracking-wider text-ink/70 block">Entregables y funciones:</span>
-                  <ul class="space-y-2.5">
+                <div class="mt-6 space-y-2.5">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-ink/70 block">Entregables y funciones:</span>
+                  <ul class="space-y-2">
                     {pkg.features.map(f => (
-                      <li class="flex items-start gap-2.5 text-xs sm:text-sm text-ink/90 font-medium">
-                        <span class="text-emerald-600 font-extrabold text-base leading-none">✓</span>
+                      <li class="flex items-start gap-2 text-xs text-ink/90 font-medium leading-snug">
+                        <span class="text-emerald-600 font-extrabold text-sm flex-shrink-0">✓</span>
                         <span>{f}</span>
                       </li>
                     ))}
@@ -93,7 +105,7 @@ const { service } = Astro.props;
                 </div>
               </div>
 
-              <div class="mt-8 pt-6 border-t-2 border-ink/10">
+              <div class="mt-6 pt-5 border-t-2 border-ink/10">
                 <button
                   type="button"
                   data-open-checkout
@@ -101,7 +113,7 @@ const { service } = Astro.props;
                   data-package-name={pkg.name}
                   data-package-price={`${pkg.currency} ${pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}`}
                   data-service-title={service.title}
-                  class={`w-full py-4 px-6 text-xs sm:text-sm uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 ${
+                  class={`w-full py-3.5 px-4 text-xs uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 ${
                     isHighlight ? 'btn-brutal-acid' : 'btn-brutal-primary'
                   }`}
                 >
