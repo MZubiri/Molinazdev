@@ -27,20 +27,20 @@ const faqs = [
 ];
 ---
 
-<section id="preguntas" class="py-16 md:py-24 border-b-2 border-ink bg-paper">
+<section id="preguntas" class="py-16 md:py-24 border-b-2 border-zinc-900 bg-white">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Index -->
-    <div class="text-xs font-extrabold tracking-widest text-ink/60 uppercase mb-3 text-center md:text-left">
+    <div class="text-xs font-extrabold tracking-widest text-zinc-500 uppercase mb-3 text-center md:text-left">
       04 / PREGUNTAS FRECUENTES
     </div>
 
     <!-- Header -->
     <div class="max-w-2xl space-y-2 mb-10 text-center md:text-left">
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-ink font-display leading-[1.12]">
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-zinc-900 font-display leading-[1.12]">
         Todo lo que necesitas saber
       </h2>
-      <p class="text-sm sm:text-base text-ink/80 font-medium">
+      <p class="text-sm sm:text-base text-zinc-600 font-medium">
         Respuestas claras sobre métodos de pago, plazos, dominios y garantías.
       </p>
     </div>
@@ -49,15 +49,15 @@ const faqs = [
     <div class="space-y-4">
       {faqs.map(faq => (
         <details 
-          class="group bg-white border-2 border-ink rounded-xl shadow-brutal transition-all duration-150 open:bg-paper-subtle"
+          class="group bg-white border-2 border-zinc-900 rounded-xl shadow-brutal transition-all duration-150 open:bg-zinc-50"
         >
-          <summary class="flex items-center justify-between cursor-pointer p-5 sm:p-6 font-extrabold text-base sm:text-lg text-ink font-display list-none focus:outline-none">
-            <span class="pr-4 group-hover:text-brand transition-colors leading-snug">{faq.q}</span>
-            <div class="w-8 h-8 rounded-full border-2 border-ink bg-white group-open:bg-acid flex items-center justify-center text-ink text-lg font-bold flex-shrink-0 transition-transform duration-200 group-open:rotate-45 shadow-brutal-sm">
+          <summary class="flex items-center justify-between cursor-pointer p-5 sm:p-6 font-extrabold text-base sm:text-lg text-zinc-900 font-display list-none focus:outline-none">
+            <span class="pr-4 group-hover:text-indigo-600 transition-colors leading-snug">{faq.q}</span>
+            <div class="w-8 h-8 rounded-full border-2 border-zinc-900 bg-zinc-100 group-open:bg-indigo-600 group-open:text-white flex items-center justify-center text-zinc-900 text-lg font-bold flex-shrink-0 transition-transform duration-200 group-open:rotate-45 shadow-brutal-sm">
               +
             </div>
           </summary>
-          <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-ink/80 leading-relaxed border-t-2 border-ink/10 font-medium">
+          <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed border-t-2 border-zinc-200 font-medium">
             {faq.a}
           </div>
         </details>

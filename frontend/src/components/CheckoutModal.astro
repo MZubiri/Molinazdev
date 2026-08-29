@@ -16,7 +16,7 @@
     <button 
       id="close-checkout-btn"
       type="button" 
-      class="absolute top-6 right-6 w-9 h-9 rounded-full border-2 border-ink bg-paper-subtle hover:bg-acid flex items-center justify-center text-ink font-bold text-lg transition-colors focus:outline-none shadow-brutal-sm"
+      class="absolute top-6 right-6 w-9 h-9 rounded-full border-2 border-zinc-900 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-900 font-bold text-lg transition-colors focus:outline-none shadow-brutal-sm"
       aria-label="Cerrar modal"
     >
       &times;
@@ -24,11 +24,11 @@
 
     <!-- Header -->
     <div class="space-y-1.5 pr-10">
-      <span id="modal-service-title" class="text-xs uppercase tracking-widest text-brand font-extrabold block">Servicio Digital</span>
-      <h3 id="modal-package-name" class="text-2xl sm:text-3xl font-extrabold text-ink font-display">Contratar Paquete</h3>
+      <span id="modal-service-title" class="text-xs uppercase tracking-widest text-indigo-600 font-extrabold block">Servicio Digital</span>
+      <h3 id="modal-package-name" class="text-2xl sm:text-3xl font-extrabold text-zinc-900 font-display">Contratar Paquete</h3>
       <div class="flex items-center gap-2 pt-1">
-        <span class="text-xs text-ink/70 font-semibold">Total a pagar:</span>
-        <span id="modal-package-price" class="text-2xl font-extrabold text-ink font-display">PEN 0.00</span>
+        <span class="text-xs text-zinc-600 font-semibold">Total a pagar:</span>
+        <span id="modal-package-price" class="text-2xl font-extrabold text-zinc-900 font-display">PEN 0.00</span>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
       <input type="hidden" id="form-package-id" name="packageId" value="" />
 
       <div>
-        <label for="form-name" class="block text-xs font-extrabold uppercase tracking-wider text-ink mb-1.5">
+        <label for="form-name" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
           Nombre completo <span class="text-red-600">*</span>
         </label>
         <input 
@@ -52,12 +52,12 @@
           required 
           autocomplete="name"
           placeholder="Ej. Carlos Mendoza" 
-          class="w-full px-4 py-3 rounded-xl bg-paper-subtle border-2 border-ink text-ink placeholder-ink/40 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-ink transition-colors"
+          class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
         />
       </div>
 
       <div>
-        <label for="form-email" class="block text-xs font-extrabold uppercase tracking-wider text-ink mb-1.5">
+        <label for="form-email" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
           Correo electrónico <span class="text-red-600">*</span>
         </label>
         <input 
@@ -67,13 +67,13 @@
           required 
           autocomplete="email"
           placeholder="nombre@empresa.com" 
-          class="w-full px-4 py-3 rounded-xl bg-paper-subtle border-2 border-ink text-ink placeholder-ink/40 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-ink transition-colors"
+          class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
         />
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label for="form-phone" class="block text-xs font-extrabold uppercase tracking-wider text-ink mb-1.5">
+          <label for="form-phone" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
             Teléfono / WhatsApp
           </label>
           <input 
@@ -82,12 +82,12 @@
             name="phoneNumber" 
             autocomplete="tel"
             placeholder="+51 987 654 321" 
-            class="w-full px-4 py-3 rounded-xl bg-paper-subtle border-2 border-ink text-ink placeholder-ink/40 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-ink transition-colors"
+            class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
           />
         </div>
 
         <div>
-          <label for="form-company" class="block text-xs font-extrabold uppercase tracking-wider text-ink mb-1.5">
+          <label for="form-company" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
             Empresa (Opcional)
           </label>
           <input 
@@ -96,7 +96,7 @@
             name="companyName" 
             autocomplete="organization"
             placeholder="Mi Empresa S.A.C." 
-            class="w-full px-4 py-3 rounded-xl bg-paper-subtle border-2 border-ink text-ink placeholder-ink/40 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-ink transition-colors"
+            class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
           />
         </div>
       </div>
@@ -106,15 +106,15 @@
         <button 
           id="submit-checkout-btn"
           type="submit" 
-          class="w-full py-4 px-6 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold text-white bg-ink hover:bg-brand border-2 border-ink shadow-brutal hover:shadow-brutal-lg transition-all duration-150 flex items-center justify-center gap-2"
+          class="w-full py-4 px-6 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold text-white bg-zinc-900 hover:bg-indigo-600 border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all duration-150 flex items-center justify-center gap-2"
         >
           <span id="btn-text">Continuar a Mercado Pago</span>
           <span id="btn-spinner" class="hidden animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span>
-          <span id="btn-arrow" class="text-acid font-bold text-base">↗</span>
+          <span id="btn-arrow" class="text-indigo-300 font-bold text-base">↗</span>
         </button>
       </div>
 
-      <div class="p-3 bg-paper-subtle border border-ink/20 rounded-xl text-[11px] text-ink/80 text-center font-medium">
+      <div class="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-[11px] text-zinc-600 text-center font-medium">
         🔒 Tus datos están protegidos. El precio se valida en el servidor y serás redirigido a Mercado Pago para completar la operación.
       </div>
     </form>

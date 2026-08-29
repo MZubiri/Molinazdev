@@ -4,21 +4,21 @@ import { getCatalog, type ServiceCatalog } from '../lib/api';
 const services: ServiceCatalog[] = await getCatalog();
 ---
 
-<section id="servicios" class="py-16 md:py-24 border-b-2 border-ink bg-paper">
+<section id="servicios" class="py-16 md:py-24 border-b-2 border-zinc-900 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Index -->
-    <div class="text-xs font-extrabold tracking-widest text-ink/60 uppercase mb-3 text-center md:text-left">
+    <div class="text-xs font-extrabold tracking-widest text-zinc-500 uppercase mb-3 text-center md:text-left">
       02 / CATÁLOGO &amp; TARIFAS
     </div>
 
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
       <div class="max-w-2xl space-y-2 text-center md:text-left">
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-ink font-display leading-[1.12]">
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-zinc-900 font-display leading-[1.12]">
           Planes diseñados a la medida de tu presupuesto
         </h2>
-        <p class="text-sm sm:text-base text-ink/80 font-medium">
+        <p class="text-sm sm:text-base text-zinc-600 font-medium">
           Precios transparentes y validados en el servidor. Incluyen dominio, hosting y soporte por 60 días.
         </p>
       </div>
@@ -29,10 +29,10 @@ const services: ServiceCatalog[] = await getCatalog();
           <button
             type="button"
             data-service-tab={service.slug}
-            class={`category-tab px-4 py-2 rounded-full text-xs font-extrabold transition-all duration-150 border-2 border-ink ${
+            class={`category-tab px-4 py-2 rounded-full text-xs font-extrabold transition-all duration-150 border-2 border-zinc-900 ${
               index === 0
-                ? 'bg-ink text-white shadow-brutal-sm -translate-y-0.5'
-                : 'bg-white text-ink hover:bg-paper-subtle hover:shadow-brutal-sm'
+                ? 'bg-zinc-900 text-white shadow-brutal-sm -translate-y-0.5'
+                : 'bg-white text-zinc-800 hover:bg-zinc-100 hover:shadow-brutal-sm'
             }`}
           >
             {service.title}
@@ -49,19 +49,19 @@ const services: ServiceCatalog[] = await getCatalog();
           class={`service-panel ${sIndex === 0 ? 'block' : 'hidden'}`}
         >
           <!-- Category Header Bar -->
-          <div class="mb-8 p-5 sm:p-6 rounded-2xl bg-paper-subtle border-2 border-ink flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="mb-8 p-5 sm:p-6 rounded-2xl bg-zinc-50 border-2 border-zinc-900 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <span class="text-xs font-extrabold uppercase tracking-wider text-brand">Solución Digital</span>
-              <h3 class="text-2xl font-extrabold text-ink font-display">{service.title}</h3>
+              <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600">Solución Digital</span>
+              <h3 class="text-2xl font-extrabold text-zinc-900 font-display">{service.title}</h3>
               {service.description && (
-                <p class="text-xs sm:text-sm text-ink/80 mt-1 font-medium max-w-2xl">{service.description}</p>
+                <p class="text-xs sm:text-sm text-zinc-600 mt-1 font-medium max-w-2xl">{service.description}</p>
               )}
             </div>
-            <div class="flex flex-wrap items-center gap-2 text-xs font-bold text-ink">
-              <span class="px-3 py-1 bg-acid rounded-full border border-ink shadow-brutal-sm">
+            <div class="flex flex-wrap items-center gap-2 text-xs font-bold text-zinc-800">
+              <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full border border-indigo-200">
                 ✓ 1er año Dominio + Hosting
               </span>
-              <span class="px-3 py-1 bg-white rounded-full border border-ink shadow-brutal-sm">
+              <span class="px-3 py-1 bg-white rounded-full border border-zinc-300">
                 ✓ 60 Días de Soporte
               </span>
             </div>
@@ -81,42 +81,42 @@ const services: ServiceCatalog[] = await getCatalog();
               return (
                 <div 
                   class={`card-brutal p-6 sm:p-7 flex flex-col justify-between relative bg-white ${
-                    isHighlight ? 'ring-2 ring-ink ring-offset-2' : ''
+                    isHighlight ? 'ring-2 ring-indigo-600 ring-offset-2' : ''
                   }`}
                 >
                   {isHighlight && (
-                    <div class="absolute -top-3.5 right-4 px-3 py-0.5 rounded-full bg-acid border-2 border-ink text-ink text-[11px] font-extrabold uppercase tracking-wider shadow-brutal-sm">
+                    <div class="absolute -top-3.5 right-4 px-3 py-0.5 rounded-full bg-indigo-600 text-white text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
                       ★ Más Popular
                     </div>
                   )}
 
                   <div>
-                    <h4 class="text-xl sm:text-2xl font-extrabold text-ink font-display">{pkg.name}</h4>
+                    <h4 class="text-xl sm:text-2xl font-extrabold text-zinc-900 font-display">{pkg.name}</h4>
                     {pkg.description && (
-                      <p class="text-xs text-ink/70 mt-2 min-h-[36px] font-medium leading-relaxed">{pkg.description}</p>
+                      <p class="text-xs text-zinc-600 mt-2 min-h-[36px] font-medium leading-relaxed">{pkg.description}</p>
                     )}
 
                     <!-- Price & Delivery -->
-                    <div class="mt-5 pt-5 border-t-2 border-ink/10">
+                    <div class="mt-5 pt-5 border-t-2 border-zinc-100">
                       <div class="flex items-baseline gap-1.5">
-                        <span class="text-xs font-bold text-ink/60">
+                        <span class="text-xs font-bold text-zinc-500">
                           {pkg.name === 'Plataforma Personalizada' ? 'Desde S/.' : pkg.currency}
                         </span>
-                        <span class="text-2xl sm:text-3xl font-extrabold text-ink font-display tracking-tight">
+                        <span class="text-2xl sm:text-3xl font-extrabold text-zinc-900 font-display tracking-tight">
                           {pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                         </span>
                       </div>
-                      <div class="inline-flex items-center gap-1 mt-2 text-[11px] font-bold text-ink bg-paper-subtle px-2.5 py-1 rounded-full border border-ink/30">
+                      <div class="inline-flex items-center gap-1 mt-2 text-[11px] font-bold text-zinc-700 bg-zinc-100 px-2.5 py-1 rounded-full border border-zinc-200">
                         <span>⏱️ Plazo: ~{pkg.deliveryDays} días hábiles</span>
                       </div>
                     </div>
 
                     <!-- Features -->
                     <div class="mt-6 space-y-2.5">
-                      <span class="text-[11px] font-extrabold uppercase tracking-wider text-ink/70 block">Qué incluye:</span>
+                      <span class="text-[11px] font-extrabold uppercase tracking-wider text-zinc-500 block">Qué incluye:</span>
                       <ul class="space-y-2">
                         {pkg.features.map(feature => (
-                          <li class="flex items-start gap-2 text-xs text-ink/90 font-medium leading-snug">
+                          <li class="flex items-start gap-2 text-xs text-zinc-800 font-medium leading-snug">
                             <span class="text-emerald-600 font-extrabold text-sm flex-shrink-0">✓</span>
                             <span>{feature}</span>
                           </li>
@@ -126,7 +126,7 @@ const services: ServiceCatalog[] = await getCatalog();
                   </div>
 
                   <!-- Action CTA -->
-                  <div class="mt-6 pt-5 border-t-2 border-ink/10">
+                  <div class="mt-6 pt-5 border-t-2 border-zinc-100">
                     <button
                       type="button"
                       data-open-checkout
@@ -135,13 +135,13 @@ const services: ServiceCatalog[] = await getCatalog();
                       data-package-price={`${pkg.currency} ${pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}`}
                       data-service-title={service.title}
                       class={`w-full py-3.5 px-4 text-xs uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 ${
-                        isHighlight ? 'btn-brutal-acid' : 'btn-brutal-primary'
+                        isHighlight ? 'btn-indigo' : 'btn-primary'
                       }`}
                     >
                       <span>Contratar {pkg.name}</span>
                       <span class="font-bold">↗</span>
                     </button>
-                    <p class="text-[10px] text-ink/60 text-center mt-2 font-medium">
+                    <p class="text-[10px] text-zinc-500 text-center mt-2 font-medium">
                       🔒 Pago 100% Protegido
                     </p>
                   </div>
@@ -155,18 +155,18 @@ const services: ServiceCatalog[] = await getCatalog();
     </div>
 
     <!-- Payment Methods Information Banner -->
-    <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-white border-2 border-ink shadow-brutal flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-zinc-50 border-2 border-zinc-900 shadow-brutal flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="space-y-1 text-center md:text-left">
-        <span class="text-xs font-extrabold uppercase tracking-wider text-brand block">Facilidades y Seguridad</span>
-        <h3 class="text-lg sm:text-xl font-extrabold text-ink font-display">Múltiples métodos de pago a tu alcance</h3>
-        <p class="text-xs sm:text-sm text-ink/80 font-medium">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 block">Facilidades y Seguridad</span>
+        <h3 class="text-lg sm:text-xl font-extrabold text-zinc-900 font-display">Múltiples métodos de pago a tu alcance</h3>
+        <p class="text-xs sm:text-sm text-zinc-600 font-medium">
           Aceptamos <strong>Efectivo, Transferencia Bancaria, Yape, Plin</strong> y <strong>Tarjetas de Débito y Crédito</strong> con opción a meses sin intereses a través de Mercado Pago.
         </p>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-2 flex-shrink-0">
-        <span class="px-3 py-1.5 rounded-lg bg-paper-subtle border border-ink font-extrabold text-xs text-ink">💵 Efectivo / Transf.</span>
-        <span class="px-3 py-1.5 rounded-lg bg-purple-100 border border-ink font-extrabold text-xs text-purple-900">📱 Yape / Plin</span>
-        <span class="px-3 py-1.5 rounded-lg bg-acid rounded-lg border border-ink font-extrabold text-xs text-ink">💳 TC sin intereses</span>
+        <span class="px-3 py-1.5 rounded-lg bg-white border border-zinc-300 font-extrabold text-xs text-zinc-800">💵 Efectivo / Transf.</span>
+        <span class="px-3 py-1.5 rounded-lg bg-purple-50 border border-purple-200 font-extrabold text-xs text-purple-900">📱 Yape / Plin</span>
+        <span class="px-3 py-1.5 rounded-lg bg-indigo-50 border border-indigo-200 font-extrabold text-xs text-indigo-900">💳 TC sin intereses</span>
       </div>
     </div>
 
@@ -183,11 +183,11 @@ const services: ServiceCatalog[] = await getCatalog();
       if (!slug) return;
 
       tabs.forEach(t => {
-        t.classList.remove('bg-ink', 'text-white', 'shadow-brutal-sm', '-translate-y-0.5');
-        t.classList.add('bg-white', 'text-ink');
+        t.classList.remove('bg-zinc-900', 'text-white', 'shadow-brutal-sm', '-translate-y-0.5');
+        t.classList.add('bg-white', 'text-zinc-800');
       });
-      tab.classList.remove('bg-white', 'text-ink');
-      tab.classList.add('bg-ink', 'text-white', 'shadow-brutal-sm', '-translate-y-0.5');
+      tab.classList.remove('bg-white', 'text-zinc-800');
+      tab.classList.add('bg-zinc-900', 'text-white', 'shadow-brutal-sm', '-translate-y-0.5');
 
       panels.forEach(p => {
         if (p.id === `service-panel-${slug}`) {

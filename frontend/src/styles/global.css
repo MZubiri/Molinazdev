@@ -8,13 +8,13 @@
   html {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: #fcfbf8;
-    color: #10100e;
+    background-color: #fafaf9;
+    color: #111827;
   }
 
   ::selection {
-    background-color: #d9f99d;
-    color: #10100e;
+    background-color: #e0e7ff;
+    color: #3730a3;
   }
 
   main > section[id] {
@@ -23,81 +23,70 @@
 }
 
 @layer utilities {
-  .highlight-acid {
-    background-color: #d9f99d;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-    padding: 0.1em 0.3em;
-    border-radius: 4px;
-    color: #10100e;
+  .text-brand-gradient {
+    background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .highlight-yellow {
-    background-color: #fef08a;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-    padding: 0.1em 0.3em;
-    border-radius: 4px;
-    color: #10100e;
+  .card-clean {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
-  .highlight-cyan {
-    background-color: #a5f3fc;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-    padding: 0.1em 0.3em;
-    border-radius: 4px;
-    color: #10100e;
-  }
-
-  .outline-text {
-    -webkit-text-stroke: 1.5px #10100e;
-    color: transparent;
+  .card-clean:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
   }
 
   .card-brutal {
     background-color: #ffffff;
-    border: 2px solid #10100e;
-    border-radius: 12px;
-    box-shadow: 4px 4px 0px 0px #10100e;
+    border: 2px solid #111827;
+    border-radius: 16px;
+    box-shadow: 4px 4px 0px 0px #111827;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
   .card-brutal:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px 0px #10100e;
+    box-shadow: 6px 6px 0px 0px #111827;
   }
 
-  .btn-brutal-primary {
-    background-color: #10100e;
+  .btn-primary {
+    background-color: #111827;
     color: #ffffff;
-    border: 2px solid #10100e;
+    border: 2px solid #111827;
     border-radius: 9999px;
     font-weight: 700;
-    box-shadow: 3px 3px 0px 0px rgba(16, 16, 14, 0.4);
+    box-shadow: 3px 3px 0px 0px rgba(17, 24, 39, 0.3);
     transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
   }
 
-  .btn-brutal-primary:hover {
+  .btn-primary:hover {
     background-color: #4f46e5;
     border-color: #4f46e5;
     transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px 0px #10100e;
+    box-shadow: 4px 4px 0px 0px #111827;
   }
 
-  .btn-brutal-acid {
-    background-color: #d9f99d;
-    color: #10100e;
-    border: 2px solid #10100e;
+  .btn-indigo {
+    background-color: #4f46e5;
+    color: #ffffff;
+    border: 2px solid #111827;
     border-radius: 9999px;
-    font-weight: 800;
-    box-shadow: 3px 3px 0px 0px #10100e;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    font-weight: 700;
+    box-shadow: 3px 3px 0px 0px #111827;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
   }
 
-  .btn-brutal-acid:hover {
+  .btn-indigo:hover {
+    background-color: #4338ca;
     transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0px 0px #10100e;
+    box-shadow: 5px 5px 0px 0px #111827;
   }
 }
 
@@ -110,7 +99,7 @@
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 25s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
 .animate-marquee:hover {
