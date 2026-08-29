@@ -1,0 +1,56 @@
+@model CheckoutViewModel
+@{
+    ViewData["Title"] = "Completar contratación";
+}
+
+<section class="page-section compact-section">
+    <div class="container checkout-grid">
+        <div>
+            <span class="eyebrow">Checkout seguro</span>
+            <h1>Cuéntanos sobre ti</h1>
+            <p class="lead">Usaremos estos datos para crear tu orden y coordinar el inicio del servicio. Revisarás el importe definitivo en Mercado Pago.</p>
+            <div class="trust-note">
+                <strong>Tu pago se procesa fuera de este sitio.</strong>
+                <span>No almacenamos los datos de tu tarjeta.</span>
+            </div>
+        </div>
+
+        <form class="checkout-form" asp-controller="Checkout" asp-action="Create" method="post" novalidate>
+            @Html.AntiForgeryToken()
+            <input asp-for="PackageId" type="hidden" />
+
+            <div asp-validation-summary="ModelOnly" class="validation-summary" role="alert"></div>
+
+            <div class="field-group">
+                <label asp-for="FullName"></label>
+                <input asp-for="FullName" autocomplete="name" />
+                <span asp-validation-for="FullName"></span>
+            </div>
+
+            <div class="field-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" autocomplete="email" inputmode="email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+
+            <div class="field-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" autocomplete="tel" inputmode="tel" />
+                <span asp-validation-for="PhoneNumber"></span>
+            </div>
+
+            <div class="field-group">
+                <label asp-for="CompanyName"></label>
+                <input asp-for="CompanyName" autocomplete="organization" />
+                <span asp-validation-for="CompanyName"></span>
+            </div>
+
+            <button class="button button-primary button-block" type="submit">Continuar a Mercado Pago</button>
+            <p class="form-caption">El servidor obtiene el precio vigente del paquete. Nunca se toma el importe desde este formulario.</p>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

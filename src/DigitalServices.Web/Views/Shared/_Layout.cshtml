@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Servicios de desarrollo web, inteligencia artificial y automatización." />
+    <title>@ViewData["Title"] - Digital Services</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="brand" asp-controller="Home" asp-action="Index" aria-label="Digital Services, inicio">
+                <span class="brand-mark" aria-hidden="true">DS</span>
+                <span>Digital Services</span>
+            </a>
+            <nav aria-label="Navegación principal">
+                <a asp-controller="Home" asp-action="Index" asp-fragment="servicios">Servicios</a>
+                <a asp-controller="Home" asp-action="Index" asp-fragment="como-funciona">Cómo funciona</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <span>&copy; @DateTime.UtcNow.Year Digital Services</span>
+            <span>Pagos protegidos por Mercado Pago</span>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

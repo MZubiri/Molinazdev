@@ -1,0 +1,100 @@
+@model IReadOnlyList<ServiceCatalogDto>
+@{
+    ViewData["Title"] = "Servicios digitales que impulsan tu negocio";
+}
+
+<section class="hero-section">
+    <div class="container">
+        <span class="eyebrow">Tecnología aplicada a resultados</span>
+        <h1>Construimos la solución digital que tu negocio necesita.</h1>
+        <p class="lead">Sitios web, chatbots con inteligencia artificial, automatizaciones y software a medida, con alcance y precio claros desde el inicio.</p>
+        <a class="button button-primary" href="#servicios">Explorar servicios</a>
+    </div>
+</section>
+
+<section class="page-section" id="servicios">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">Catálogo</span>
+                <h2>Elige una solución para comenzar</h2>
+            </div>
+            <p>Todos los precios se validan directamente en nuestro servidor antes de crear la orden.</p>
+        </div>
+
+        @if (Model.Count == 0)
+        {
+            <div class="empty-state">
+                <h3>Estamos preparando nuevos servicios</h3>
+                <p>Vuelve pronto para conocer los paquetes disponibles.</p>
+            </div>
+        }
+        else
+        {
+            <div class="service-list">
+                @foreach (var service in Model)
+                {
+                    <article class="service-block">
+                        <div class="service-heading">
+                            <div class="service-icon" aria-hidden="true">@service.Title[..1]</div>
+                            <div>
+                                <h3>
+                                    <a asp-controller="Services" asp-action="Details" asp-route-slug="@service.Slug">@service.Title</a>
+                                </h3>
+                                @if (!string.IsNullOrWhiteSpace(service.Description))
+                                {
+                                    <p>@service.Description</p>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="package-grid">
+                            @foreach (var package in service.Packages)
+                            {
+                                <article class="package-card">
+                                    <div>
+                                        <h4>@package.Name</h4>
+                                        @if (!string.IsNullOrWhiteSpace(package.Description))
+                                        {
+                                            <p>@package.Description</p>
+                                        }
+                                    </div>
+                                    <div class="package-meta">
+                                        <span class="package-price">@package.Currency @package.Price.ToString("N2", CultureInfo.InvariantCulture)</span>
+                                        <span>@package.DeliveryDays días de entrega</span>
+                                    </div>
+                                    @if (package.Features.Count > 0)
+                                    {
+                                        <ul class="feature-list">
+                                            @foreach (var feature in package.Features)
+                                            {
+                                                <li>@feature</li>
+                                            }
+                                        </ul>
+                                    }
+                                    <a class="button button-primary button-block"
+                                       asp-controller="Checkout"
+                                       asp-action="Create"
+                                       asp-route-packageId="@package.Id">Contratar paquete</a>
+                                </article>
+                            }
+                        </div>
+                    </article>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+<section class="process-section" id="como-funciona">
+    <div class="container">
+        <span class="eyebrow">Proceso simple</span>
+        <h2>De la idea al inicio del proyecto</h2>
+        <ol class="process-grid">
+            <li><strong>Selecciona</strong><span>Elige el servicio y paquete que mejor encaje.</span></li>
+            <li><strong>Completa tus datos</strong><span>Creamos tu cliente y una orden segura.</span></li>
+            <li><strong>Paga</strong><span>Finaliza la operación en Mercado Pago.</span></li>
+            <li><strong>Comenzamos</strong><span>Validamos el pago y coordinamos los siguientes pasos.</span></li>
+        </ol>
+    </div>
+</section>

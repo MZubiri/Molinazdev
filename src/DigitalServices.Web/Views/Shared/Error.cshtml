@@ -1,0 +1,17 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "No pudimos completar la solicitud";
+}
+
+<section class="page-section compact-section">
+    <div class="container narrow-container status-card status-error">
+        <span class="status-symbol" aria-hidden="true">!</span>
+        <h1>No pudimos completar la solicitud</h1>
+        <p>Ocurrió un inconveniente inesperado. Inténtalo nuevamente en unos minutos.</p>
+        @if (Model.ShowRequestId)
+        {
+            <p class="request-id">Código de seguimiento: <code>@Model.RequestId</code></p>
+        }
+        <a class="button button-primary" asp-controller="Home" asp-action="Index">Volver al inicio</a>
+    </div>
+</section>

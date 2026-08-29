@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Pago pendiente";
+}
+
+<section class="page-section compact-section">
+    <div class="container narrow-container status-card status-pending">
+        <span class="status-symbol" aria-hidden="true">…</span>
+        <span class="eyebrow">Retorno de Mercado Pago</span>
+        <h1>Tu pago está pendiente</h1>
+        <p>Algunos medios de pago necesitan más tiempo para acreditarse. La orden se actualizará cuando Mercado Pago confirme el resultado.</p>
+        <p class="status-detail">No es necesario volver a pagar mientras la operación siga pendiente.</p>
+        <a class="button button-primary" asp-controller="Home" asp-action="Index">Volver al inicio</a>
+    </div>
+</section>

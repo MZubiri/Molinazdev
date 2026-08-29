@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Pago no completado";
+}
+
+<section class="page-section compact-section">
+    <div class="container narrow-container status-card status-error">
+        <span class="status-symbol" aria-hidden="true">!</span>
+        <span class="eyebrow">Retorno de Mercado Pago</span>
+        <h1>El pago no pudo completarse</h1>
+        <p>No se confirmó ningún cobro desde esta página. Puedes volver al catálogo e iniciar un nuevo intento cuando estés listo.</p>
+        <a class="button button-primary" asp-controller="Home" asp-action="Index">Volver a los servicios</a>
+    </div>
+</section>

@@ -1,0 +1,63 @@
+@model ServiceCatalogDto
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="page-section service-detail-hero">
+    <div class="container">
+        <a class="back-link" asp-controller="Home" asp-action="Index" asp-fragment="servicios">← Todos los servicios</a>
+        <span class="eyebrow">Servicio digital</span>
+        <h1>@Model.Title</h1>
+        @if (!string.IsNullOrWhiteSpace(Model.Description))
+        {
+            <p class="lead">@Model.Description</p>
+        }
+    </div>
+</section>
+
+<section class="page-section package-section">
+    <div class="container">
+        <h2>Paquetes disponibles</h2>
+        @if (Model.Packages.Count == 0)
+        {
+            <div class="empty-state">
+                <h3>No hay paquetes disponibles ahora</h3>
+                <p>Consulta nuevamente más adelante.</p>
+            </div>
+        }
+        else
+        {
+            <div class="package-grid package-grid-wide">
+                @foreach (var package in Model.Packages)
+                {
+                    <article class="package-card">
+                        <div>
+                            <h3>@package.Name</h3>
+                            @if (!string.IsNullOrWhiteSpace(package.Description))
+                            {
+                                <p>@package.Description</p>
+                            }
+                        </div>
+                        <div class="package-meta">
+                            <span class="package-price">@package.Currency @package.Price.ToString("N2", CultureInfo.InvariantCulture)</span>
+                            <span>@package.DeliveryDays días de entrega</span>
+                        </div>
+                        @if (package.Features.Count > 0)
+                        {
+                            <ul class="feature-list">
+                                @foreach (var feature in package.Features)
+                                {
+                                    <li>@feature</li>
+                                }
+                            </ul>
+                        }
+                        <a class="button button-primary button-block"
+                           asp-controller="Checkout"
+                           asp-action="Create"
+                           asp-route-packageId="@package.Id">Contratar paquete</a>
+                    </article>
+                }
+            </div>
+        }
+    </div>
+</section>
