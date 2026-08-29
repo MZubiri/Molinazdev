@@ -3,36 +3,38 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Pago Exitoso — MolinazDev" description="Tu pago ha sido procesado de forma segura con Mercado Pago.">
-  <section class="min-h-[80vh] flex items-center justify-center py-24 px-4 sm:px-6">
-    <div class="max-w-lg w-full rounded-3xl p-8 sm:p-12 glass-card border-emerald-500/40 text-center space-y-6 shadow-2xl relative overflow-hidden">
+  <section class="min-h-[75vh] flex items-center justify-center py-20 px-4 sm:px-6 bg-paper">
+    <div class="max-w-lg w-full card-brutal p-8 sm:p-12 text-center space-y-6 bg-white">
       
-      <div class="w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-4xl mx-auto shadow-glow-sm">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 border-2 border-ink flex items-center justify-center text-emerald-700 text-3xl mx-auto shadow-brutal-sm">
         ✓
       </div>
 
       <div class="space-y-2">
-        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Confirmación de Pago</span>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white font-display">¡Gracias por tu compra!</h1>
-        <p class="text-sm text-zinc-400 leading-relaxed pt-2">
-          Mercado Pago nos ha notificado el resultado. Tu orden está siendo verificada y te contactaremos en breve para coordinar el inicio de tu proyecto.
+        <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-ink/30 inline-block">
+          Pago Confirmado
+        </span>
+        <h1 class="text-3xl font-extrabold text-ink font-display">¡Gracias por tu compra!</h1>
+        <p class="text-sm text-ink/80 leading-relaxed pt-2 font-medium">
+          Mercado Pago nos ha notificado el resultado. Tu orden ha sido registrada en nuestro sistema y nos pondremos en contacto contigo para coordinar el inicio.
         </p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-dark-bg/80 border border-zinc-800 text-xs text-zinc-300 text-left space-y-2">
-        <div class="font-semibold text-white flex items-center gap-1.5">
+      <div class="p-4 rounded-xl bg-paper-subtle border-2 border-ink text-xs text-ink text-left space-y-2">
+        <div class="font-bold text-ink flex items-center gap-1.5">
           <span>📌</span> Próximos pasos:
         </div>
-        <ul class="space-y-1 text-zinc-400 pl-4 list-disc">
-          <li>Revisa tu bandeja de correo para ver el resumen de tu orden.</li>
-          <li>Nuestro líder de proyecto te escribirá por WhatsApp/Email.</li>
-          <li>Agendaremos la llamada de kick-off para iniciar el desarrollo.</li>
+        <ul class="space-y-1 text-ink/80 pl-4 list-disc font-medium">
+          <li>Revisa tu bandeja de correo para ver el comprobante.</li>
+          <li>Nuestro equipo te escribirá por WhatsApp o Email en menos de 24h.</li>
+          <li>Agendaremos la reunión de inicio para coordinar contenidos.</li>
         </ul>
       </div>
 
-      <div class="pt-4">
+      <div class="pt-2">
         <a 
           href="/" 
-          class="w-full inline-flex items-center justify-center px-6 py-4 rounded-2xl text-xs uppercase tracking-wider font-bold text-white bg-indigo-600 hover:bg-indigo-500 transition-colors shadow-glow-sm"
+          class="btn-brutal-primary w-full py-4 px-6 text-xs uppercase tracking-wider text-center block"
         >
           Volver al Inicio
         </a>

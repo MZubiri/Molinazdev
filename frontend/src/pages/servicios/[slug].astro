@@ -19,20 +19,20 @@ const { service } = Astro.props;
 
 <Layout title={`${service.title} — MolinazDev`} description={service.description || ''}>
   <!-- Hero Section for Service -->
-  <section class="pt-36 pb-16 relative mesh-gradient border-b border-zinc-800/80">
+  <section class="pt-12 pb-16 md:pt-20 md:pb-24 border-b-2 border-ink bg-paper-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <a href="/#servicios" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 hover:text-indigo-400 mb-6 transition-colors">
-          <span>&larr;</span> Volver a todos los servicios
+      <div class="max-w-3xl space-y-4">
+        <a href="/#servicios" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-ink/70 hover:text-brand transition-colors mb-2">
+          <span>&larr;</span> Volver al catálogo
         </a>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-xs font-semibold text-indigo-400 uppercase tracking-widest block w-max mb-4">
-          Servicio Digital
+        <div class="inline-block px-3 py-1 rounded-full bg-acid border-2 border-ink text-xs font-extrabold uppercase tracking-wider text-ink shadow-brutal-sm">
+          Servicio Especializado
         </div>
-        <h1 class="text-4xl sm:text-6xl font-extrabold text-white font-display tracking-tight leading-tight">
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-ink font-display tracking-tight leading-tight">
           {service.title}
         </h1>
         {service.description && (
-          <p class="text-lg text-zinc-400 mt-4 leading-relaxed max-w-2xl">
+          <p class="text-base sm:text-lg text-ink/80 leading-relaxed font-medium">
             {service.description}
           </p>
         )}
@@ -41,11 +41,11 @@ const { service } = Astro.props;
   </section>
 
   <!-- Packages Section -->
-  <section class="py-20 bg-dark-surface/40">
+  <section class="py-20 bg-paper">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-12">
-        <h2 class="text-2xl sm:text-4xl font-bold text-white font-display">Paquetes Disponibles</h2>
-        <p class="text-sm text-zinc-400 mt-2">Precios transparentes y validados en el servidor. Elige el que mejor encaje con tu proyecto.</p>
+      <div class="mb-12 space-y-2">
+        <span class="text-xs font-extrabold tracking-widest text-ink/60 uppercase block">Opciones disponibles</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink font-display">Paquetes para {service.title}</h2>
       </div>
 
       <div class={`grid gap-8 ${service.packages.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2 max-w-4xl'}`}>
@@ -53,41 +53,39 @@ const { service } = Astro.props;
           const isHighlight = index === 1 || service.packages.length === 1;
           return (
             <div 
-              class={`rounded-3xl p-8 flex flex-col justify-between glass-card transition-all duration-300 ${
-                isHighlight 
-                  ? 'border-indigo-500/50 bg-gradient-to-b from-dark-card to-indigo-950/30 shadow-glow-sm hover:shadow-glow-md' 
-                  : 'border-zinc-800/90 hover:border-zinc-700'
-              } hover:-translate-y-1`}
+              class={`card-brutal p-8 flex flex-col justify-between relative bg-white ${
+                isHighlight ? 'ring-2 ring-ink ring-offset-2' : ''
+              }`}
             >
               <div>
                 {isHighlight && (
-                  <span class="inline-block px-3 py-0.5 rounded-full bg-indigo-600 text-white text-[10px] font-extrabold uppercase tracking-wider mb-3">
-                    Recomendado
+                  <span class="inline-block px-3 py-0.5 rounded-full bg-acid border-2 border-ink text-ink text-[11px] font-extrabold uppercase tracking-wider mb-4 shadow-brutal-sm">
+                    ★ Recomendado
                   </span>
                 )}
-                <h3 class="text-2xl font-bold text-white font-display">{pkg.name}</h3>
+                <h3 class="text-2xl font-extrabold text-ink font-display">{pkg.name}</h3>
                 {pkg.description && (
-                  <p class="text-xs text-zinc-400 mt-2 leading-relaxed">{pkg.description}</p>
+                  <p class="text-xs text-ink/70 mt-2 font-medium leading-relaxed">{pkg.description}</p>
                 )}
 
-                <div class="mt-6 pt-6 border-t border-zinc-800/80">
+                <div class="mt-6 pt-6 border-t-2 border-ink/10">
                   <div class="flex items-baseline gap-1.5">
-                    <span class="text-xs font-semibold text-zinc-400">{pkg.currency}</span>
-                    <span class="text-3xl sm:text-4xl font-extrabold text-white font-display">
+                    <span class="text-xs font-bold text-ink/60">{pkg.currency}</span>
+                    <span class="text-3xl sm:text-4xl font-extrabold text-ink font-display tracking-tight">
                       {pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
-                  <div class="inline-flex items-center gap-1.5 mt-2 text-xs font-medium text-indigo-400 bg-indigo-950/50 px-2.5 py-1 rounded-md border border-indigo-800/40">
-                    <span>⏱️ Entrega estimada en ~{pkg.deliveryDays} días</span>
+                  <div class="inline-flex items-center gap-1.5 mt-2 text-xs font-bold text-ink bg-paper-subtle px-3 py-1 rounded-full border border-ink/30">
+                    <span>⏱️ Entrega estimada: ~{pkg.deliveryDays} días hábiles</span>
                   </div>
                 </div>
 
                 <div class="mt-8 space-y-3">
-                  <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">Entregables y funciones:</span>
+                  <span class="text-xs font-extrabold uppercase tracking-wider text-ink/70 block">Entregables y funciones:</span>
                   <ul class="space-y-2.5">
                     {pkg.features.map(f => (
-                      <li class="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                        <span class="text-emerald-400 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                      <li class="flex items-start gap-2.5 text-xs sm:text-sm text-ink/90 font-medium">
+                        <span class="text-emerald-600 font-extrabold text-base leading-none">✓</span>
                         <span>{f}</span>
                       </li>
                     ))}
@@ -95,7 +93,7 @@ const { service } = Astro.props;
                 </div>
               </div>
 
-              <div class="mt-8 pt-6 border-t border-zinc-800/80">
+              <div class="mt-8 pt-6 border-t-2 border-ink/10">
                 <button
                   type="button"
                   data-open-checkout
@@ -103,16 +101,12 @@ const { service } = Astro.props;
                   data-package-name={pkg.name}
                   data-package-price={`${pkg.currency} ${pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}`}
                   data-service-title={service.title}
-                  class={`w-full py-4 px-6 rounded-2xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 ${
-                    isHighlight
-                      ? 'bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white shadow-glow-sm hover:shadow-glow-md'
-                      : 'bg-zinc-800 hover:bg-indigo-600 hover:text-white text-zinc-200 border border-zinc-700/60'
+                  class={`w-full py-4 px-6 text-xs sm:text-sm uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 ${
+                    isHighlight ? 'btn-brutal-acid' : 'btn-brutal-primary'
                   }`}
                 >
                   <span>Contratar {pkg.name}</span>
-                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
+                  <span class="font-bold">↗</span>
                 </button>
               </div>
             </div>

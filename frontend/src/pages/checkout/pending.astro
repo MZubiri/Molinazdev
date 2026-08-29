@@ -3,34 +3,36 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Pago Pendiente — MolinazDev" description="Tu pago está pendiente de acreditación en Mercado Pago.">
-  <section class="min-h-[80vh] flex items-center justify-center py-24 px-4 sm:px-6">
-    <div class="max-w-lg w-full rounded-3xl p-8 sm:p-12 glass-card border-amber-500/40 text-center space-y-6 shadow-2xl relative overflow-hidden">
+  <section class="min-h-[75vh] flex items-center justify-center py-20 px-4 sm:px-6 bg-paper">
+    <div class="max-w-lg w-full card-brutal p-8 sm:p-12 text-center space-y-6 bg-white">
       
-      <div class="w-20 h-20 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-3xl mx-auto">
+      <div class="w-16 h-16 rounded-full bg-amber-100 border-2 border-ink flex items-center justify-center text-amber-800 text-3xl mx-auto shadow-brutal-sm">
         ⏳
       </div>
 
       <div class="space-y-2">
-        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">En Proceso de Acreditación</span>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white font-display">Tu pago está pendiente</h1>
-        <p class="text-sm text-zinc-400 leading-relaxed pt-2">
-          Algunos métodos de pago como transferencias bancarias o PagoEfectivo pueden tardar unos minutos u horas en confirmarse.
+        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-ink/30 inline-block">
+          En Proceso de Acreditación
+        </span>
+        <h1 class="text-3xl font-extrabold text-ink font-display">Tu pago está pendiente</h1>
+        <p class="text-sm text-ink/80 leading-relaxed pt-2 font-medium">
+          Métodos de pago como transferencias bancarias o PagoEfectivo pueden tardar unos minutos en confirmarse.
         </p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-dark-bg/80 border border-zinc-800 text-xs text-zinc-300 text-left space-y-2">
-        <div class="font-semibold text-white flex items-center gap-1.5">
+      <div class="p-4 rounded-xl bg-paper-subtle border-2 border-ink text-xs text-ink text-left space-y-2">
+        <div class="font-bold text-ink flex items-center gap-1.5">
           <span>💡</span> Importante:
         </div>
-        <p class="text-zinc-400 leading-relaxed">
-          No es necesario que vuelvas a realizar el pago. Nuestro webhook actualizará tu orden en cuanto Mercado Pago confirme la recepción del dinero.
+        <p class="text-ink/80 leading-relaxed font-medium">
+          No es necesario volver a pagar. Nuestro sistema actualizará tu orden en cuanto Mercado Pago confirme la acreditación.
         </p>
       </div>
 
-      <div class="pt-4">
+      <div class="pt-2">
         <a 
           href="/" 
-          class="w-full inline-flex items-center justify-center px-6 py-4 rounded-2xl text-xs uppercase tracking-wider font-bold text-white bg-indigo-600 hover:bg-indigo-500 transition-colors shadow-glow-sm"
+          class="btn-brutal-primary w-full py-4 px-6 text-xs uppercase tracking-wider text-center block"
         >
           Volver al Inicio
         </a>

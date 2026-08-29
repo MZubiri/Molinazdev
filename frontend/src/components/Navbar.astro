@@ -1,64 +1,64 @@
 ---
 ---
 
-<header class="fixed top-0 left-0 right-0 z-40 glass-nav transition-all duration-300">
+<header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b-2 border-ink transition-shadow duration-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    
     <!-- Brand Logo -->
-    <a href="/" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-xl px-2 py-1">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-glow-sm group-hover:scale-105 transition-transform duration-300">
+    <a href="/" class="flex items-center gap-2.5 group focus:outline-none">
+      <div class="w-9 h-9 rounded-lg bg-ink flex items-center justify-center text-acid font-extrabold text-lg border-2 border-ink shadow-brutal-sm group-hover:-translate-y-0.5 transition-transform">
         M
       </div>
-      <div class="flex flex-col">
-        <span class="font-bold tracking-tight text-lg text-white font-display flex items-center gap-1.5">
-          Molinaz<span class="text-indigo-400">Dev</span>
-        </span>
-        <span class="text-[10px] uppercase tracking-widest text-zinc-400 font-semibold -mt-1">Digital Services</span>
-      </div>
+      <span class="font-extrabold tracking-tight text-xl text-ink font-display">
+        Molinaz<span class="text-brand">Dev</span>
+      </span>
     </a>
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
-      <a href="/#servicios" class="hover:text-white hover:text-indigo-400 transition-colors py-1">Servicios</a>
-      <a href="/#beneficios" class="hover:text-white hover:text-indigo-400 transition-colors py-1">¿Por qué nosotros?</a>
-      <a href="/#proceso" class="hover:text-white hover:text-indigo-400 transition-colors py-1">Cómo funciona</a>
-      <a href="/#preguntas" class="hover:text-white hover:text-indigo-400 transition-colors py-1">Preguntas</a>
+    <!-- Desktop Nav Links -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-ink">
+      <a href="/#por-que" class="hover:text-brand transition-colors relative py-1 hover:underline decoration-acid decoration-4 underline-offset-4">Por qué una solución</a>
+      <a href="/#servicios" class="hover:text-brand transition-colors relative py-1 hover:underline decoration-acid decoration-4 underline-offset-4">Servicios & Precios</a>
+      <a href="/#proceso" class="hover:text-brand transition-colors relative py-1 hover:underline decoration-acid decoration-4 underline-offset-4">Cómo funciona</a>
+      <a href="/#preguntas" class="hover:text-brand transition-colors relative py-1 hover:underline decoration-acid decoration-4 underline-offset-4">Preguntas</a>
     </nav>
 
-    <!-- Header Actions -->
+    <!-- Header Action Button -->
     <div class="hidden md:flex items-center gap-4">
       <a 
         href="/#servicios" 
-        class="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-semibold text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 transition-all duration-300 shadow-glow-sm hover:shadow-glow-md hover:-translate-y-0.5"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-extrabold bg-ink text-white hover:bg-brand transition-all duration-200 border-2 border-ink shadow-brutal-sm hover:shadow-brutal hover:-translate-y-0.5"
       >
-        Explorar Soluciones
+        <span>Ver Paquetes</span>
+        <span class="text-acid font-bold">↗</span>
       </a>
     </div>
 
-    <!-- Mobile Menu Button -->
+    <!-- Mobile Hamburger Button -->
     <button 
       id="mobile-menu-btn"
       type="button" 
       aria-label="Abrir menú" 
-      class="md:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800/60 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      class="md:hidden p-2 rounded-lg text-ink hover:bg-paper-subtle border-2 border-ink focus:outline-none"
     >
-      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7" />
       </svg>
     </button>
   </div>
 
   <!-- Mobile Drawer -->
-  <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-800 bg-dark-bg/95 backdrop-blur-xl px-6 py-6 space-y-4">
-    <a href="/#servicios" class="block text-base font-medium text-zinc-300 hover:text-indigo-400 mobile-nav-link">Servicios y Precios</a>
-    <a href="/#beneficios" class="block text-base font-medium text-zinc-300 hover:text-indigo-400 mobile-nav-link">¿Por qué nosotros?</a>
-    <a href="/#proceso" class="block text-base font-medium text-zinc-300 hover:text-indigo-400 mobile-nav-link">Cómo funciona</a>
-    <a href="/#preguntas" class="block text-base font-medium text-zinc-300 hover:text-indigo-400 mobile-nav-link">Preguntas Frecuentes</a>
-    <div class="pt-4 border-t border-zinc-800">
+  <div id="mobile-menu" class="hidden md:hidden border-b-2 border-ink bg-paper px-6 py-6 space-y-4 shadow-lg">
+    <a href="/#por-que" class="block text-base font-bold text-ink hover:text-brand mobile-nav-link">Por qué una solución</a>
+    <a href="/#servicios" class="block text-base font-bold text-ink hover:text-brand mobile-nav-link">Servicios y Precios</a>
+    <a href="/#proceso" class="block text-base font-bold text-ink hover:text-brand mobile-nav-link">Cómo funciona</a>
+    <a href="/#preguntas" class="block text-base font-bold text-ink hover:text-brand mobile-nav-link">Preguntas Frecuentes</a>
+    <div class="pt-4 border-t-2 border-ink/10">
       <a 
         href="/#servicios" 
-        class="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-colors shadow-glow-sm"
+        class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-extrabold bg-ink text-white hover:bg-brand transition-colors border-2 border-ink shadow-brutal-sm"
       >
-        Ver Catálogo de Paquetes
+        <span>Explorar Catálogo de Paquetes</span>
+        <span class="text-acid">↗</span>
       </a>
     </div>
   </div>

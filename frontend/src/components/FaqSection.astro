@@ -2,59 +2,58 @@
 const faqs = [
   {
     q: "¿Cómo se procesa mi pago y qué métodos aceptan?",
-    a: "El pago se procesa directamente a través de Mercado Pago Checkout Pro con encriptación TLS y estándares de seguridad bancaria. Puedes pagar con Tarjeta de Crédito, Débito, Yape, Plin, PagoEfectivo o Transferencia Bancaria."
+    a: "El pago se procesa a través de Mercado Pago Checkout Pro con encriptación bancaria TLS. Puedes pagar con Tarjetas de Crédito o Débito, Yape, Plin, PagoEfectivo o Transferencia Bancaria."
   },
   {
-    q: "¿Qué sucede inmediatamente después de completar el pago?",
-    a: "Nuestro sistema recibe la confirmación mediante webhooks autenticados y actualiza tu orden en tiempo real. Te enviaremos un correo de bienvenida y nuestro equipo se contactará contigo vía WhatsApp/Email en menos de 24 horas para coordinar la reunión de inicio (kick-off)."
+    q: "¿Qué sucede después de completar el pago?",
+    a: "Nuestro sistema recibe la confirmación mediante webhooks seguros en tiempo real. Te enviaremos un correo formal de confirmación y nuestro equipo te contactará por WhatsApp/Email en menos de 24 horas para agendar la llamada de kick-off y coordinar accesos y contenidos."
   },
   {
-    q: "¿El precio que veo en el catálogo es el precio final?",
-    a: "Sí. Cada paquete tiene un alcance técnico y un precio fijado y transparente. El importe se valida en nuestro servidor al generar la orden para garantizar que no existan cobros ocultos ni modificaciones arbitrarias."
+    q: "¿El precio que veo en la página es el precio final?",
+    a: "Sí. Cada paquete tiene un alcance técnico claramente delimitado y un precio cerrado en PEN. El monto se valida directamente en nuestro servidor para garantizar que no existan cobros sorpresa ni modificaciones arbitrarias."
   },
   {
-    q: "¿El código y diseño me pertenecen al 100% al finalizar?",
-    a: "Totalmente. Una vez entregado el proyecto, todos los derechos, repositorios de código, accesos y diseños pasan a ser propiedad exclusiva de tu empresa."
+    q: "¿El código y la web me pertenecen al 100% al finalizar?",
+    a: "Totalmente. Una vez entregado el proyecto, todos los derechos, repositorios de código, accesos y diseños pasan a ser propiedad exclusiva de tu empresa sin cobros de mantenimiento forzoso."
   },
   {
     q: "¿Qué incluye el soporte post-entrega?",
-    a: "Incluye resolución de incidencias, monitoreo del servidor, capacitación sobre cómo usar la plataforma o chatbot y acompañamiento técnico durante los primeros 30 a 60 días según el paquete contratado."
+    a: "Incluye resolución de fallos, monitoreo de servidor, capacitación técnica sobre el uso del sistema o chatbot y acompañamiento durante los primeros 30 a 60 días según el paquete contratado."
   }
 ];
 ---
 
-<section id="preguntas" class="py-24 relative">
+<section id="preguntas" class="py-20 md:py-28 border-b-2 border-ink bg-paper">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-xs font-semibold text-indigo-400 uppercase tracking-widest">
-        Preguntas Frecuentes
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white font-display">
-        Resolvemos tus dudas
+    <!-- Section Index -->
+    <div class="text-xs font-extrabold tracking-widest text-ink/60 uppercase mb-4 text-center md:text-left">
+      04 / PREGUNTAS FRECUENTES
+    </div>
+
+    <!-- Header -->
+    <div class="max-w-2xl space-y-3 mb-14 text-center md:text-left">
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-ink font-display leading-[1.1]">
+        Preguntas frecuentes
       </h2>
-      <p class="text-sm sm:text-base text-zinc-400">
-        Todo lo que necesitas saber sobre nuestros servicios y el proceso de trabajo.
+      <p class="text-base text-ink/80">
+        Resolvemos tus dudas principales antes de contratar.
       </p>
     </div>
 
     <!-- Accordion List -->
     <div class="space-y-4">
-      {faqs.map((faq, index) => (
+      {faqs.map(faq => (
         <details 
-          class="group rounded-2xl glass-card border-zinc-800/80 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300 open:border-indigo-500/40 open:bg-dark-card/90"
+          class="group bg-white border-2 border-ink rounded-xl shadow-brutal transition-all duration-150 open:bg-paper-subtle"
         >
-          <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
-            <h3 class="text-base sm:text-lg font-bold text-white font-display pr-4 group-hover:text-indigo-400 transition-colors">
-              {faq.q}
-            </h3>
-            <div class="w-8 h-8 rounded-full bg-zinc-800/80 group-open:bg-indigo-600 flex items-center justify-center text-zinc-400 group-open:text-white transition-all flex-shrink-0">
-              <svg class="w-4 h-4 transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
+          <summary class="flex items-center justify-between cursor-pointer p-6 font-extrabold text-base sm:text-lg text-ink font-display list-none focus:outline-none">
+            <span class="pr-4 group-hover:text-brand transition-colors">{faq.q}</span>
+            <div class="w-8 h-8 rounded-full border-2 border-ink bg-white group-open:bg-acid flex items-center justify-center text-ink text-lg font-bold flex-shrink-0 transition-transform duration-200 group-open:rotate-45 shadow-brutal-sm">
+              +
             </div>
           </summary>
-          <div class="mt-4 pt-4 border-t border-zinc-800/60 text-sm text-zinc-400 leading-relaxed">
+          <div class="px-6 pb-6 pt-2 text-sm sm:text-base text-ink/80 leading-relaxed border-t-2 border-ink/10 font-medium">
             {faq.a}
           </div>
         </details>
