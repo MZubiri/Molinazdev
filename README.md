@@ -114,7 +114,7 @@ dotnet build DigitalServices.sln --configuration Release --no-restore
 dotnet test DigitalServices.sln --configuration Release --no-build
 ```
 
-El catálogo permite seleccionar un paquete y enviar únicamente sus datos de contacto y `packageId`. El servidor recupera precio y moneda desde MySQL, crea o actualiza el cliente, genera una orden `Pending`, crea la Preference y redirige a Checkout Pro. Las páginas `Success`, `Failure` y `Pending` son informativas: visitar `Success` nunca confirma una orden.
+El catálogo permite seleccionar un paquete y enviar únicamente sus datos de contacto y `packageId`. El servidor recupera el precio base y la moneda desde MySQL, agrega el IGV del 18 %, crea o actualiza el cliente, genera una orden `Pending`, crea la Preference y redirige a Checkout Pro. Las páginas `Success`, `Failure` y `Pending` son informativas: visitar `Success` nunca confirma una orden.
 
 ## Configuración de Mercado Pago
 

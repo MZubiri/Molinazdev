@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    @{ var canonicalUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.PathBase}{Context.Request.Path}"; }
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Servicios de desarrollo web, inteligencia artificial y automatización." />
+    <link rel="canonical" href="@canonicalUrl" />
+    <meta property="og:title" content="@ViewData["Title"] - MolinazDev" />
+    <meta property="og:description" content="Servicios de desarrollo web, inteligencia artificial y automatización." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@canonicalUrl" />
+    <meta property="og:image" content="@(Context.Request.Scheme)://@(Context.Request.Host)/og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>@ViewData["Title"] - Digital Services</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
@@ -28,6 +36,7 @@
     <footer class="site-footer">
         <div class="container footer-content">
             <span>&copy; @DateTime.UtcNow.Year Digital Services</span>
+            <span><a href="/contacto/">Contacto</a> · <a href="/privacidad/">Privacidad</a> · <a href="/terminos/">Términos</a></span>
             <span>Pagos protegidos por Mercado Pago</span>
         </div>
     </footer>

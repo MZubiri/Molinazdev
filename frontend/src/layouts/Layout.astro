@@ -7,12 +7,18 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
 }
 
 const {
   title = "MolinazDev — Desarrollo Web, Chatbots IA y Software en Lima",
-  description = "Diseño de páginas web, chatbots con IA y automatizaciones a medida en Lima y para todo el mundo. Precios transparentes y cobro seguro por Mercado Pago."
+  description = "Diseño de páginas web, chatbots con IA y automatizaciones a medida en Lima y para todo el mundo. Precios transparentes y cobro seguro por Mercado Pago.",
+  canonicalPath = Astro.url.pathname
 } = Astro.props;
+
+const siteUrl = 'https://molinazdev.lat';
+const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+const socialImageUrl = new URL('/og-image.svg', siteUrl).toString();
 ---
 
 <!DOCTYPE html>
@@ -25,11 +31,19 @@ const {
     
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://molinazdev.lat" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="MolinazDev" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content="MolinazDev — Desarrollo digital para negocios" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

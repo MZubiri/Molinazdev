@@ -24,7 +24,7 @@ public sealed class CheckoutPriceSecurityTests
     }
 
     [Fact]
-    public async Task CreateAsync_UsesPackagePriceFromRepositoryForOrderPreferenceAndPayment()
+    public async Task CreateAsync_AddsIgvToRepositoryPriceForOrderPreferenceAndPayment()
     {
         var package = CreatePackage(9_876.54m, "pen");
         var catalog = new TestCatalogRepository { ActivePackage = package };
@@ -57,13 +57,14 @@ public sealed class CheckoutPriceSecurityTests
         var payment = Assert.Single(payments.Payments);
         var preferenceRequest = Assert.IsType<DigitalServices.Application.Payments.CreatePaymentPreferenceRequest>(
             gateway.LastPreferenceRequest);
+        var expectedTotal = decimal.Round(package.Price * 1.18m, 2, MidpointRounding.AwayFromZero);
 
-        Assert.Equal(package.Price, order.TotalAmount);
+        Assert.Equal(expectedTotal, order.TotalAmount);
         Assert.Equal(package.Currency, order.Currency);
-        Assert.Equal(package.Price, preferenceRequest.Amount);
+        Assert.Equal(expectedTotal, preferenceRequest.Amount);
         Assert.Equal(package.Currency, preferenceRequest.Currency);
         Assert.Equal(order.ExternalReference, preferenceRequest.ExternalReference);
-        Assert.Equal(package.Price, payment.Amount);
+        Assert.Equal(expectedTotal, payment.Amount);
         Assert.Equal(package.Currency, payment.Currency);
         Assert.Equal(order.Id, payment.OrderId);
         Assert.Equal("pref-test-001", payment.PreferenceId);

@@ -38,6 +38,8 @@
       id="mobile-menu-btn"
       type="button" 
       aria-label="Abrir menú" 
+      aria-controls="mobile-menu"
+      aria-expanded="false"
       class="md:hidden p-2 rounded-xl text-zinc-900 hover:bg-zinc-100 border-2 border-zinc-900 focus:outline-none"
     >
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,18 +66,4 @@
   </div>
 </header>
 
-<script>
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const links = document.querySelectorAll('.mobile-nav-link');
-
-  btn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
-  });
-
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      menu?.classList.add('hidden');
-    });
-  });
-</script>
+<script is:inline src="/js/navbar.js"></script>

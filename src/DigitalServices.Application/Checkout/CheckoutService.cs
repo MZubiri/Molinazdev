@@ -8,6 +8,8 @@ namespace DigitalServices.Application.Checkout;
 
 public sealed class CheckoutService : ICheckoutService
 {
+    private const decimal IgvRate = 0.18m;
+
     private readonly ICatalogRepository _catalogRepository;
     private readonly IClientRepository _clientRepository;
     private readonly IOrderRepository _orderRepository;
@@ -92,11 +94,17 @@ public sealed class CheckoutService : ICheckoutService
                 now);
         }
 
-        // Price and currency are deliberately read from the persisted package; the command has no price fields.
+        // The persisted package price is the taxable base; checkout adds IGV server-side.
+        // The command deliberately has no client-controlled price or tax fields.
+        var totalAmount = decimal.Round(
+            package.Price * (1m + IgvRate),
+            2,
+            MidpointRounding.AwayFromZero);
+
         var order = Order.Create(
             client.Id,
             package.Id,
-            package.Price,
+            totalAmount,
             package.Currency,
             now);
 

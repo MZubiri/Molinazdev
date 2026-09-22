@@ -91,7 +91,7 @@ const DEFAULT_SERVICES: ServiceCatalog[] = [
         currency: "PEN",
         deliveryDays: 45,
         features: [
-          "Desde S/. 4,000 según alcance técnico acordado",
+          "Desde S/. 4,000 + IGV según alcance técnico acordado",
           "Relevamiento técnico y arquitectura en la nube",
           "Panel de usuarios con roles y base de datos",
           "Dominio + 1er año de hosting incluido",

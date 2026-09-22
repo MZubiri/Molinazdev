@@ -7,6 +7,9 @@
   class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-ink/75 backdrop-blur-sm transition-opacity duration-200"
   aria-modal="true"
   role="dialog"
+  aria-labelledby="modal-package-name"
+  aria-describedby="checkout-privacy-note"
+  aria-hidden="true"
 >
   <div 
     id="checkout-card"
@@ -27,13 +30,13 @@
       <span id="modal-service-title" class="text-xs uppercase tracking-widest text-indigo-600 font-extrabold block">Servicio Digital</span>
       <h3 id="modal-package-name" class="text-2xl sm:text-3xl font-extrabold text-zinc-900 font-display">Contratar Paquete</h3>
       <div class="flex items-center gap-2 pt-1">
-        <span class="text-xs text-zinc-600 font-semibold">Total a pagar:</span>
-        <span id="modal-package-price" class="text-2xl font-extrabold text-zinc-900 font-display">PEN 0.00</span>
+        <span class="text-xs text-zinc-600 font-semibold">Precio base:</span>
+        <span id="modal-package-price" class="text-2xl font-extrabold text-zinc-900 font-display">PEN 0.00 + IGV</span>
       </div>
     </div>
 
     <!-- Error Alert Box -->
-    <div id="checkout-error-box" class="hidden mt-4 p-4 rounded-xl bg-red-50 border-2 border-red-800 text-xs font-bold text-red-900">
+    <div id="checkout-error-box" class="hidden mt-4 p-4 rounded-xl bg-red-50 border-2 border-red-800 text-xs font-bold text-red-900" role="alert" aria-live="assertive">
       <span id="checkout-error-msg"></span>
     </div>
 
@@ -114,136 +117,11 @@
         </button>
       </div>
 
-      <div class="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-[11px] text-zinc-600 text-center font-medium">
-        🔒 Tus datos están protegidos. El precio se valida en el servidor y serás redirigido a Mercado Pago para completar la operación.
+      <div id="checkout-privacy-note" class="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-[11px] text-zinc-600 text-center font-medium">
+        🔒 Tus datos están protegidos. El precio base y el IGV se validan en el servidor; verás el importe total antes de completar la operación en Mercado Pago.
       </div>
     </form>
   </div>
 </div>
 
-<script>
-  const modal = document.getElementById('checkout-modal');
-  const closeBtn = document.getElementById('close-checkout-btn');
-  const form = document.getElementById('checkout-form') as HTMLFormElement;
-  const packageIdInput = document.getElementById('form-package-id') as HTMLInputElement;
-  const serviceTitleElem = document.getElementById('modal-service-title');
-  const packageNameElem = document.getElementById('modal-package-name');
-  const packagePriceElem = document.getElementById('modal-package-price');
-  const errorBox = document.getElementById('checkout-error-box');
-  const errorMsg = document.getElementById('checkout-error-msg');
-  const submitBtn = document.getElementById('submit-checkout-btn') as HTMLButtonElement;
-  const btnText = document.getElementById('btn-text');
-  const btnSpinner = document.getElementById('btn-spinner');
-  const btnArrow = document.getElementById('btn-arrow');
-
-  function openModal(packageId: string, packageName: string, packagePrice: string, serviceTitle: string) {
-    if (!modal) return;
-    if (packageIdInput) packageIdInput.value = packageId;
-    if (serviceTitleElem) serviceTitleElem.textContent = serviceTitle || 'Servicio Digital';
-    if (packageNameElem) packageNameElem.textContent = packageName || 'Paquete';
-    if (packagePriceElem) packagePriceElem.textContent = packagePrice || '';
-    if (errorBox) errorBox.classList.add('hidden');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-  }
-
-  function closeModal() {
-    if (!modal) return;
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    if (form) form.reset();
-  }
-
-  document.addEventListener('click', (e) => {
-    const target = (e.target as HTMLElement).closest('[data-open-checkout]');
-    if (target) {
-      const packageId = target.getAttribute('data-package-id') || '';
-      const packageName = target.getAttribute('data-package-name') || '';
-      const packagePrice = target.getAttribute('data-package-price') || '';
-      const serviceTitle = target.getAttribute('data-service-title') || '';
-      openModal(packageId, packageName, packagePrice, serviceTitle);
-    }
-  });
-
-  closeBtn?.addEventListener('click', closeModal);
-
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    const packageId = packageIdInput.value;
-    const fullName = (document.getElementById('form-name') as HTMLInputElement).value;
-    const email = (document.getElementById('form-email') as HTMLInputElement).value;
-    const phoneNumber = (document.getElementById('form-phone') as HTMLInputElement).value;
-    const companyName = (document.getElementById('form-company') as HTMLInputElement).value;
-
-    if (!packageId) {
-      showError('Por favor selecciona un paquete válido.');
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          packageId,
-          fullName,
-          email,
-          phoneNumber: phoneNumber || null,
-          companyName: companyName || null
-        })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'No se pudo iniciar el checkout.');
-      }
-
-      if (data.checkoutUrl) {
-        window.location.href = data.checkoutUrl;
-      } else {
-        throw new Error('No se recibió la URL de pago de Mercado Pago.');
-      }
-    } catch (err: any) {
-      showError(err.message || 'Ocurrió un error al procesar el pago.');
-      setLoading(false);
-    }
-  });
-
-  function showError(msg: string) {
-    if (errorBox && errorMsg) {
-      errorMsg.textContent = msg;
-      errorBox.classList.remove('hidden');
-    }
-  }
-
-  function setLoading(isLoading: boolean) {
-    if (submitBtn && btnText && btnSpinner && btnArrow) {
-      submitBtn.disabled = isLoading;
-      if (isLoading) {
-        btnText.textContent = 'Generando orden segura...';
-        btnSpinner.classList.remove('hidden');
-        btnArrow.classList.add('hidden');
-      } else {
-        btnText.textContent = 'Continuar a Mercado Pago';
-        btnSpinner.classList.add('hidden');
-        btnArrow.classList.remove('hidden');
-      }
-    }
-  }
-</script>
+<script is:inline src="/js/checkout.js"></script>

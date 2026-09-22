@@ -17,7 +17,7 @@ interface Props {
 const { service } = Astro.props;
 ---
 
-<Layout title={`${service.title} — MolinazDev`} description={service.description || ''}>
+<Layout title={`${service.title} — MolinazDev`} description={service.description || ''} canonicalPath={`/servicios/${service.slug}/`}>
   <!-- Hero Section for Service -->
   <section class="pt-10 pb-14 md:pt-16 md:pb-20 border-b-2 border-ink bg-paper-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,13 +41,13 @@ const { service } = Astro.props;
   </section>
 
   <!-- Packages Section -->
-  <section class="py-16 md:py-24 bg-paper">
+  <section class="py-16 md:py-24 bg-paper" data-service-page={service.slug} itemscope itemtype="https://schema.org/Service">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-10 space-y-1">
         <span class="text-xs font-extrabold tracking-widest text-ink/60 uppercase block">Opciones disponibles</span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-ink font-display">Paquetes para {service.title}</h2>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-ink font-display">Paquetes para <span itemprop="name" data-live-service-title>{service.title}</span></h2>
         <p class="text-xs sm:text-sm text-ink/80 font-medium">
-          Todos los planes web incluyen 1er año de hosting y dominio gratis, además de 60 días de soporte.
+          Los importes mostrados son precios base; se les agrega IGV. Todos los planes web incluyen 1er año de hosting y dominio gratis, además de 60 días de soporte.
         </p>
       </div>
 
@@ -62,7 +62,8 @@ const { service } = Astro.props;
           const isHighlight = (service.slug === 'desarrollo-web' && pkg.name === 'Web Autoadministrable') ||
                               (service.slug !== 'desarrollo-web' && index === 1);
           return (
-            <div 
+            <div
+              data-package-card={pkg.id}
               class={`card-brutal p-6 sm:p-7 flex flex-col justify-between relative bg-white ${
                 isHighlight ? 'ring-2 ring-ink ring-offset-2' : ''
               }`}
@@ -73,9 +74,9 @@ const { service } = Astro.props;
                     ★ Más Solicitado
                   </span>
                 )}
-                <h3 class="text-xl sm:text-2xl font-extrabold text-ink font-display">{pkg.name}</h3>
+                <h3 data-live-package-name class="text-xl sm:text-2xl font-extrabold text-ink font-display">{pkg.name}</h3>
                 {pkg.description && (
-                  <p class="text-xs text-ink/70 mt-2 font-medium min-h-[36px] leading-relaxed">{pkg.description}</p>
+                  <p data-live-package-description class="text-xs text-ink/70 mt-2 font-medium min-h-[36px] leading-relaxed">{pkg.description}</p>
                 )}
 
                 <div class="mt-5 pt-5 border-t-2 border-ink/10">
@@ -83,18 +84,19 @@ const { service } = Astro.props;
                     <span class="text-xs font-bold text-ink/60">
                       {pkg.name === 'Plataforma Personalizada' ? 'Desde S/.' : pkg.currency}
                     </span>
-                    <span class="text-2xl sm:text-3xl font-extrabold text-ink font-display tracking-tight">
+                    <span data-live-package-price class="text-2xl sm:text-3xl font-extrabold text-ink font-display tracking-tight">
                       {pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                     </span>
+                    <span class="text-xs font-extrabold text-brand">+ IGV</span>
                   </div>
                   <div class="inline-flex items-center gap-1 mt-2 text-[11px] font-bold text-ink bg-paper-subtle px-2.5 py-1 rounded-full border border-ink/30">
-                    <span>⏱️ Plazo estimado: ~{pkg.deliveryDays} días</span>
+                    <span data-live-delivery>⏱️ Plazo estimado: ~{pkg.deliveryDays} días</span>
                   </div>
                 </div>
 
                 <div class="mt-6 space-y-2.5">
                   <span class="text-[11px] font-extrabold uppercase tracking-wider text-ink/70 block">Entregables y funciones:</span>
-                  <ul class="space-y-2">
+                  <ul data-live-features class="space-y-2">
                     {pkg.features.map(f => (
                       <li class="flex items-start gap-2 text-xs text-ink/90 font-medium leading-snug">
                         <span class="text-emerald-600 font-extrabold text-sm flex-shrink-0">✓</span>
@@ -111,7 +113,7 @@ const { service } = Astro.props;
                   data-open-checkout
                   data-package-id={pkg.id}
                   data-package-name={pkg.name}
-                  data-package-price={`${pkg.currency} ${pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}`}
+                  data-package-price={`${pkg.currency} ${pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })} + IGV`}
                   data-service-title={service.title}
                   class={`w-full py-3.5 px-4 text-xs uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 ${
                     isHighlight ? 'btn-brutal-acid' : 'btn-brutal-primary'
@@ -127,4 +129,5 @@ const { service } = Astro.props;
       </div>
     </div>
   </section>
+  <script is:inline src="/js/service-detail.js"></script>
 </Layout>

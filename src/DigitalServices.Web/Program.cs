@@ -111,7 +111,7 @@ app.Use(async (context, next) =>
     context.Response.Headers.Append("Referrer-Policy", "strict-origin-when-cross-origin");
     context.Response.Headers.ContentSecurityPolicy =
         "default-src 'self'; base-uri 'self'; form-action 'self' https://*.mercadopago.com https://*.mercadopago.com.pe; frame-ancestors 'none'; " +
-        "img-src 'self' https: data:; font-src 'self' https: data:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://*.mercadopago.com https://*.mercadopago.com.pe";
+        "img-src 'self' https: data:; font-src 'self' https: data:; object-src 'none'; script-src 'self'; style-src 'self' https:; connect-src 'self' https://*.mercadopago.com https://*.mercadopago.com.pe";
     context.Response.Headers.Append("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
     await next();

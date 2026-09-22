@@ -19,7 +19,7 @@ const services: ServiceCatalog[] = await getCatalog();
           Planes diseñados a la medida de tu presupuesto
         </h2>
         <p class="text-sm sm:text-base text-zinc-600 font-medium">
-          Precios transparentes y validados en el servidor. Incluyen dominio, hosting y soporte por 60 días.
+          Precios base transparentes y validados en el servidor. Se les agrega IGV e incluyen dominio, hosting y soporte por 60 días.
         </p>
       </div>
 
@@ -44,7 +44,8 @@ const services: ServiceCatalog[] = await getCatalog();
     <!-- Services Panels -->
     <div class="space-y-12">
       {services.map((service, sIndex) => (
-        <div 
+        <div
+          data-catalog-service={service.slug}
           id={`service-panel-${service.slug}`}
           class={`service-panel ${sIndex === 0 ? 'block' : 'hidden'}`}
         >
@@ -52,7 +53,7 @@ const services: ServiceCatalog[] = await getCatalog();
           <div class="mb-8 p-5 sm:p-6 rounded-2xl bg-zinc-50 border-2 border-zinc-900 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600">Solución Digital</span>
-              <h3 class="text-2xl font-extrabold text-zinc-900 font-display">{service.title}</h3>
+              <h3 data-live-service-title class="text-2xl font-extrabold text-zinc-900 font-display">{service.title}</h3>
               {service.description && (
                 <p class="text-xs sm:text-sm text-zinc-600 mt-1 font-medium max-w-2xl">{service.description}</p>
               )}
@@ -79,7 +80,8 @@ const services: ServiceCatalog[] = await getCatalog();
               const isHighlight = (service.slug === 'desarrollo-web' && pkg.name === 'Web Autoadministrable') ||
                                   (service.slug !== 'desarrollo-web' && pIndex === 1);
               return (
-                <div 
+                <div
+                  data-package-card={pkg.id}
                   class={`card-brutal p-6 sm:p-7 flex flex-col justify-between relative bg-white ${
                     isHighlight ? 'ring-2 ring-indigo-600 ring-offset-2' : ''
                   }`}
@@ -91,9 +93,9 @@ const services: ServiceCatalog[] = await getCatalog();
                   )}
 
                   <div>
-                    <h4 class="text-xl sm:text-2xl font-extrabold text-zinc-900 font-display">{pkg.name}</h4>
+                    <h4 data-live-package-name class="text-xl sm:text-2xl font-extrabold text-zinc-900 font-display">{pkg.name}</h4>
                     {pkg.description && (
-                      <p class="text-xs text-zinc-600 mt-2 min-h-[36px] font-medium leading-relaxed">{pkg.description}</p>
+                      <p data-live-package-description class="text-xs text-zinc-600 mt-2 min-h-[36px] font-medium leading-relaxed">{pkg.description}</p>
                     )}
 
                     <!-- Price & Delivery -->
@@ -102,19 +104,20 @@ const services: ServiceCatalog[] = await getCatalog();
                         <span class="text-xs font-bold text-zinc-500">
                           {pkg.name === 'Plataforma Personalizada' ? 'Desde S/.' : pkg.currency}
                         </span>
-                        <span class="text-2xl sm:text-3xl font-extrabold text-zinc-900 font-display tracking-tight">
+                        <span data-live-package-price class="text-2xl sm:text-3xl font-extrabold text-zinc-900 font-display tracking-tight">
                           {pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                         </span>
+                        <span class="text-xs font-extrabold text-indigo-700">+ IGV</span>
                       </div>
                       <div class="inline-flex items-center gap-1 mt-2 text-[11px] font-bold text-zinc-700 bg-zinc-100 px-2.5 py-1 rounded-full border border-zinc-200">
-                        <span>⏱️ Plazo: ~{pkg.deliveryDays} días hábiles</span>
+                        <span data-live-delivery>⏱️ Plazo: ~{pkg.deliveryDays} días hábiles</span>
                       </div>
                     </div>
 
                     <!-- Features -->
                     <div class="mt-6 space-y-2.5">
                       <span class="text-[11px] font-extrabold uppercase tracking-wider text-zinc-500 block">Qué incluye:</span>
-                      <ul class="space-y-2">
+                      <ul data-live-features class="space-y-2">
                         {pkg.features.map(feature => (
                           <li class="flex items-start gap-2 text-xs text-zinc-800 font-medium leading-snug">
                             <span class="text-emerald-600 font-extrabold text-sm flex-shrink-0">✓</span>
@@ -132,7 +135,7 @@ const services: ServiceCatalog[] = await getCatalog();
                       data-open-checkout
                       data-package-id={pkg.id}
                       data-package-name={pkg.name}
-                      data-package-price={`${pkg.currency} ${pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })}`}
+                      data-package-price={`${pkg.currency} ${pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })} + IGV`}
                       data-service-title={service.title}
                       class={`w-full py-3.5 px-4 text-xs uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 ${
                         isHighlight ? 'btn-indigo' : 'btn-primary'
@@ -173,31 +176,4 @@ const services: ServiceCatalog[] = await getCatalog();
   </div>
 </section>
 
-<script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('.category-tab');
-  const panels = document.querySelectorAll<HTMLElement>('.service-panel');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const slug = tab.getAttribute('data-service-tab');
-      if (!slug) return;
-
-      tabs.forEach(t => {
-        t.classList.remove('bg-zinc-900', 'text-white', 'shadow-brutal-sm', '-translate-y-0.5');
-        t.classList.add('bg-white', 'text-zinc-800');
-      });
-      tab.classList.remove('bg-white', 'text-zinc-800');
-      tab.classList.add('bg-zinc-900', 'text-white', 'shadow-brutal-sm', '-translate-y-0.5');
-
-      panels.forEach(p => {
-        if (p.id === `service-panel-${slug}`) {
-          p.classList.remove('hidden');
-          p.classList.add('block');
-        } else {
-          p.classList.add('hidden');
-          p.classList.remove('block');
-        }
-      });
-    });
-  });
-</script>
+<script is:inline src="/js/catalog.js"></script>

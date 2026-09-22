@@ -18,6 +18,7 @@
 <section class="page-section package-section">
     <div class="container">
         <h2>Paquetes disponibles</h2>
+        <p>Los importes mostrados son precios base; se les agrega IGV.</p>
         @if (Model.Packages.Count == 0)
         {
             <div class="empty-state">
@@ -39,7 +40,7 @@
                             }
                         </div>
                         <div class="package-meta">
-                            <span class="package-price">@package.Currency @package.Price.ToString("N2", CultureInfo.InvariantCulture)</span>
+                            <span class="package-price">@package.Currency @package.Price.ToString("N2", CultureInfo.InvariantCulture) + IGV</span>
                             <span>@package.DeliveryDays días de entrega</span>
                         </div>
                         @if (package.Features.Count > 0)

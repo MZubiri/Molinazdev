@@ -19,7 +19,7 @@
                 <span class="eyebrow">Catálogo</span>
                 <h2>Elige una solución para comenzar</h2>
             </div>
-            <p>Todos los precios se validan directamente en nuestro servidor antes de crear la orden.</p>
+            <p>Los importes mostrados son precios base. Se les agrega IGV y se validan directamente en nuestro servidor antes de crear la orden.</p>
         </div>
 
         @if (Model.Count == 0)
@@ -60,7 +60,7 @@
                                         }
                                     </div>
                                     <div class="package-meta">
-                                        <span class="package-price">@package.Currency @package.Price.ToString("N2", CultureInfo.InvariantCulture)</span>
+                                        <span class="package-price">@package.Currency @package.Price.ToString("N2", CultureInfo.InvariantCulture) + IGV</span>
                                         <span>@package.DeliveryDays días de entrega</span>
                                     </div>
                                     @if (package.Features.Count > 0)

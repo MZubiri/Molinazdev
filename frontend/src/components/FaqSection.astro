@@ -14,11 +14,11 @@ const faqs = [
   },
   {
     q: "¿Cuál es la diferencia entre una Landing Page y una Web Autoadministrable?",
-    a: "La Landing Page (S/. 799) es una página de conversión rápida diseñada para captar prospectos o vender un servicio puntual mediante WhatsApp. La Web Autoadministrable (S/. 1,800) tiene hasta 8 secciones y un panel fácil para que tú mismo actualices contenidos, fotos y servicios sin saber programar."
+    a: "La Landing Page (S/. 799 + IGV) es una página de conversión rápida diseñada para captar prospectos o vender un servicio puntual mediante WhatsApp. La Web Autoadministrable (S/. 1,800 + IGV) tiene hasta 8 secciones y un panel fácil para que tú mismo actualices contenidos, fotos y servicios sin saber programar."
   },
   {
     q: "¿El Ecommerce incluye pasarela de pagos para cobrar por internet?",
-    a: "Sí, nuestro paquete Ecommerce (S/. 2,400) viene con catálogo de productos, carrito de compras y pasarela integrada para que tus clientes paguen directamente con Tarjeta, Yape, Plin o Transferencia de forma automática."
+    a: "Sí, nuestro paquete Ecommerce (S/. 2,400 + IGV) viene con catálogo de productos, carrito de compras y pasarela integrada para que tus clientes paguen directamente con Tarjeta, Yape, Plin o Transferencia de forma automática."
   },
   {
     q: "¿El sitio web y código serán 100% de mi propiedad?",
@@ -27,7 +27,7 @@ const faqs = [
 ];
 ---
 
-<section id="preguntas" class="py-16 md:py-24 border-b-2 border-zinc-900 bg-white">
+<section id="preguntas" class="py-16 md:py-24 border-b-2 border-zinc-900 bg-white" itemscope itemtype="https://schema.org/FAQPage">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Index -->
@@ -48,17 +48,20 @@ const faqs = [
     <!-- Accordion List -->
     <div class="space-y-4">
       {faqs.map(faq => (
-        <details 
+        <details
+          itemscope
+          itemprop="mainEntity"
+          itemtype="https://schema.org/Question"
           class="group bg-white border-2 border-zinc-900 rounded-xl shadow-brutal transition-all duration-150 open:bg-zinc-50"
         >
           <summary class="flex items-center justify-between cursor-pointer p-5 sm:p-6 font-extrabold text-base sm:text-lg text-zinc-900 font-display list-none focus:outline-none">
-            <span class="pr-4 group-hover:text-indigo-600 transition-colors leading-snug">{faq.q}</span>
+            <span itemprop="name" class="pr-4 group-hover:text-indigo-600 transition-colors leading-snug">{faq.q}</span>
             <div class="w-8 h-8 rounded-full border-2 border-zinc-900 bg-zinc-100 group-open:bg-indigo-600 group-open:text-white flex items-center justify-center text-zinc-900 text-lg font-bold flex-shrink-0 transition-transform duration-200 group-open:rotate-45 shadow-brutal-sm">
               +
             </div>
           </summary>
-          <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed border-t-2 border-zinc-200 font-medium">
-            {faq.a}
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed border-t-2 border-zinc-200 font-medium">
+            <span itemprop="text">{faq.a}</span>
           </div>
         </details>
       ))}
