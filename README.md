@@ -98,6 +98,8 @@ Los servicios y paquetes iniciales se cargan desde la estrategia de inicializaci
 
 Las migraciones no se aplican automáticamente durante cada arranque en producción. Antes de desplegar una versión que cambie el esquema, realiza un respaldo y ejecuta `dotnet ef database update` desde una estación administrativa o un trabajo de despliegue con acceso restringido a MySQL.
 
+La migración `RepairUtf8CatalogText` corrige registros históricos del catálogo que hayan sido guardados con UTF-8 interpretado como Latin-1. Debe ejecutarse una vez en producción después de respaldar la base.
+
 ## Ejecutar localmente
 
 Con la configuración cargada y la base actualizada:

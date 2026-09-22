@@ -36,19 +36,21 @@ public sealed class CatalogService(ICatalogRepository catalogRepository) : ICata
             .Select(static package => new ServicePackageDto(
                 package.Id,
                 package.ServiceId,
-                package.Name,
-                package.Description,
+                CatalogTextNormalizer.RepairMojibake(package.Name),
+                CatalogTextNormalizer.RepairMojibake(package.Description),
                 package.Price,
                 package.Currency,
                 package.DeliveryDays,
-                package.Features.ToArray()))
+                package.Features
+                    .Select(static feature => CatalogTextNormalizer.RepairMojibake(feature)!)
+                    .ToArray()))
             .ToArray();
 
         return new ServiceCatalogDto(
             service.Id,
-            service.Title,
+            CatalogTextNormalizer.RepairMojibake(service.Title),
             service.Slug,
-            service.Description,
+            CatalogTextNormalizer.RepairMojibake(service.Description),
             service.IconUrl,
             packages);
     }
