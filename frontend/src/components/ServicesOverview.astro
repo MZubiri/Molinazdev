@@ -1,0 +1,173 @@
+---
+const serviceHighlights = [
+  {
+    id: "desarrollo-web",
+    title: "Desarrollo Web & Tiendas Online",
+    badge: "Más Solicitado",
+    badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-200",
+    icon: "🌐",
+    startingPrice: "S/. 799",
+    description: "Sitios web modernos, ultrarrápidos y optimizados para celulares. Desde landing pages de alta conversión hasta tiendas virtuales completas.",
+    features: [
+      "Dominio (.com / .pe) + Hosting 1er año gratis",
+      "Puntuación 95+ en Google PageSpeed",
+      "Pasarela de pagos (Mercado Pago, Yape, Plin)",
+      "60 días de soporte técnico post-entrega"
+    ],
+    link: "/servicios/#service-panel-desarrollo-web",
+    cta: "Ver Planes Web"
+  },
+  {
+    id: "chatbots-con-ia",
+    title: "Chatbots & Asistentes con IA",
+    badge: "Tendencia",
+    badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
+    icon: "🤖",
+    startingPrice: "S/. 1,200",
+    description: "Asistentes conversacionales inteligentes conectados a la API oficial de WhatsApp. Atienden dudas, envían catálogos y califican leads 24/7.",
+    features: [
+      "Integración Oficial con Meta Cloud API",
+      "Entrenado con tu catálogo, precios y políticas",
+      "Agendamiento automático de citas y cotizaciones",
+      "Derivación inteligente a asesores humanos"
+    ],
+    link: "/demo-ia/",
+    cta: "Probar Simulador IA"
+  },
+  {
+    id: "automatizaciones",
+    title: "Automatizaciones de Procesos & APIs",
+    badge: "Eficiencia",
+    badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
+    icon: "⚡",
+    startingPrice: "S/. 900",
+    description: "Conectamos tus canales de venta, CRMs y sistemas contables para eliminar tareas manuales y reducir errores de digitación.",
+    features: [
+      "Webhooks y notificaciones en tiempo real",
+      "Sincronización con Google Sheets, Notion y CRMs",
+      "Alertas automáticas de cobro y facturación",
+      "Arquitectura tolerante a fallos e idempotente"
+    ],
+    link: "/servicios/#service-panel-automatizaciones",
+    cta: "Ver Automatizaciones"
+  },
+  {
+    id: "software-a-medida",
+    title: "Software a Medida & Plataformas",
+    badge: "Escalabilidad",
+    badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
+    icon: "💻",
+    startingPrice: "S/. 3,500",
+    description: "Sistemas web a la medida de tu modelo operativo: paneles administrativos, portales para clientes, módulos de inventario y SaaS escalables.",
+    features: [
+      "Clean Architecture con .NET 8 / Node.js",
+      "Bases de datos optimizadas en MySQL / PostgreSQL",
+      "Despliegue contenerizado con Docker",
+      "Código auditado y 100% propiedad del cliente"
+    ],
+    link: "/servicios/#service-panel-software-a-medida",
+    cta: "Cotizar a Medida"
+  }
+];
+---
+
+<section id="servicios-resumen" class="py-14 sm:py-20 bg-white border-b-2 border-zinc-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Index & Title -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div class="max-w-2xl space-y-2 text-center md:text-left">
+        <div class="text-xs font-extrabold tracking-widest text-zinc-500 uppercase">
+          01 / SOLUCIONES DIGITALES
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-zinc-900 font-display leading-[1.12]">
+          Nuestros Servicios Principales
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-600 font-medium">
+          Soluciones modulares con precios base claros, plazos pactados por contrato y soporte post-lanzamiento.
+        </p>
+      </div>
+
+      <div class="flex justify-center md:justify-end">
+        <a 
+          href="/servicios/" 
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs uppercase tracking-wider font-extrabold bg-zinc-900 text-white hover:bg-indigo-600 border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all"
+        >
+          <span>Explorar Catálogo Completo</span>
+          <span class="text-indigo-300 font-bold">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 4 Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {serviceHighlights.map((service) => (
+        <div class="card-brutal p-6 bg-white flex flex-col justify-between group hover:-translate-y-1 transition-all duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-3xl p-2.5 rounded-2xl bg-zinc-50 border-2 border-zinc-900 shadow-brutal-sm">
+                {service.icon}
+              </span>
+              <span class={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${service.badgeColor}`}>
+                {service.badge}
+              </span>
+            </div>
+
+            <h3 class="text-xl font-extrabold text-zinc-900 font-display mb-2 group-hover:text-indigo-600 transition-colors">
+              {service.title}
+            </h3>
+
+            <p class="text-xs text-zinc-600 font-medium leading-relaxed mb-4 min-h-[48px]">
+              {service.description}
+            </p>
+
+            <div class="p-3 bg-zinc-50 rounded-xl border border-zinc-200 mb-4">
+              <span class="text-[10px] uppercase font-bold text-zinc-500 block">Inversión inicial</span>
+              <div class="flex items-baseline gap-1">
+                <span class="text-xs font-bold text-zinc-600">Desde</span>
+                <span class="text-lg font-black text-zinc-900 font-display">{service.startingPrice}</span>
+                <span class="text-[11px] font-bold text-indigo-700">+ IGV</span>
+              </div>
+            </div>
+
+            <ul class="space-y-2 mb-6">
+              {service.features.map(f => (
+                <li class="flex items-start gap-1.5 text-xs text-zinc-700 font-medium">
+                  <span class="text-emerald-600 font-bold">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <a 
+            href={service.link}
+            class="w-full py-2.5 px-4 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-zinc-900 text-white hover:bg-indigo-600 border-2 border-zinc-900 shadow-brutal-sm hover:shadow-brutal transition-all text-center flex items-center justify-center gap-1.5"
+          >
+            <span>{service.cta}</span>
+            <span>↗</span>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- Banner to full catalog with comparison table -->
+    <div class="mt-12 p-6 rounded-2xl bg-indigo-50/70 border-2 border-zinc-900 shadow-brutal flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3 text-center sm:text-left">
+        <span class="text-3xl">⚖️</span>
+        <div>
+          <h4 class="text-sm font-extrabold text-zinc-900 font-display">¿Quieres ver la comparativa de características y paquetes?</h4>
+          <p class="text-xs text-zinc-600 font-medium">Revisa las tablas de especificaciones técnicas detalladas y el desglose de entregables por plan.</p>
+        </div>
+      </div>
+
+      <a 
+        href="/servicios/#comparativa" 
+        class="shrink-0 px-5 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider bg-white text-zinc-900 hover:bg-zinc-900 hover:text-white border-2 border-zinc-900 shadow-brutal-sm transition-all"
+      >
+        Ver Comparativa de Planes ↗
+      </a>
+    </div>
+
+  </div>
+</section>

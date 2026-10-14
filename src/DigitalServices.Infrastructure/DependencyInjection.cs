@@ -1,5 +1,7 @@
 using DigitalServices.Application.Abstractions.Persistence;
+using DigitalServices.Application.Notifications;
 using DigitalServices.Application.Payments;
+using DigitalServices.Infrastructure.Notifications;
 using DigitalServices.Infrastructure.Payments;
 using DigitalServices.Infrastructure.Persistence;
 using DigitalServices.Infrastructure.Persistence.Repositories;
@@ -41,6 +43,9 @@ public static class DependencyInjection
 
         services.AddScoped<IPaymentGateway, MercadoPagoPaymentGateway>();
         services.AddSingleton<IPaymentWebhookSignatureValidator, MercadoPagoWebhookSignatureValidator>();
+
+        services.AddHttpClient<IOrderNotificationService, OrderNotificationService>();
+        services.AddHostedService<PaymentReconciliationWorker>();
 
         return services;
     }

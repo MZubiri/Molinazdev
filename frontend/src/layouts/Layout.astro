@@ -2,23 +2,72 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import CheckoutModal from '../components/CheckoutModal.astro';
+import BookingModal from '../components/BookingModal.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 import '../styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  noindex?: boolean;
 }
 
 const {
   title = "MolinazDev — Desarrollo Web, Chatbots IA y Software en Lima",
-  description = "Diseño de páginas web, chatbots con IA y automatizaciones a medida en Lima y para todo el mundo. Precios transparentes y cobro seguro por Mercado Pago.",
-  canonicalPath = Astro.url.pathname
+  description = "Diseño de páginas web, tiendas virtuales ecommerce, chatbots con IA y automatizaciones a medida en Lima, Perú. Precios transparentes, RUC 15613205389 y pagos protegidos.",
+  canonicalPath = Astro.url.pathname,
+  noindex = false
 } = Astro.props;
 
 const siteUrl = 'https://molinazdev.lat';
 const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
 const socialImageUrl = new URL('/og-image.svg', siteUrl).toString();
+
+const schemaOrgData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${siteUrl}/#organization`,
+  "name": "MolinazDev",
+  "url": siteUrl,
+  "logo": socialImageUrl,
+  "image": socialImageUrl,
+  "description": description,
+  "taxID": "15613205389",
+  "vatID": "PE15613205389",
+  "telephone": "+51987654321",
+  "email": "contacto@molinazdev.lat",
+  "priceRange": "S/. 799 - S/. 4500",
+  "currenciesAccepted": "PEN, USD",
+  "paymentAccepted": "Mercado Pago, Tarjeta de Crédito, Yape, Plin, Transferencia Bancaria",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lima",
+    "addressRegion": "Lima",
+    "addressCountry": "PE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -12.046374,
+    "longitude": -77.042793
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Peru"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "LATAM"
+    }
+  ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -28,10 +77,26 @@ const socialImageUrl = new URL('/og-image.svg', siteUrl).toString();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#18181b" />
     
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="MolinazDev" />
     <link rel="canonical" href={canonicalUrl} />
+
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    )}
+
+    <!-- Local SEO Geo Tags (Lima, Perú) -->
+    <meta name="geo.region" content="PE-LIM" />
+    <meta name="geo.placename" content="Lima, Perú" />
+    <meta name="geo.position" content="-12.046374;-77.042793" />
+    <meta name="ICBM" content="-12.046374, -77.042793" />
+    
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -39,7 +104,11 @@ const socialImageUrl = new URL('/og-image.svg', siteUrl).toString();
     <meta property="og:site_name" content="MolinazDev" />
     <meta property="og:locale" content="es_PE" />
     <meta property="og:image" content={socialImageUrl} />
-    <meta property="og:image:alt" content="MolinazDev — Desarrollo digital para negocios" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MolinazDev — Desarrollo Web, Chatbots IA y Software a Medida" />
+    
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -49,6 +118,9 @@ const socialImageUrl = new URL('/og-image.svg', siteUrl).toString();
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrgData)} />
   </head>
   <body class="bg-paper text-ink min-h-screen flex flex-col font-sans antialiased overflow-x-hidden selection:bg-acid selection:text-ink">
     <Navbar />
@@ -59,5 +131,7 @@ const socialImageUrl = new URL('/og-image.svg', siteUrl).toString();
 
     <Footer />
     <CheckoutModal />
+    <BookingModal />
+    <WhatsAppButton />
   </body>
 </html>

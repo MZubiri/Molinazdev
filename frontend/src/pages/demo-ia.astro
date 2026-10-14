@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ChatbotSimulator from '../components/ChatbotSimulator.astro';
+
+const architectureSteps = [
+  {
+    step: "01",
+    title: "Entrada de Mensaje",
+    desc: "Tu cliente escribe un mensaje de texto, audio o envía una imagen por WhatsApp o tu página web.",
+    icon: "💬"
+  },
+  {
+    step: "02",
+    title: "Meta Cloud API & Webhook",
+    desc: "La API oficial de Meta reenvía la consulta cifrada de forma instantánea a nuestro servidor seguro.",
+    icon: "☁️"
+  },
+  {
+    step: "03",
+    title: "RAG & Base de Conocimiento",
+    desc: "El LLM busca en tu catálogo de productos, lista de precios y políticas aprobadas con guardrails anti-alucinación.",
+    icon: "🧠"
+  },
+  {
+    step: "04",
+    title: "Respuesta o Derivación",
+    desc: "El agente responde en menos de 1 segundo o deriva la conversación al asesor de ventas si el cliente está listo para pagar.",
+    icon: "🚀"
+  }
+];
+---
+
+<Layout 
+  title="Simulador de Chatbots con IA para Empresas — MolinazDev"
+  description="Prueba en vivo nuestro simulador interactivo de chatbot con IA para WhatsApp y Web. Respuestas en menos de 1 segundo, integración con catálogo y agendamiento 24/7."
+  canonicalPath="/demo-ia/"
+>
+  <!-- Page Header -->
+  <section class="pt-10 pb-12 sm:pt-16 sm:pb-16 bg-white border-b-2 border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-500 mb-6">
+        <a href="/" class="hover:text-indigo-600 transition-colors">Inicio</a>
+        <span>/</span>
+        <span class="text-zinc-900">Demo IA &amp; Chatbots</span>
+      </nav>
+
+      <div class="max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-50 border-2 border-zinc-900 text-xs font-extrabold uppercase tracking-wider text-purple-800 shadow-brutal-sm">
+          <span class="w-2 h-2 rounded-full bg-purple-600 animate-pulse"></span>
+          Laboratorio de Inteligencia Artificial
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-zinc-900 font-display leading-[1.12]">
+          Asistentes con IA que <span class="text-indigo-600">Venden y Atienden 24/7</span>
+        </h1>
+
+        <p class="text-sm sm:text-base text-zinc-600 font-medium leading-relaxed">
+          Comprueba en vivo cómo un agente con modelo de lenguaje puede responder preguntas complejas, cotizar en base a tu catálogo y agendar reuniones sin respuestas robóticas ni tiempos de espera.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Simulator Component -->
+  <ChatbotSimulator />
+
+  <!-- WhatsApp Business Cloud Architecture Blueprint -->
+  <section class="py-14 sm:py-20 bg-white border-b-2 border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl space-y-2 mb-12 text-center sm:text-left">
+        <div class="text-xs font-extrabold tracking-widest text-zinc-500 uppercase">
+          ARQUITECTURA DE INTEGRACIÓN
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-zinc-900 font-display">
+          ¿Cómo Conectamos la IA a tu Negocio?
+        </h2>
+        <p class="text-sm text-zinc-600 font-medium">
+          Infraestructura profesional basada en la API oficial de WhatsApp (Meta), sin riesgo de bloqueos de número.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {architectureSteps.map((step) => (
+          <div class="card-brutal p-6 bg-zinc-50 space-y-3 relative">
+            <div class="flex items-center justify-between">
+              <span class="text-2xl p-2 rounded-xl bg-white border border-zinc-300">
+                {step.icon}
+              </span>
+              <span class="text-xs font-black font-mono text-zinc-400">
+                {step.step}
+              </span>
+            </div>
+
+            <h3 class="text-lg font-extrabold text-zinc-900 font-display">
+              {step.title}
+            </h3>
+
+            <p class="text-xs text-zinc-600 font-medium leading-relaxed">
+              {step.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Security & Anti-Hallucination Reassurance -->
+      <div class="mt-12 p-6 sm:p-8 rounded-2xl bg-indigo-50/70 border-2 border-zinc-900 shadow-brutal flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-indigo-900">
+            <span>🛡️</span> Cero Respuestas Falsas (Anti-Hallucination Guardrails)
+          </div>
+          <h4 class="text-lg sm:text-xl font-extrabold text-zinc-900 font-display">
+            La IA solo responde lo que tú autorices por escrito
+          </h4>
+          <p class="text-xs sm:text-sm text-zinc-600 font-medium max-w-2xl">
+            Implementamos sistemas de Recuperación Aumentada (RAG) con filtros deterministas. Si un cliente pregunta algo fuera del catálogo, la IA deriva amablemente con un asesor humano en lugar de inventar datos.
+          </p>
+        </div>
+
+        <button 
+          type="button" 
+          data-open-booking-modal
+          class="shrink-0 px-6 py-3.5 rounded-full text-xs font-extrabold uppercase tracking-wider bg-zinc-900 text-white hover:bg-indigo-600 border-2 border-zinc-900 shadow-brutal transition-all"
+        >
+          Consultar por un Bot a Medida ↗
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Bot Packages Quick Callout -->
+  <section class="py-14 sm:py-20 bg-zinc-50 border-b-2 border-zinc-900 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-300 text-xs font-bold text-zinc-800">
+        <span>💰</span> Planes de Chatbot desde S/. 1,200 + IGV
+      </div>
+
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-zinc-900 font-display">
+        Automatiza la atención de tu empresa este mes
+      </h2>
+
+      <p class="text-sm sm:text-base text-zinc-600 max-w-xl mx-auto font-medium">
+        Incluye entrenamiento del modelo, integración con WhatsApp Cloud API, panel de monitoreo y soporte técnico garantizado por 60 días.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a 
+          href="/servicios/#service-panel-chatbots-con-ia" 
+          class="w-full sm:w-auto px-7 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold bg-zinc-900 text-white hover:bg-indigo-600 border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all"
+        >
+          <span>Ver Planes de Chatbots</span>
+          <span class="ml-1">↗</span>
+        </a>
+
+        <button 
+          type="button" 
+          data-open-booking-modal
+          class="w-full sm:w-auto px-7 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold bg-emerald-600 hover:bg-emerald-500 text-white border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all"
+        >
+          <span>Agendar Demostración Privada</span>
+          <span class="ml-1">📅</span>
+        </button>
+      </div>
+    </div>
+  </section>
+</Layout>

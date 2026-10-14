@@ -17,6 +17,16 @@ public sealed class PaymentRepository(ApplicationDbContext dbContext) : IPayment
                 cancellationToken);
     }
 
+    public async Task<IReadOnlyList<Payment>> GetPaymentsByOrderIdAsync(
+        Guid orderId,
+        CancellationToken cancellationToken)
+    {
+        return await dbContext.Payments
+            .Where(payment => payment.OrderId == orderId)
+            .OrderByDescending(payment => payment.CreatedAt)
+            .ToListAsync(cancellationToken);
+    }
+
     public async Task AddAsync(Payment payment, CancellationToken cancellationToken)
     {
         await dbContext.Payments.AddAsync(payment, cancellationToken);

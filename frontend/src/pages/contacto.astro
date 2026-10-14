@@ -2,23 +2,275 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Contacto — MolinazDev" description="Contacta a MolinazDev para conversar sobre tu próximo proyecto digital." canonicalPath="/contacto/">
-  <section class="py-16 md:py-24 bg-paper">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="card-brutal bg-white p-7 sm:p-10 space-y-6">
-        <div class="space-y-3">
-          <span class="text-xs font-extrabold uppercase tracking-widest text-brand">Contacto</span>
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-ink font-display">Conversemos sobre tu proyecto</h1>
-          <p class="text-sm sm:text-base text-ink/75 font-medium leading-relaxed">
-            Cuéntanos qué necesitas, cuáles son tus objetivos y el plazo que tienes en mente. Te responderemos con los siguientes pasos.
-          </p>
-        </div>
-        <a class="btn-primary inline-flex items-center justify-center px-6 py-3.5 text-sm" href="mailto:contacto@molinazdev.lat">
-          contacto@molinazdev.lat
-        </a>
-        <p class="text-xs text-ink/60">También puedes elegir un paquete desde el catálogo y dejar tus datos para iniciar la contratación.</p>
-        <a href="/#servicios" class="font-extrabold text-brand hover:underline">Ver servicios y precios →</a>
+<Layout 
+  title="Contacto y Cotización de Proyectos — MolinazDev" 
+  description="Conversemos sobre tu proyecto de desarrollo web, chatbot con IA o software a medida. Respuesta en menos de 24 horas y cotizaciones transparentes." 
+  canonicalPath="/contacto/"
+>
+  <section class="py-14 md:py-20 border-b-2 border-zinc-900 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb / Back -->
+      <a href="/" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-600 hover:text-indigo-600 transition-colors mb-6">
+        <span>&larr;</span> Volver al inicio
+      </a>
+
+      <div class="max-w-3xl space-y-3 mb-12">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border-2 border-zinc-900 text-xs font-extrabold uppercase tracking-wider text-indigo-700 shadow-brutal-sm">
+          <span>📬</span> Canales Directos &amp; Cotizaciones
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-zinc-900 font-display leading-[1.12]">
+          Hablemos sobre tu próximo proyecto
+        </h1>
+        <p class="text-base sm:text-lg text-zinc-600 font-medium leading-relaxed">
+          ¿Tienes una idea, necesitas automatizar tu empresa o buscas una plataforma web de alto rendimiento? Cuéntanos y te enviaremos una propuesta clara con alcance y plazos definidos.
+        </p>
       </div>
+
+      <!-- 2-Column Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Left Column: Direct Contact & Info (5 cols) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- WhatsApp Direct Card -->
+          <div class="card-brutal bg-emerald-50 p-6 sm:p-7 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-500 border-2 border-zinc-900 text-white flex items-center justify-center text-2xl font-bold shadow-brutal-sm">
+                💬
+              </div>
+              <div>
+                <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-800 block">Canal Preferido</span>
+                <h3 class="text-xl font-extrabold text-zinc-900 font-display">WhatsApp Directo</h3>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-zinc-700 font-medium leading-relaxed">
+              Respuesta casi inmediata para consultas técnicas, coordinación rápida o alcance preliminar.
+            </p>
+            <a 
+              href="https://wa.me/51987654321?text=Hola%20MolinazDev,%20quisiera%20cotizar%20un%20proyecto%20digital"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-full text-xs font-extrabold uppercase tracking-wider bg-emerald-600 hover:bg-emerald-500 text-white border-2 border-zinc-900 shadow-brutal transition-all duration-150"
+            >
+              <span>Escribir por WhatsApp</span>
+              <span class="text-base">↗</span>
+            </a>
+          </div>
+
+          <!-- Email & Details Card -->
+          <div class="card-brutal bg-white p-6 sm:p-7 space-y-4">
+            <h3 class="text-lg font-extrabold text-zinc-900 font-display flex items-center gap-2">
+              <span>📧</span> Correo Corporativo
+            </h3>
+            <p class="text-xs sm:text-sm text-zinc-600 font-medium">
+              Para requerimientos formales, envío de especificaciones, licitaciones o acuerdos NDA:
+            </p>
+            <a 
+              href="mailto:contacto@molinazdev.lat" 
+              class="inline-block text-sm sm:text-base font-extrabold text-indigo-600 hover:underline break-all"
+            >
+              contacto@molinazdev.lat
+            </a>
+
+            <div class="pt-4 border-t-2 border-zinc-100 space-y-2.5 text-xs text-zinc-700 font-medium">
+              <div class="flex items-center gap-2">
+                <span class="text-indigo-600 font-bold">🏛️</span>
+                <span><strong>RUC: 15613205389</strong> &middot; Emisión de Facturas y Boletas</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-indigo-600 font-bold">📍</span>
+                <span>Lima, Perú &middot; Cobertura remota LATAM y global</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-indigo-600 font-bold">⏱️</span>
+                <span>Horario: Lun - Vie de 9:00 a 18:00 (PET / UTC-5)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span>
+                <span>Respuesta en menos de 24 horas hábiles</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Catalog CTA -->
+          <div class="p-5 rounded-2xl bg-zinc-50 border-2 border-zinc-900 shadow-brutal-sm flex items-center justify-between gap-4">
+            <div>
+              <span class="text-[11px] font-extrabold uppercase tracking-wider text-indigo-700 block">¿Buscas precios fijos?</span>
+              <span class="text-sm font-extrabold text-zinc-900 font-display">Revisa los paquetes con entrega garantizada</span>
+            </div>
+            <a 
+              href="/servicios/" 
+              class="flex-shrink-0 px-4 py-2.5 rounded-full text-xs font-extrabold bg-zinc-900 text-white hover:bg-indigo-600 border-2 border-zinc-900 transition-colors shadow-brutal-sm"
+            >
+              Ver Catálogo
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Proposal Form (7 cols) -->
+        <div class="lg:col-span-7 card-brutal bg-white p-7 sm:p-10 space-y-6">
+          <div class="border-b-2 border-zinc-100 pb-4">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 block">Formulario de Requerimiento</span>
+            <h2 class="text-2xl font-extrabold text-zinc-900 font-display mt-1">Cuéntanos sobre tu necesidad</h2>
+            <p class="text-xs sm:text-sm text-zinc-600 font-medium mt-1">
+              Completa los datos y te responderemos con una propuesta personalizada.
+            </p>
+          </div>
+
+          <form id="contact-form" class="space-y-4" novalidate>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="c-name" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+                  Nombre completo <span class="text-red-600">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="c-name" 
+                  name="name" 
+                  required 
+                  placeholder="Tu nombre" 
+                  class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label for="c-email" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+                  Correo electrónico <span class="text-red-600">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="c-email" 
+                  name="email" 
+                  required 
+                  placeholder="nombre@empresa.com" 
+                  class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="c-phone" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+                  Teléfono / WhatsApp <span class="text-red-600">*</span>
+                </label>
+                <input 
+                  type="tel" 
+                  id="c-phone" 
+                  name="phone" 
+                  required 
+                  placeholder="+51 987 654 321" 
+                  class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label for="c-service" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+                  Tipo de solución
+                </label>
+                <select 
+                  id="c-service" 
+                  name="service" 
+                  class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+                >
+                  <option value="Desarrollo Web">Desarrollo Web (Landing / Web / Ecommerce)</option>
+                  <option value="Chatbots IA">Chatbot o Asistente con IA (WhatsApp / Web)</option>
+                  <option value="Automatizaciones">Automatización de Procesos &amp; APIs</option>
+                  <option value="Software a Medida">Software a Medida / Panel Interno</option>
+                  <option value="Otro">Otro requerimiento digital</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="c-budget" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+                Presupuesto estimado
+              </label>
+              <select 
+                id="c-budget" 
+                name="budget" 
+                class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+              >
+                <option value="S/. 1,000 - S/. 3,000">S/. 1,000 - S/. 3,000 PEN</option>
+                <option value="S/. 3,000 - S/. 6,000">S/. 3,000 - S/. 6,000 PEN</option>
+                <option value="S/. 6,000 - S/. 15,000">S/. 6,000 - S/. 15,000 PEN</option>
+                <option value="Más de S/. 15,000 / Por cotizar">Más de S/. 15,000 PEN / Por definir</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="c-message" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+                Cuéntanos sobre tu proyecto u objetivos <span class="text-red-600">*</span>
+              </label>
+              <textarea 
+                id="c-message" 
+                name="message" 
+                rows="4" 
+                required 
+                placeholder="Describe brevemente qué necesitas construir, quiénes serán los usuarios y si tienes una fecha límite en mente..." 
+                class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+              ></textarea>
+            </div>
+
+            <div id="contact-alert" class="hidden p-4 rounded-xl text-xs font-bold border-2" role="alert"></div>
+
+            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+              <button 
+                type="submit" 
+                class="btn-primary w-full py-3.5 px-6 text-xs uppercase tracking-wider font-extrabold flex items-center justify-center gap-2"
+              >
+                <span>Enviar Solicitud por WhatsApp</span>
+                <span class="text-indigo-300 font-bold">↗</span>
+              </button>
+            </div>
+
+            <p class="text-[11px] text-zinc-500 text-center font-medium">
+              🔒 Tus datos son tratados de forma confidencial. Nunca enviamos spam.
+            </p>
+          </form>
+
+        </div>
+
+      </div>
+
     </div>
   </section>
 </Layout>
+
+<script is:inline>
+  const form = document.getElementById('contact-form');
+  const alertBox = document.getElementById('contact-alert');
+
+  form?.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const name = document.getElementById('c-name')?.value.trim() || '';
+    const email = document.getElementById('c-email')?.value.trim() || '';
+    const phone = document.getElementById('c-phone')?.value.trim() || '';
+    const service = document.getElementById('c-service')?.value || '';
+    const budget = document.getElementById('c-budget')?.value || '';
+    const message = document.getElementById('c-message')?.value.trim() || '';
+
+    const text = `Hola MolinazDev, quiero cotizar un proyecto:\n\n` +
+      `*Nombre:* ${name}\n` +
+      `*Email:* ${email}\n` +
+      `*Teléfono:* ${phone}\n` +
+      `*Servicio:* ${service}\n` +
+      `*Presupuesto:* ${budget}\n` +
+      `*Detalles:* ${message}`;
+
+    const waUrl = `https://wa.me/51987654321?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+    if (alertBox) {
+      alertBox.className = 'p-4 rounded-xl text-xs font-bold border-2 bg-emerald-50 border-emerald-800 text-emerald-900';
+      alertBox.textContent = '¡Gracias! Se ha generado tu mensaje para WhatsApp. Si no se abrió la ventana automáticamente, puedes escribirnos a contacto@molinazdev.lat.';
+      alertBox.classList.remove('hidden');
+    }
+  });
+</script>

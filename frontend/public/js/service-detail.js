@@ -31,6 +31,9 @@ if (page && slug) {
         if (fields.checkout) {
           fields.checkout.dataset.packageName = pkg.name;
           fields.checkout.dataset.packagePrice = `${pkg.currency} ${formattedPrice} + IGV`;
+          fields.checkout.dataset.rawPrice = pkg.price;
+          fields.checkout.dataset.currency = pkg.currency;
+          fields.checkout.dataset.serviceTitle = service.title;
           const label = fields.checkout.querySelector('span');
           if (label) label.textContent = `Contratar ${pkg.name}`;
         }

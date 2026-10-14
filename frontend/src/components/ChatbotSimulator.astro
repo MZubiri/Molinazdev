@@ -1,0 +1,283 @@
+---
+---
+
+<section id="demo-ia" class="py-16 md:py-24 bg-zinc-50 border-b-2 border-zinc-900 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      
+      <!-- Left Column: Copy & Value Proposition (5 cols) -->
+      <div class="lg:col-span-5 space-y-5">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-black uppercase tracking-wider border border-emerald-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Simulador Interactivo en Vivo
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-900 font-display leading-[1.15]">
+          Pruébalo tú mismo: <br />
+          <span class="text-indigo-600">Así atiende un agente de IA</span> desarrollado por nosotros.
+        </h2>
+
+        <p class="text-sm sm:text-base text-zinc-600 font-medium leading-relaxed">
+          Nuestros chatbots no son simples árboles de respuestas rígidas. Comprenden contexto, responden dudas técnicas sobre tus productos, consultan catálogos y derivan clientes listos para comprar directamente a tu WhatsApp o CRM.
+        </p>
+
+        <div class="space-y-3 pt-2">
+          <div class="p-3.5 bg-white rounded-xl border-2 border-zinc-900 shadow-brutal-sm flex items-start gap-3">
+            <span class="text-2xl">⚡</span>
+            <div>
+              <h4 class="text-xs font-black uppercase tracking-wider text-zinc-900">Respuestas en 1 segundo</h4>
+              <p class="text-xs text-zinc-600 font-medium">Cero tiempo de espera para tus clientes a las 2 AM o en días festivos.</p>
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-white rounded-xl border-2 border-zinc-900 shadow-brutal-sm flex items-start gap-3">
+            <span class="text-2xl">📲</span>
+            <div>
+              <h4 class="text-xs font-black uppercase tracking-wider text-zinc-900">Integración con WhatsApp Oficial</h4>
+              <p class="text-xs text-zinc-600 font-medium">Meta Cloud API con envío de catálogo, imágenes y botones interactivos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button 
+            type="button" 
+            data-open-booking-modal
+            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs uppercase tracking-wider font-extrabold text-white bg-zinc-900 hover:bg-indigo-600 border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all"
+          >
+            <span>Agendar Asesoría Técnica Gratuita</span>
+            <span class="text-indigo-300 font-bold">↗</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Chat Interface (7 cols) -->
+      <div class="lg:col-span-7">
+        <div class="w-full max-w-lg mx-auto bg-white rounded-3xl border-3 border-zinc-900 shadow-brutal-lg overflow-hidden flex flex-col h-[480px] sm:h-[560px]">
+          
+          <!-- Chat Header -->
+          <div class="p-3.5 sm:p-4 bg-zinc-900 text-white flex items-center justify-between border-b-2 border-zinc-900">
+            <div class="flex items-center gap-2.5 sm:gap-3">
+              <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-indigo-600 flex items-center justify-center font-black text-white text-base border-2 border-zinc-900 shadow-brutal-sm">
+                🤖
+              </div>
+              <div>
+                <h3 class="text-xs sm:text-sm font-extrabold text-white flex items-center gap-1.5 sm:gap-2">
+                  <span>MolinazDev AI Assistant</span>
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                </h3>
+                <p class="text-[10px] sm:text-[11px] text-zinc-400 font-medium">Entrenado con servicios y precios de MolinazDev</p>
+              </div>
+            </div>
+            <span class="text-[9px] sm:text-[10px] uppercase font-black bg-zinc-800 text-emerald-400 px-2 sm:px-2.5 py-1 rounded-full border border-zinc-700">
+              Demo Activa
+            </span>
+          </div>
+
+          <!-- Chat Messages Area -->
+          <div id="sim-chat-box" class="flex-1 p-3 sm:p-4 space-y-3 sm:space-y-3.5 overflow-y-auto bg-zinc-50">
+            
+            <!-- Bot Welcome -->
+            <div class="flex items-start gap-2 sm:gap-2.5 max-w-[92%] sm:max-w-[88%]">
+              <div class="w-7 h-7 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xs shrink-0 font-bold border border-zinc-900">
+                AI
+              </div>
+              <div class="p-3 sm:p-3.5 bg-white rounded-2xl rounded-tl-sm border-2 border-zinc-900 shadow-brutal-sm text-xs text-zinc-800 leading-relaxed font-medium space-y-1.5 sm:space-y-2">
+                <p>
+                  ¡Hola! 👋 Soy el asistente inteligente de <strong>MolinazDev</strong>. Puedo responder tus dudas sobre costos, tecnologías, tiempos de entrega y métodos de pago.
+                </p>
+                <p class="text-[11px] text-zinc-500 font-semibold">
+                  Toca una pregunta sugerida o escribe la tuya:
+                </p>
+              </div>
+            </div>
+
+            <!-- Quick Action Chips -->
+            <div id="sim-quick-chips" class="flex flex-wrap gap-1.5 sm:gap-2 pl-0 sm:pl-9 pt-1">
+              <button 
+                type="button" 
+                class="sim-chip px-2.5 py-1.5 rounded-full bg-white hover:bg-indigo-50 border-2 border-zinc-900 text-[11px] sm:text-xs font-bold text-zinc-800 shadow-brutal-sm hover:shadow-brutal transition-all"
+                data-query="¿Cuánto cuesta una web profesional?"
+              >
+                💰 ¿Cuánto cuesta una web?
+              </button>
+              <button 
+                type="button" 
+                class="sim-chip px-2.5 py-1.5 rounded-full bg-white hover:bg-indigo-50 border-2 border-zinc-900 text-[11px] sm:text-xs font-bold text-zinc-800 shadow-brutal-sm hover:shadow-brutal transition-all"
+                data-query="¿Qué incluye el soporte técnico?"
+              >
+                🛠️ ¿Qué soporte incluye?
+              </button>
+              <button 
+                type="button" 
+                class="sim-chip px-2.5 py-1.5 rounded-full bg-white hover:bg-indigo-50 border-2 border-zinc-900 text-[11px] sm:text-xs font-bold text-zinc-800 shadow-brutal-sm hover:shadow-brutal transition-all"
+                data-query="¿Cómo integran IA con WhatsApp?"
+              >
+                📲 ¿Cómo es el chatbot de WhatsApp?
+              </button>
+              <button 
+                type="button" 
+                class="sim-chip px-2.5 py-1.5 rounded-full bg-white hover:bg-indigo-50 border-2 border-zinc-900 text-[11px] sm:text-xs font-bold text-zinc-800 shadow-brutal-sm hover:shadow-brutal transition-all"
+                data-query="¿Qué métodos de pago aceptan?"
+              >
+                💳 ¿Qué métodos de pago aceptan?
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Typing Indicator (Hidden by default) -->
+          <div id="sim-typing" class="hidden px-4 py-2 bg-zinc-50 text-[11px] text-zinc-500 font-bold flex items-center gap-1.5 border-t border-zinc-200">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce"></span>
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce [animation-delay:0.2s]"></span>
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce [animation-delay:0.4s]"></span>
+            <span>MolinazDev AI está respondiendo...</span>
+          </div>
+
+          <!-- Chat Input Form -->
+          <form id="sim-input-form" class="p-2.5 sm:p-3 bg-white border-t-2 border-zinc-900 flex items-center gap-2">
+            <input 
+              type="text" 
+              id="sim-user-text"
+              placeholder="Escribe tu consulta aquí..." 
+              autocomplete="off"
+              class="flex-1 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-base sm:text-sm font-medium text-zinc-900 focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+            />
+            <button 
+              type="submit" 
+              class="p-2.5 rounded-xl bg-zinc-900 hover:bg-indigo-600 text-white border-2 border-zinc-900 shadow-brutal-sm hover:shadow-brutal transition-all"
+              aria-label="Enviar mensaje"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const chatBox = document.getElementById('sim-chat-box');
+    const inputForm = document.getElementById('sim-input-form');
+    const userInput = document.getElementById('sim-user-text');
+    const typingIndicator = document.getElementById('sim-typing');
+    const chipsContainer = document.getElementById('sim-quick-chips');
+
+    const KNOWLEDGE = [
+      {
+        keywords: ['cuesta', 'precio', 'planes', 'cuanto', 'tarifa', 'costo', 'valor'],
+        response: `Contamos con paquetes desde **S/. 799 + IGV** para Landing Pages de alta conversión, **S/. 1,500 + IGV** para Sitios Web Corporativos y **S/. 2,500+** para E-Commerce con pasarela de pagos. ¡Todos incluyen dominio y hosting por 1 año! Puedes ver el detalle completo en nuestra sección de catálogo.`
+      },
+      {
+        keywords: ['soporte', 'garantia', 'post', 'mantenimiento', 'problema', 'seguridad'],
+        response: `Todos nuestros desarrollos incluyen **60 días de soporte técnico post-lanzamiento** sin costo alguno. Esto cubre correcciones, resolución de dudas y ajustes de estabilidad. Además, el código fuente es 100% de tu propiedad.`
+      },
+      {
+        keywords: ['whatsapp', 'chatbot', 'bot', 'ia', 'inteligencia', 'artificial', 'agente'],
+        response: `Desarrollamos Agentes de IA conectados a la **API Oficial de WhatsApp de Meta**. Entrenamos el modelo con los catálogos, preguntas frecuentes y reglas de tu negocio. Puede agendar citas, cotizar y enviar datos a tu base de datos o CRM 24/7.`
+      },
+      {
+        keywords: ['pago', 'pagos', 'yape', 'plin', 'tarjeta', 'mercadopago', 'credito', 'cuotas'],
+        response: `Aceptamos **Mercado Pago** (tarjetas de crédito en cuotas sin intereses, débito), **Yape, Plin y Transferencia bancaria**. La transacción es 100% segura con cifrado SSL y confirmación en tiempo real.`
+      },
+      {
+        keywords: ['tiempo', 'plazo', 'demora', 'cuanto tarda', 'entrega', 'dias'],
+        response: `Los plazos de entrega habituales son: **7 días hábiles** para Landing Pages, **14 días hábiles** para Web Corporativa y **20 a 30 días** para E-Commerce o Software a Medida. Cumplimos los plazos acordados por contrato.`
+      },
+      {
+        keywords: ['contacto', 'asesoria', 'hablar', 'humano', 'reunion', 'agendar', 'llamada'],
+        response: `¡Excelente! Puedes agendar una **Asesoría Técnica Gratuita** pulsando el botón en la web, o escribirnos directamente a nuestro WhatsApp oficial: [+51 987 654 321](https://wa.me/51987654321).`
+      }
+    ];
+
+    function appendMessage(text, isUser = false) {
+      if (!chatBox) return;
+
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `flex items-start gap-2.5 ${isUser ? 'justify-end' : 'max-w-[88%]'}`;
+
+      if (isUser) {
+        msgDiv.innerHTML = `
+          <div class="p-3.5 bg-zinc-900 text-white rounded-2xl rounded-tr-sm border-2 border-zinc-900 shadow-brutal-sm text-xs leading-relaxed font-semibold">
+            ${escapeHtml(text)}
+          </div>
+        `;
+      } else {
+        // Simple markdown parsing for bold & links
+        let formatted = escapeHtml(text)
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-indigo-600 underline font-bold">$1</a>');
+
+        msgDiv.innerHTML = `
+          <div class="w-7 h-7 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xs shrink-0 font-bold border border-zinc-900">
+            AI
+          </div>
+          <div class="p-3.5 bg-white rounded-2xl rounded-tl-sm border-2 border-zinc-900 shadow-brutal-sm text-xs text-zinc-800 leading-relaxed font-medium space-y-2">
+            <p>${formatted}</p>
+          </div>
+        `;
+      }
+
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      const p = document.createElement('p');
+      p.textContent = str;
+      return p.innerHTML;
+    }
+
+    function findResponse(query) {
+      const normalized = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      for (const item of KNOWLEDGE) {
+        if (item.keywords.some(k => normalized.includes(k))) {
+          return item.response;
+        }
+      }
+      return `Comprendo tu consulta sobre "${query}". Para proyectos específicos o arquitecturas a medida, nuestro equipo puede preparar una cotización exacta. ¿Te gustaría agendar una asesoría técnica gratuita de 1 a 1?`;
+    }
+
+    function handleUserQuery(query) {
+      if (!query) return;
+      appendMessage(query, true);
+
+      if (typingIndicator) typingIndicator.classList.remove('hidden');
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      setTimeout(() => {
+        if (typingIndicator) typingIndicator.classList.add('hidden');
+        const reply = findResponse(query);
+        appendMessage(reply, false);
+      }, 700);
+    }
+
+    // Quick chips click
+    document.querySelectorAll('.sim-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const query = chip.getAttribute('data-query');
+        if (query) handleUserQuery(query);
+      });
+    });
+
+    // Form submit
+    if (inputForm && userInput) {
+      inputForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = userInput.value.trim();
+        if (text) {
+          handleUserQuery(text);
+          userInput.value = '';
+        }
+      });
+    }
+  });
+</script>

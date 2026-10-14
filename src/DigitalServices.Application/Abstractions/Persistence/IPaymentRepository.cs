@@ -9,5 +9,9 @@ public interface IPaymentRepository
         string preferenceId,
         CancellationToken cancellationToken);
 
+    Task<IReadOnlyList<Payment>> GetPaymentsByOrderIdAsync(
+        Guid orderId,
+        CancellationToken cancellationToken);
+
     Task AddAsync(Payment payment, CancellationToken cancellationToken);
 }

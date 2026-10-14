@@ -2,11 +2,13 @@ using DigitalServices.Application.Checkout;
 using DigitalServices.Application.Common;
 using DigitalServices.Application.Payments;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace DigitalServices.Web.Controllers.Api;
 
 [ApiController]
 [Route("api/checkout")]
+[EnableRateLimiting("CheckoutPolicy")]
 public sealed class CheckoutApiController(
     ICheckoutService checkoutService,
     ILogger<CheckoutApiController> logger) : ControllerBase

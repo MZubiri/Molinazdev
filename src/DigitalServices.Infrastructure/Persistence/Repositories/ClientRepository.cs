@@ -6,6 +6,15 @@ namespace DigitalServices.Infrastructure.Persistence.Repositories;
 
 public sealed class ClientRepository(ApplicationDbContext dbContext) : IClientRepository
 {
+    public Task<Client?> GetByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken)
+    {
+        return dbContext.Clients.SingleOrDefaultAsync(
+            client => client.Id == id,
+            cancellationToken);
+    }
+
     public Task<Client?> GetByNormalizedEmailAsync(
         string normalizedEmail,
         CancellationToken cancellationToken)

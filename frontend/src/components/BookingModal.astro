@@ -1,0 +1,199 @@
+---
+---
+
+<div 
+  id="booking-modal" 
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/70 backdrop-blur-sm hidden"
+  role="dialog" 
+  aria-modal="true" 
+  aria-labelledby="booking-modal-title"
+>
+  <div class="relative w-full max-w-lg bg-white rounded-3xl border-3 border-zinc-900 shadow-brutal-lg p-5 sm:p-8 max-h-[88vh] sm:max-h-[92vh] overflow-y-auto">
+    
+    <!-- Close Button -->
+    <button 
+      id="close-booking-modal" 
+      class="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 border-2 border-zinc-900 text-zinc-900 focus:outline-none transition-colors"
+      aria-label="Cerrar ventana modal"
+    >
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Header -->
+    <div class="space-y-1.5 pr-8">
+      <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-black uppercase tracking-wider border border-emerald-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        100% Gratuita &middot; Sin Compromiso
+      </div>
+      <h3 id="booking-modal-title" class="text-xl sm:text-3xl font-extrabold text-zinc-900 font-display">
+        Agendar Asesoría Técnica Gratuita
+      </h3>
+      <p class="text-xs sm:text-sm text-zinc-600 font-medium leading-relaxed">
+        Conversa directamente con un arquitecto de software de MolinazDev. Analizamos tu proyecto, resolvemos dudas de arquitectura y definimos el mejor camino técnico.
+      </p>
+    </div>
+
+    <!-- Booking Form -->
+    <form id="booking-form" class="mt-6 space-y-4" novalidate>
+      <div>
+        <label for="booking-name" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+          Tu Nombre Completo <span class="text-red-600">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="booking-name" 
+          required 
+          placeholder="Ej. Rodrigo Silva" 
+          class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="booking-phone" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+            WhatsApp / Teléfono <span class="text-red-600">*</span>
+          </label>
+          <input 
+            type="tel" 
+            id="booking-phone" 
+            required 
+            placeholder="+51 987 654 321" 
+            class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+          />
+        </div>
+
+        <div>
+          <label for="booking-email" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+            Correo de contacto
+          </label>
+          <input 
+            type="email" 
+            id="booking-email" 
+            placeholder="rodrigo@empresa.pe" 
+            class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="booking-service" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+          ¿En qué tipo de proyecto necesitas asesoría?
+        </label>
+        <select 
+          id="booking-service" 
+          class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 text-base sm:text-sm font-semibold focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+        >
+          <option value="Desarrollo Web / E-Commerce">🌐 Desarrollo Web / Tienda Online</option>
+          <option value="Chatbot con Inteligencia Artificial">🤖 Chatbot con Inteligencia Artificial (WhatsApp/Web)</option>
+          <option value="Automatización de Procesos">⚡ Automatización de Procesos &amp; APIs</option>
+          <option value="Software a Medida / SaaS">💻 Software a Medida / Plataforma Web</option>
+          <option value="Auditoría / Modernización de Web Existente">🔍 Auditoría de Web Existente o Migración</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="booking-schedule" class="block text-xs font-extrabold uppercase tracking-wider text-zinc-800 mb-1.5">
+          Preferencia de horario para la llamada
+        </label>
+        <select 
+          id="booking-schedule" 
+          class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 text-base sm:text-sm font-semibold focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+        >
+          <option value="Mañana (9:00 AM - 1:00 PM)">🌅 Mañana (9:00 AM - 1:00 PM)</option>
+          <option value="Tarde (2:00 PM - 7:00 PM)">🌇 Tarde (2:00 PM - 7:00 PM)</option>
+          <option value="Lo antes posible (Hoy mismo)">⚡ Lo antes posible (Urgente hoy)</option>
+        </select>
+      </div>
+
+      <div class="pt-3 space-y-3">
+        <button 
+          type="submit" 
+          class="w-full py-4 px-6 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold text-white bg-emerald-600 hover:bg-emerald-500 border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all duration-150 flex items-center justify-center gap-2"
+        >
+          <span>Agendar Asesoría vía WhatsApp</span>
+          <span class="text-base">💬</span>
+        </button>
+
+        <p class="text-[11px] text-zinc-500 text-center font-medium">
+          🔒 No compartimos tus datos. Te responderemos directamente para confirmar enlace de Google Meet o llamada telefónica.
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('booking-modal');
+    const closeBtn = document.getElementById('close-booking-modal');
+    const form = document.getElementById('booking-form');
+
+    function openModal() {
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal() {
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Attach to any button with data-open-booking-modal
+    document.querySelectorAll('[data-open-booking-modal]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeModal);
+    }
+
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('booking-name')?.value?.trim() || '';
+        const phone = document.getElementById('booking-phone')?.value?.trim() || '';
+        const email = document.getElementById('booking-email')?.value?.trim() || 'No especificado';
+        const service = document.getElementById('booking-service')?.value || 'Desarrollo Web';
+        const schedule = document.getElementById('booking-schedule')?.value || 'Por coordinar';
+
+        if (!name || !phone) {
+          alert('Por favor ingresa tu nombre y número de teléfono/WhatsApp.');
+          return;
+        }
+
+        const msg = `¡Hola MolinazDev! 👋 Deseo agendar una Asesoría Técnica Gratuita.\n\n` +
+                    `👤 *Nombre:* ${name}\n` +
+                    `📱 *WhatsApp:* ${phone}\n` +
+                    `📧 *Email:* ${email}\n` +
+                    `🎯 *Proyecto:* ${service}\n` +
+                    `⏰ *Horario sugerido:* ${schedule}\n\n` +
+                    `Quedo atento a la confirmación de la reunión.`;
+
+        const waUrl = `https://wa.me/51987654321?text=${encodeURIComponent(msg)}`;
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+        closeModal();
+      });
+    }
+  });
+</script>

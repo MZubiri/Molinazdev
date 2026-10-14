@@ -1,0 +1,54 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: molinazdev-mysql
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: digitalservices_dev
+      MYSQL_USER: molinazdev
+      MYSQL_PASSWORD: molinazpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: molinazdev-web
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+      ConnectionStrings__Default: "Server=mysql;Port=3306;Database=digitalservices_dev;User=molinazdev;Password=molinazpass;"
+      MercadoPago__AccessToken: "${MERCADOPAGO_ACCESS_TOKEN:-TEST-mock-access-token}"
+      MercadoPago__WebhookSecret: "${MERCADOPAGO_WEBHOOK_SECRET:-mock-webhook-secret}"
+      MercadoPago__NotificationUrl: "https://molinazdev.lat/api/payments/webhook"
+      Notifications__Email__Enabled: "false"
+      Notifications__AdminAlert__Enabled: "false"
+      PaymentReconciliation__Enabled: "true"
+      PaymentReconciliation__IntervalSeconds: "120"
+      PaymentReconciliation__PendingThresholdMinutes: "10"
+    restart: unless-stopped
+    profiles:
+      - full
+
+volumes:
+  mysql_data:
+    driver: local

@@ -19,16 +19,42 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
       
       <!-- Main Headline (7 cols) -->
-      <div class="lg:col-span-7 space-y-4">
+      <div class="lg:col-span-7 space-y-6">
         <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 font-display leading-[1.12]">
           Ingeniería web, <br />
           chatbots con IA y <br />
           software a medida que <br />
           <span class="text-indigo-600">impulsan tu negocio.</span>
         </h1>
-        <p class="text-base sm:text-lg text-zinc-600 max-w-xl font-medium leading-relaxed pt-1">
+        <p class="text-base sm:text-lg text-zinc-600 max-w-xl font-medium leading-relaxed">
           Desarrollamos plataformas digitales modernas, ultrarrápidas y orientadas a resultados. Diseñadas para que vendas más, atiendas 24/7 y optimices tu tiempo.
         </p>
+
+        <!-- Primary Action Group -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+          <button 
+            type="button" 
+            data-open-booking-modal
+            class="px-7 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold text-white bg-zinc-900 hover:bg-emerald-600 border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all flex items-center justify-center gap-2"
+          >
+            <span>Agendar Asesoría Técnica Gratuita</span>
+            <span class="text-base">📅</span>
+          </button>
+          
+          <a 
+            href="/portafolio/" 
+            class="px-6 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold text-zinc-900 bg-white hover:bg-zinc-100 border-2 border-zinc-900 shadow-brutal-sm hover:shadow-brutal transition-all flex items-center justify-center gap-2 text-center"
+          >
+            <span>Ver Portafolio</span>
+            <span class="text-indigo-600 font-bold">↗</span>
+          </a>
+        </div>
+
+        <!-- Real-time Availability Pill -->
+        <div class="flex items-center gap-2 text-xs font-bold text-zinc-600 pt-1">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+          <span>Agenda abierta &middot; 2 cupos para proyectos este mes</span>
+        </div>
       </div>
 
       <!-- Aside Conversion Card (5 cols) -->
@@ -63,7 +89,7 @@
 
         <div class="pt-2 flex flex-col sm:flex-row gap-3">
           <a 
-            href="#servicios" 
+            href="/servicios/" 
             class="btn-primary w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 text-xs uppercase tracking-wider text-center"
           >
             <span>Ver Planes y Precios</span>

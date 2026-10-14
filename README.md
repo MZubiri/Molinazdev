@@ -1,83 +1,82 @@
-# Digital Services
+# MolinazDev &middot; Plataforma de Servicios Digitales y Checkout
 
-Base productiva en ASP.NET Core MVC para publicar servicios digitales, vender paquetes y cobrar mediante Mercado Pago Checkout Pro. La aplicación conserva el precio de cada compra en una orden interna y confirma los pagos únicamente después de validar el webhook y consultar el pago directamente en Mercado Pago.
+Plataforma productiva de alta fidelidad que combina un **frontend moderno en Astro (diseño Neo-brutalista)** con un **backend robusto en ASP.NET Core (.NET 8) bajo arquitectura limpia**. Permite publicar servicios digitales, calcular de forma transparente el desglose de precios (Base + 18% IGV), recibir cotizaciones personalizadas vía WhatsApp/correo y cobrar mediante **Mercado Pago Checkout Pro** con validación criptográfica HMAC, conciliación periódica y notificaciones multicanal.
 
-## Arquitectura
+---
 
-La solución usa una separación pragmática en cuatro proyectos:
+## 🚀 Novedades y Mejoras Implementadas
+
+1. **Frontend Neo-Brutalista Integrado (Astro + TailwindCSS):**
+   - Estética contemporánea de alto impacto con sombras duras (`4px 4px 0px #000`), microinteracciones y tipografías expresivas.
+   - **Desglose de precios en vivo en el Checkout Modal:** Subtotal neto, 18% IGV peruano y Total final a abonar en Mercado Pago.
+   - **Manejo de errores por campo:** Feedback visual inmediato ante datos incompletos o inválidos devueltos por el backend.
+   - **Bento Features Grid:** Sección de propuesta de valor y beneficios integrada en la página principal (`#beneficios`).
+   - **Página de Cotización Personalizada (`/contacto`):** Formulario interactivo que genera mensajes formateados para WhatsApp Business y enlace de correo empresarial.
+   - **Botón flotante de WhatsApp:** Acceso rápido para atención y consultas directas en cualquier página.
+
+2. **Backend Robusto (.NET 8 & Clean Architecture):**
+   - **Documentación interactiva Swagger / OpenAPI:** Disponible en `/swagger` en entornos de desarrollo.
+   - **Protección contra abusos y Rate Limiting:** Política `CheckoutPolicy` (límite de 5 solicitudes/minuto por IP con queue de 2).
+   - **CORS configurable:** Habilitado para orígenes de desarrollo y producción configurables vía `appsettings.json`.
+   - **Notificaciones automáticas post-pago:**
+     - Correo HTML responsive para el cliente con el comprobante de su orden y los pasos inmediatos.
+     - Alertas en tiempo real para el equipo de ventas vía **Discord Webhook** y **Telegram Bot**.
+   - **Worker en segundo plano para Conciliación de Pagos (`PaymentReconciliationWorker`):**
+     - Revisa periódicamente órdenes pendientes con más de 10 minutos de antigüedad y consulta su estado real en Mercado Pago, resolviendo pagos desfasados o webhooks perdidos.
+
+3. **DevOps y Calidad:**
+   - **`docker-compose.dev.yml`:** Entorno reproducible con MySQL 8 (`utf8mb4_unicode_ci`) y healthcheck.
+   - **GitHub Actions CI (`.github/workflows/ci.yml`):** Validación automatizada de compilación y 55 pruebas unitarias/integración en .NET 8, junto con compilación estática de Astro en Node 20.
+
+---
+
+## 🏛️ Arquitectura del Sistema
 
 ```text
-src/
-├── DigitalServices.Domain          Entidades, enums y reglas de dominio
-├── DigitalServices.Application     Casos de uso, DTOs y abstracciones
-├── DigitalServices.Infrastructure  EF Core, MySQL y Mercado Pago
-└── DigitalServices.Web             MVC, Razor, composición y endpoints HTTP
-
-tests/
-└── DigitalServices.Tests           Pruebas de la lógica crítica
+PROYECTO/
+├── frontend/                     # Aplicación Astro con TailwindCSS y Neo-brutalismo
+│   ├── src/pages/                # Páginas (index, contacto, servicios, checkout states)
+│   ├── src/components/           # Componentes UI (Navbar, BentoFeatures, CheckoutModal, etc.)
+│   └── public/js/                # Scripts del cliente (checkout.js, catalog.js)
+│
+├── src/
+│   ├── DigitalServices.Domain          # Entidades, enums y reglas de dominio puras
+│   ├── DigitalServices.Application     # Casos de uso, servicios de checkout y notificaciones
+│   ├── DigitalServices.Infrastructure  # EF Core MySQL, Mercado Pago, SMTP y Webhooks
+│   └── DigitalServices.Web             # ASP.NET Core Web API, Swagger, Rate Limiting y Middleware
+│
+├── tests/
+│   └── DigitalServices.Tests           # 55 pruebas unitarias e integración de la lógica crítica
+│
+├── docker-compose.dev.yml        # Orquestación de desarrollo (MySQL 8 + Web API)
+├── Dockerfile                    # Compilación multi-stage (Astro dist -> ASP.NET Core wwwroot)
+└── .github/workflows/ci.yml      # Pipeline CI automatizado
 ```
 
-Las dependencias apuntan hacia el dominio: `Domain` no conoce ASP.NET Core, Entity Framework ni Mercado Pago; `Application` depende de `Domain`; `Infrastructure` implementa las abstracciones de `Application`; y `Web` compone la aplicación. Las versiones NuGet se administran centralmente en `Directory.Packages.props`.
+---
 
-## Requisitos para desarrollo
+## 🛠️ Requisitos Previos
 
-- .NET SDK 8.0.
-- MySQL 8.0 o una versión compatible con Pomelo 8.
-- Credenciales de prueba de una aplicación de Mercado Pago.
-- Docker 24 o posterior, opcional.
-- `dotnet-ef` 8.0.2 para administrar migraciones.
+- [.NET SDK 8.0+](https://dotnet.microsoft.com/)
+- [Node.js 20+ y npm](https://nodejs.org/)
+- [Docker y Docker Compose](https://www.docker.com/) (opcional pero recomendado)
+- Credenciales de prueba de Mercado Pago
 
-Instala la herramienta de EF Core si aún no está disponible:
+---
+
+## 💻 Desarrollo Local
+
+### 1. Iniciar Base de Datos MySQL con Docker
+
+Ejecuta el servicio de base de datos listo para desarrollo:
 
 ```bash
-dotnet tool install --global dotnet-ef --version 8.0.2
+docker compose -f docker-compose.dev.yml up -d mysql
 ```
 
-En entornos donde el lanzador Snap de .NET esté bloqueado, sustituye `dotnet` en los comandos por `/snap/dotnet-sdk/current/dotnet`.
+Esto levanta MySQL 8.0 en el puerto `3306` con la base de datos `digitalservices_dev`.
 
-## MySQL local
-
-Crea una base y un usuario con permisos limitados a esa base. Cambia la contraseña del ejemplo antes de ejecutar los comandos:
-
-```sql
-CREATE DATABASE digital_services
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-CREATE USER 'digitalservices'@'localhost'
-  IDENTIFIED BY 'use-una-contrasena-local-segura';
-
-GRANT ALL PRIVILEGES ON digital_services.*
-  TO 'digitalservices'@'localhost';
-
-FLUSH PRIVILEGES;
-```
-
-La aplicación no contiene credenciales. Para una sesión local, configura las variables de entorno con tus propios valores:
-
-```bash
-export ASPNETCORE_ENVIRONMENT=Development
-export ConnectionStrings__DefaultConnection='Server=127.0.0.1;Port=3306;Database=digital_services;User=digitalservices;Password=use-su-clave-local;TreatTinyAsBoolean=true;'
-export MercadoPago__AccessToken='use-su-access-token-de-prueba'
-export MercadoPago__WebhookSecret='use-el-secreto-del-webhook'
-export MercadoPago__SuccessUrl='https://su-tunel-publico.example/Checkout/Success'
-export MercadoPago__FailureUrl='https://su-tunel-publico.example/Checkout/Failure'
-export MercadoPago__PendingUrl='https://su-tunel-publico.example/Checkout/Pending'
-export MercadoPago__NotificationUrl='https://su-tunel-publico.example/api/webhooks/mercadopago'
-```
-
-Las URLs de retorno y notificación deben ser absolutas. Para probar webhooks desde una máquina local se necesita un túnel HTTPS público; Mercado Pago no puede llamar a `localhost`.
-
-## Migraciones y datos iniciales
-
-Restaura y compila primero la solución:
-
-```bash
-dotnet restore DigitalServices.sln
-dotnet build DigitalServices.sln --configuration Release --no-restore
-```
-
-Aplica la migración incluida:
+### 2. Ejecutar Migraciones de Base de Datos
 
 ```bash
 dotnet ef database update \
@@ -85,140 +84,122 @@ dotnet ef database update \
   --startup-project src/DigitalServices.Web
 ```
 
-Para crear una migración posterior:
-
-```bash
-dotnet ef migrations add NombreDescriptivo \
-  --project src/DigitalServices.Infrastructure \
-  --startup-project src/DigitalServices.Web \
-  --output-dir Persistence/Migrations
-```
-
-Los servicios y paquetes iniciales se cargan desde la estrategia de inicialización incluida en Infrastructure. Sus precios son datos persistidos y pueden cambiarse en MySQL sin recompilar; una orden conserva siempre el importe y la moneda vigentes al crearla.
-
-Las migraciones no se aplican automáticamente durante cada arranque en producción. Antes de desplegar una versión que cambie el esquema, realiza un respaldo y ejecuta `dotnet ef database update` desde una estación administrativa o un trabajo de despliegue con acceso restringido a MySQL.
-
-La migración `RepairUtf8CatalogText` corrige registros históricos del catálogo que hayan sido guardados con UTF-8 interpretado como Latin-1. Debe ejecutarse una vez en producción después de respaldar la base.
-
-## Ejecutar localmente
-
-Con la configuración cargada y la base actualizada:
+### 3. Ejecutar el Backend ASP.NET Core
 
 ```bash
 dotnet run --project src/DigitalServices.Web
 ```
 
-Para ejecutar todas las verificaciones:
+El backend se iniciará escuchando endpoints API y Swagger en:
+- **Swagger UI:** `http://localhost:5000/swagger` (o `https://localhost:5001/swagger`)
+- **Health Check:** `http://localhost:5000/health`
+
+### 4. Ejecutar el Frontend Astro (Modo Desarrollo)
+
+En otra terminal:
 
 ```bash
-dotnet restore DigitalServices.sln
-dotnet build DigitalServices.sln --configuration Release --no-restore
-dotnet test DigitalServices.sln --configuration Release --no-build
+cd frontend
+npm install
+npm run dev
 ```
 
-El catálogo permite seleccionar un paquete y enviar únicamente sus datos de contacto y `packageId`. El servidor recupera el precio base y la moneda desde MySQL, agrega el IGV del 18 %, crea o actualiza el cliente, genera una orden `Pending`, crea la Preference y redirige a Checkout Pro. Las páginas `Success`, `Failure` y `Pending` son informativas: visitar `Success` nunca confirma una orden.
+El frontend se iniciará en `http://localhost:4321` con recarga rápida (HMR) y proxy a la API.
 
-## Configuración de Mercado Pago
+---
 
-1. Crea una aplicación en el panel de desarrolladores de Mercado Pago.
-2. Durante desarrollo utiliza credenciales, comprador y vendedor de prueba que pertenezcan a cuentas distintas.
-3. Configura `MercadoPago__AccessToken` con el token privado del ambiente elegido.
-4. Registra el endpoint público `https://tu-dominio/api/webhooks/mercadopago` y habilita el evento de pagos.
-5. Copia la clave secreta entregada para la firma a `MercadoPago__WebhookSecret`.
-6. Configura las tres Back URLs HTTPS del mismo dominio y la Notification URL pública.
-7. En producción sustituye las credenciales de prueba por las productivas y realiza un pago real controlado de extremo a extremo.
+## 🧪 Pruebas Automatizadas
 
-El Access Token y el secreto del webhook son credenciales de servidor: no deben aparecer en JavaScript, vistas, imágenes Docker, repositorios, logs ni URLs. Después de modificar el endpoint o regenerar el secreto, actualiza la configuración de Coolify y verifica una notificación firmada.
-
-El webhook realiza este flujo:
-
-```text
-firma HMAC válida
-  -> obtiene data.id
-  -> consulta el pago en Mercado Pago
-  -> resuelve ExternalReference
-  -> valida importe y moneda
-  -> actualiza Payment y Order en una transacción
-```
-
-Las restricciones únicas de base de datos sobre los identificadores externos, junto con el procesamiento transaccional, hacen seguro reintentar una misma notificación. Los estados recibidos se conservan en `Payment`; las reglas de transición impiden que una notificación antigua degrade una orden ya avanzada.
-
-## Docker
-
-La imagen usa etapas independientes de restore, build, publish y runtime. La etapa final contiene únicamente ASP.NET Core Runtime, escucha en el puerto `8080` y ejecuta la aplicación con el usuario no privilegiado `app`.
-
-Construye la imagen desde la raíz:
+Para compilar y ejecutar las **55 pruebas unitarias e integración** del backend:
 
 ```bash
-docker build --tag digital-services:local .
+dotnet test
 ```
 
-Crea un archivo local `.env` —está excluido de Git y del contexto Docker— con las variables descritas anteriormente y ejecútala:
+Para verificar la compilación estática del frontend Astro:
 
 ```bash
-docker run --rm \
-  --name digital-services \
-  --publish 8080:8080 \
-  --add-host host.docker.internal:host-gateway \
-  --env-file .env \
-  digital-services:local
+cd frontend
+npm run build
 ```
 
-Si MySQL corre en el host Linux, usa `Server=host.docker.internal` en la cadena del contenedor. Si ambos servicios comparten una red Docker, usa como `Server` el nombre DNS del servicio MySQL.
+---
 
-Comprueba que la aplicación esté lista con:
+## ⚙️ Variables de Configuración
+
+En `src/DigitalServices.Web/appsettings.json` o mediante variables de entorno en producción:
+
+```json
+{
+  "ConnectionStrings": {
+    "Default": "Server=localhost;Port=3306;Database=digitalservices_dev;User=molinazdev;Password=molinazpass;TreatTinyAsBoolean=true;"
+  },
+  "MercadoPago": {
+    "AccessToken": "APP_USR-...",
+    "WebhookSecret": "...",
+    "SuccessUrl": "https://molinazdev.lat/Checkout/Success",
+    "FailureUrl": "https://molinazdev.lat/Checkout/Failure",
+    "PendingUrl": "https://molinazdev.lat/Checkout/Pending",
+    "NotificationUrl": "https://molinazdev.lat/api/payments/webhook"
+  },
+  "Notifications": {
+    "Email": {
+      "Enabled": true,
+      "SmtpHost": "smtp.resend.com",
+      "SmtpPort": 587,
+      "SmtpUsername": "resend",
+      "SmtpPassword": "...",
+      "FromAddress": "notificaciones@molinazdev.lat",
+      "FromName": "MolinazDev Ventas"
+    },
+    "AdminAlert": {
+      "Enabled": true,
+      "DiscordWebhookUrl": "https://discord.com/api/webhooks/...",
+      "TelegramBotToken": "123456:ABC-DEF...",
+      "TelegramChatId": "987654321"
+    }
+  },
+  "PaymentReconciliation": {
+    "Enabled": true,
+    "IntervalSeconds": 120,
+    "PendingThresholdMinutes": 10
+  }
+}
+```
+
+---
+
+## 🐳 Despliegue con Docker y Coolify
+
+La solución incluye un `Dockerfile` multi-stage optimizado que en la primera etapa compila el frontend Astro con Node.js 20, y luego copia los artefactos estáticos (`dist/`) directamente a la carpeta `wwwroot/` de ASP.NET Core, creando un único contenedor autónomo, seguro y ultra-rápido.
+
+### Construir y Ejecutar Localmente
 
 ```bash
-curl --fail http://localhost:8080/health
+# Compilar imagen de producción
+docker build -t molinazdev-app:latest .
+
+# Ejecutar el contenedor
+docker run -p 8080:8080 --env-file .env molinazdev-app:latest
 ```
 
-El endpoint devuelve únicamente el estado de salud y no expone cadenas de conexión, credenciales ni detalles internos.
+### Configuración en Coolify / VPS
 
-## Despliegue en Coolify
+- **Tipo:** Dockerfile
+- **Puerto expuesto:** `8080`
+- **Health Check Path:** `/health`
+- **Recomendación:** Configurar el webhook de Mercado Pago con la URL pública HTTPS proporcionada por Coolify.
 
-Configura el recurso como una aplicación Docker basada en el `Dockerfile` de la raíz:
+---
 
-- Puerto interno: `8080`.
-- Health check HTTP: `/health`.
-- HTTPS: habilitado en el dominio público gestionado por Coolify.
-- Migraciones: ejecútalas como paso administrativo antes de sustituir la versión activa.
-- MySQL: usa el nombre interno y puerto de la base si está en la misma red de Coolify; limita su exposición pública.
+## 🛡️ Seguridad y Buenas Prácticas
 
-Variables requeridas:
+- **Cero secretos en el código:** Todos los tokens, contraseñas y webhooks secretos se configuran vía variables de entorno.
+- **Validación Criptográfica HMAC:** Cada notificación entrante de Mercado Pago se verifica contra la clave secreta antes de procesar el pago.
+- **Idempotencia Transaccional:** Se previene el doble procesamiento de webhooks repetidos mediante restricciones únicas a nivel de base de datos.
+- **Aislamiento de Fallos en Notificaciones:** Si el servidor SMTP o Discord/Telegram están temporalmente caídos, la confirmación del pago en la base de datos se mantiene intacta.
+- **Rate Limiting:** Control de peticiones concurrentes para evitar ataques de denegación de servicio o saturación del checkout.
 
-```text
-ASPNETCORE_ENVIRONMENT=Production
-ASPNETCORE_HTTP_PORTS=8080
-ConnectionStrings__DefaultConnection
-MercadoPago__AccessToken
-MercadoPago__WebhookSecret
-MercadoPago__SuccessUrl
-MercadoPago__FailureUrl
-MercadoPago__PendingUrl
-MercadoPago__NotificationUrl
-```
+---
 
-Ejemplo de rutas de producción:
-
-```text
-MercadoPago__SuccessUrl=https://servicios.example/Checkout/Success
-MercadoPago__FailureUrl=https://servicios.example/Checkout/Failure
-MercadoPago__PendingUrl=https://servicios.example/Checkout/Pending
-MercadoPago__NotificationUrl=https://servicios.example/api/webhooks/mercadopago
-```
-
-No añadas comillas al valor desde la interfaz de Coolify salvo que formen parte de él. Tras el despliegue, confirma que el proxy envía `X-Forwarded-For` y `X-Forwarded-Proto`, que `/health` responde desde Internet y que las URLs generadas conservan `https`. La aplicación procesa forwarded headers antes de redirecciones y HTTPS.
-
-## Operación segura
-
-- Mantén MySQL y las credenciales de Mercado Pago fuera del repositorio.
-- Respalda la base antes de aplicar una migración productiva.
-- Conserva logs estructurados, pero no registres tokens, secretos, firmas completas ni payloads que incluyan datos personales innecesarios.
-- Rota inmediatamente cualquier credencial expuesta y vuelve a desplegar.
-- Restringe el acceso a la base y usa TLS cuando MySQL se encuentre fuera de la red privada.
-- Verifica periódicamente los reintentos y errores del webhook en Mercado Pago.
-- No uses las páginas de retorno del navegador como prueba de pago; la fuente definitiva es la consulta autenticada al API.
-
-## Límites actuales
-
-Esta base cubre catálogo, clientes, órdenes, Checkout Pro, pagos y webhook. Cuentas de usuario, paneles, facturación, cupones, cotizaciones, adjuntos, tickets, notificaciones, suscripciones y pagos recurrentes quedan fuera del alcance inicial, pero la separación por capas y la abstracción `IPaymentGateway` permiten incorporarlos sin acoplar el dominio a Mercado Pago.
+&copy; MolinazDev &middot; Software y Servicios Digitales de Alto Rendimiento.

@@ -1,12 +1,15 @@
 using System.Text.Json;
+using System.Threading.RateLimiting;
 using DigitalServices.Application.Catalog;
 using DigitalServices.Application.Checkout;
 using DigitalServices.Application.Payments;
 using DigitalServices.Infrastructure;
+using DigitalServices.Infrastructure.Notifications;
 using DigitalServices.Infrastructure.Payments;
 using DigitalServices.Web.Health;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,25 +33,60 @@ builder.Services.AddAntiforgery(options =>
     options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 });
 
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
+    ?? [
+        "https://molinazdev.lat",
+        "https://www.molinazdev.lat",
+        "http://localhost:4321",
+        "http://localhost:3000",
+        "http://127.0.0.1:4321"
+    ];
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendPolicy", policy =>
     {
-        policy.WithOrigins(
-                "https://molinazdev.lat",
-                "https://www.molinazdev.lat",
-                "http://localhost:4321",
-                "http://localhost:3000",
-                "http://127.0.0.1:4321")
+        policy.WithOrigins(allowedOrigins)
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
+});
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.AddPolicy("CheckoutPolicy", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 10,
+                Window = TimeSpan.FromMinutes(1),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }));
 });
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("mysql");
 builder.Services.AddSingleton(TimeProvider.System);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "MolinazDev Digital Services API",
+        Version = "v1",
+        Description = "API de catálogo, checkout y webhooks para servicios digitales y pagos con Mercado Pago."
+    });
+});
+
+builder.Services.Configure<NotificationOptions>(
+    builder.Configuration.GetSection(NotificationOptions.SectionName));
+builder.Services.Configure<PaymentReconciliationOptions>(
+    builder.Configuration.GetSection(PaymentReconciliationOptions.SectionName));
 
 builder.Services
     .AddOptions<MercadoPagoOptions>()
@@ -98,7 +136,16 @@ var app = builder.Build();
 app.UseForwardedHeaders();
 app.UseExceptionHandler("/error");
 
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MolinazDev API v1");
+        c.RoutePrefix = "swagger";
+    });
+}
+else
 {
     app.UseHsts();
 }
@@ -111,12 +158,13 @@ app.Use(async (context, next) =>
     context.Response.Headers.Append("Referrer-Policy", "strict-origin-when-cross-origin");
     context.Response.Headers.ContentSecurityPolicy =
         "default-src 'self'; base-uri 'self'; form-action 'self' https://*.mercadopago.com https://*.mercadopago.com.pe; frame-ancestors 'none'; " +
-        "img-src 'self' https: data:; font-src 'self' https: data:; object-src 'none'; script-src 'self'; style-src 'self' https:; connect-src 'self' https://*.mercadopago.com https://*.mercadopago.com.pe";
+        "img-src 'self' https: data:; font-src 'self' https: data:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https://*.mercadopago.com https://*.mercadopago.com.pe";
     context.Response.Headers.Append("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
     await next();
 });
 
+app.UseRateLimiter();
 app.UseCors("FrontendPolicy");
 app.UseDefaultFiles();
 app.UseStaticFiles();

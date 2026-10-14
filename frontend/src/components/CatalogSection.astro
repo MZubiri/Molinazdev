@@ -136,6 +136,8 @@ const services: ServiceCatalog[] = await getCatalog();
                       data-package-id={pkg.id}
                       data-package-name={pkg.name}
                       data-package-price={`${pkg.currency} ${pkg.price.toLocaleString('es-PE', { minimumFractionDigits: 2 })} + IGV`}
+                      data-raw-price={pkg.price}
+                      data-currency={pkg.currency}
                       data-service-title={service.title}
                       class={`w-full py-3.5 px-4 text-xs uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 ${
                         isHighlight ? 'btn-indigo' : 'btn-primary'

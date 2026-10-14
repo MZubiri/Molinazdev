@@ -86,6 +86,55 @@
     transform: translate(-1px, -1px);
     box-shadow: 5px 5px 0px 0px #111827;
   }
+
+  .btn-brutal-primary {
+    background-color: #111827;
+    color: #ffffff;
+    border: 2px solid #111827;
+    border-radius: 9999px;
+    font-weight: 700;
+    box-shadow: 4px 4px 0px 0px #111827;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  }
+
+  .btn-brutal-primary:hover {
+    background-color: #4f46e5;
+    border-color: #111827;
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0px 0px #111827;
+  }
+
+  .btn-brutal-acid {
+    background-color: #d9f99d;
+    color: #10100e;
+    border: 2px solid #10100e;
+    border-radius: 9999px;
+    font-weight: 800;
+    box-shadow: 4px 4px 0px 0px #10100e;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  }
+
+  .btn-brutal-acid:hover {
+    background-color: #bef264;
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0px 0px #10100e;
+  }
+
+  .btn-brutal-white {
+    background-color: #ffffff;
+    color: #10100e;
+    border: 2px solid #10100e;
+    border-radius: 9999px;
+    font-weight: 700;
+    box-shadow: 4px 4px 0px 0px #10100e;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  }
+
+  .btn-brutal-white:hover {
+    background-color: #f4f4f5;
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0px 0px #10100e;
+  }
 }
 
 /* Marquee Ticker */

@@ -13,13 +13,13 @@
 >
   <div 
     id="checkout-card"
-    class="relative w-full max-w-lg rounded-2xl bg-white border-2 border-ink p-6 sm:p-8 shadow-brutal-xl max-h-[92vh] overflow-y-auto"
+    class="relative w-full max-w-lg rounded-2xl bg-white border-2 border-ink p-5 sm:p-8 shadow-brutal-xl max-h-[88vh] sm:max-h-[92vh] overflow-y-auto"
   >
     <!-- Close Button -->
     <button 
       id="close-checkout-btn"
       type="button" 
-      class="absolute top-6 right-6 w-9 h-9 rounded-full border-2 border-zinc-900 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-900 font-bold text-lg transition-colors focus:outline-none shadow-brutal-sm"
+      class="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 rounded-full border-2 border-zinc-900 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-900 font-bold text-lg transition-colors focus:outline-none shadow-brutal-sm"
       aria-label="Cerrar modal"
     >
       &times;
@@ -28,16 +28,53 @@
     <!-- Header -->
     <div class="space-y-1.5 pr-10">
       <span id="modal-service-title" class="text-xs uppercase tracking-widest text-indigo-600 font-extrabold block">Servicio Digital</span>
-      <h3 id="modal-package-name" class="text-2xl sm:text-3xl font-extrabold text-zinc-900 font-display">Contratar Paquete</h3>
-      <div class="flex items-center gap-2 pt-1">
-        <span class="text-xs text-zinc-600 font-semibold">Precio base:</span>
-        <span id="modal-package-price" class="text-2xl font-extrabold text-zinc-900 font-display">PEN 0.00 + IGV</span>
+      <h3 id="modal-package-name" class="text-xl sm:text-3xl font-extrabold text-zinc-900 font-display">Contratar Paquete</h3>
+      <span id="modal-package-price" class="hidden"></span>
+    </div>
+
+    <!-- Price Breakdown Box -->
+    <div class="mt-4 p-4 rounded-xl bg-zinc-50 border-2 border-zinc-900 shadow-brutal-sm space-y-2">
+      <div class="flex items-center justify-between text-xs text-zinc-600 font-medium">
+        <span>Precio base del servicio:</span>
+        <span id="modal-base-price" class="font-bold text-zinc-900">S/. 0.00</span>
+      </div>
+      <div class="flex items-center justify-between text-xs text-zinc-600 font-medium">
+        <span>IGV (18% de ley):</span>
+        <span id="modal-igv-price" class="font-bold text-zinc-900">S/. 0.00</span>
+      </div>
+      <div class="pt-2 border-t border-zinc-200 flex items-center justify-between text-sm sm:text-base font-extrabold text-zinc-900">
+        <span class="flex items-center gap-1.5">
+          <span>💳</span> Total a pagar en Mercado Pago:
+        </span>
+        <span id="modal-total-price" class="text-indigo-600 text-lg sm:text-xl font-display font-black">S/. 0.00</span>
+      </div>
+    </div>
+
+    <!-- Post-Payment Transparent 3-Step Process -->
+    <div class="mt-4 p-3.5 bg-indigo-50/70 border-2 border-indigo-200 rounded-xl space-y-2">
+      <div class="text-[11px] font-extrabold uppercase tracking-wider text-indigo-950 flex items-center gap-1.5">
+        <span>📋</span> ¿Qué pasa exactamente después de pagar?
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px] text-zinc-700 font-medium">
+        <div class="flex items-start gap-1.5 bg-white/80 p-2 rounded-lg border border-indigo-100">
+          <span class="w-4 h-4 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">1</span>
+          <span><strong>Comprobante automático</strong> enviado a tu email.</span>
+        </div>
+        <div class="flex items-start gap-1.5 bg-white/80 p-2 rounded-lg border border-indigo-100">
+          <span class="w-4 h-4 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">2</span>
+          <span><strong>Tu Project Manager</strong> te contacta por WhatsApp en &lt;2h.</span>
+        </div>
+        <div class="flex items-start gap-1.5 bg-white/80 p-2 rounded-lg border border-indigo-100">
+          <span class="w-4 h-4 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">3</span>
+          <span><strong>Kick-off técnico</strong> y entrega garantizada con soporte.</span>
+        </div>
       </div>
     </div>
 
     <!-- Error Alert Box -->
-    <div id="checkout-error-box" class="hidden mt-4 p-4 rounded-xl bg-red-50 border-2 border-red-800 text-xs font-bold text-red-900" role="alert" aria-live="assertive">
-      <span id="checkout-error-msg"></span>
+    <div id="checkout-error-box" class="hidden mt-4 p-4 rounded-xl bg-red-50 border-2 border-red-800 text-xs font-bold text-red-900 space-y-1" role="alert" aria-live="assertive">
+      <div id="checkout-error-msg"></div>
+      <ul id="checkout-error-list" class="list-disc pl-4 space-y-0.5 hidden text-red-800 font-semibold"></ul>
     </div>
 
     <!-- Checkout Form -->
@@ -55,7 +92,7 @@
           required 
           autocomplete="name"
           placeholder="Ej. Carlos Mendoza" 
-          class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+          class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
         />
       </div>
 
@@ -70,7 +107,7 @@
           required 
           autocomplete="email"
           placeholder="nombre@empresa.com" 
-          class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+          class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
         />
       </div>
 
@@ -85,7 +122,7 @@
             name="phoneNumber" 
             autocomplete="tel"
             placeholder="+51 987 654 321" 
-            class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+            class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
           />
         </div>
 
@@ -99,7 +136,7 @@
             name="companyName" 
             autocomplete="organization"
             placeholder="Mi Empresa S.A.C." 
-            class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
+            class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-2 border-zinc-900 text-zinc-900 placeholder-zinc-400 text-base sm:text-sm font-medium focus:outline-none focus:bg-white focus:ring-2 focus:ring-zinc-900 transition-colors"
           />
         </div>
       </div>
@@ -118,7 +155,7 @@
       </div>
 
       <div id="checkout-privacy-note" class="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-[11px] text-zinc-600 text-center font-medium">
-        🔒 Tus datos están protegidos. El precio base y el IGV se validan en el servidor; verás el importe total antes de completar la operación en Mercado Pago.
+        🔒 Tus datos están protegidos &middot; Factura o Boleta con RUC 15613205389. El precio base y el IGV se validan en el servidor; verás el importe total antes de completar la operación en Mercado Pago.
       </div>
     </form>
   </div>

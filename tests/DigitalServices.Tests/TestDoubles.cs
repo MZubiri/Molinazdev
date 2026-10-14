@@ -1,7 +1,9 @@
 using System.Collections.Concurrent;
 using DigitalServices.Application.Abstractions.Persistence;
+using DigitalServices.Application.Notifications;
 using DigitalServices.Application.Payments;
 using DigitalServices.Domain.Entities;
+using DigitalServices.Domain.Enums;
 
 namespace DigitalServices.Tests;
 
@@ -42,6 +44,12 @@ internal sealed class InMemoryClientRepository : IClientRepository
 
     public IReadOnlyList<Client> Clients => _clients;
 
+    public Task<Client?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        return Task.FromResult(
+            _clients.SingleOrDefault(client => client.Id == id));
+    }
+
     public Task<Client?> GetByNormalizedEmailAsync(
         string normalizedEmail,
         CancellationToken cancellationToken)
@@ -54,6 +62,11 @@ internal sealed class InMemoryClientRepository : IClientRepository
     {
         _clients.Add(client);
         return Task.CompletedTask;
+    }
+
+    public void Seed(Client client)
+    {
+        _clients.Add(client);
     }
 }
 
@@ -68,12 +81,29 @@ internal sealed class InMemoryOrderRepository : IOrderRepository
         _orders[order.ExternalReference] = order;
     }
 
+    public Task<Order?> GetByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken)
+    {
+        return Task.FromResult(_orders.Values.SingleOrDefault(o => o.Id == id));
+    }
+
     public Task<Order?> GetByExternalReferenceAsync(
         string externalReference,
         CancellationToken cancellationToken)
     {
         _orders.TryGetValue(externalReference, out var order);
         return Task.FromResult(order);
+    }
+
+    public Task<IReadOnlyList<Order>> GetPendingOrdersOlderThanAsync(
+        DateTimeOffset threshold,
+        CancellationToken cancellationToken)
+    {
+        IReadOnlyList<Order> pending = _orders.Values
+            .Where(o => o.Status == OrderStatus.Pending && o.CreatedAt <= threshold)
+            .ToList();
+        return Task.FromResult(pending);
     }
 
     public Task AddAsync(Order order, CancellationToken cancellationToken)
@@ -101,6 +131,14 @@ internal sealed class InMemoryPaymentRepository : IPaymentRepository
         return Task.FromResult(
             _payments.FirstOrDefault(payment =>
                 payment.Gateway == gateway && payment.PreferenceId == preferenceId));
+    }
+
+    public Task<IReadOnlyList<Payment>> GetPaymentsByOrderIdAsync(
+        Guid orderId,
+        CancellationToken cancellationToken)
+    {
+        IReadOnlyList<Payment> list = _payments.Where(p => p.OrderId == orderId).ToList();
+        return Task.FromResult(list);
     }
 
     public Task AddAsync(Payment payment, CancellationToken cancellationToken)
@@ -296,5 +334,22 @@ internal sealed class ThreadSafePaymentWebhookStore : IPaymentWebhookStore
         public string Status { get; set; } = status;
 
         public string? StatusDetail { get; set; } = statusDetail;
+    }
+}
+
+internal sealed class TestOrderNotificationService : IOrderNotificationService
+{
+    public List<OrderPaidNotification> Notifications { get; } = new();
+    public bool ShouldThrow { get; set; }
+
+    public Task NotifyOrderPaidAsync(OrderPaidNotification notification, CancellationToken cancellationToken = default)
+    {
+        if (ShouldThrow)
+        {
+            throw new InvalidOperationException("Simulated notification service failure.");
+        }
+
+        Notifications.Add(notification);
+        return Task.CompletedTask;
     }
 }

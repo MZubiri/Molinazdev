@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PortfolioSection from '../components/PortfolioSection.astro';
+import LeadAuditBanner from '../components/LeadAuditBanner.astro';
+
+const techStack = [
+  { category: "Frontend & Web", items: ["Astro SSG/SSR", "TailwindCSS", "TypeScript", "React", "Next.js"] },
+  { category: "Backend & APIs", items: [".NET 8 (C#)", "Node.js", "Clean Architecture", "Docker", "REST & Webhooks"] },
+  { category: "Bases de Datos & Pagos", items: ["MySQL", "PostgreSQL", "Mercado Pago SDK", "Yape / Plin", "Redis"] },
+  { category: "IA & Automatización", items: ["Meta Cloud API (WhatsApp)", "OpenAI GPT-4o", "LangChain / RAG", "Python", "Cloudflare"] }
+];
+---
+
+<Layout 
+  title="Portafolio y Casos de Estudio — MolinazDev"
+  description="Casos de éxito y plataformas web desarrolladas por MolinazDev: tiendas e-commerce ultrarrápidas, agentes de WhatsApp con IA y portales web en Lima, Perú."
+  canonicalPath="/portafolio/"
+>
+  <!-- Page Header -->
+  <section class="pt-10 pb-12 sm:pt-16 sm:pb-16 bg-white border-b-2 border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-500 mb-6">
+        <a href="/" class="hover:text-indigo-600 transition-colors">Inicio</a>
+        <span>/</span>
+        <span class="text-zinc-900">Portafolio</span>
+      </nav>
+
+      <div class="max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border-2 border-zinc-900 text-xs font-extrabold uppercase tracking-wider text-indigo-700 shadow-brutal-sm">
+          <span>💼</span> Demostraciones &amp; Casos de Éxito
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-zinc-900 font-display leading-[1.12]">
+          Proyectos Que <span class="text-indigo-600">Generan Resultados</span>
+        </h1>
+
+        <p class="text-sm sm:text-base text-zinc-600 font-medium leading-relaxed">
+          Cada solución que construimos combina arquitectura técnica sólida con interfaces diseñadas para vender. Explora nuestras plataformas de comercio electrónico, agentes de inteligencia artificial y portales corporativos.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Complete Portfolio Showcase Grid -->
+  <PortfolioSection />
+
+  <!-- Technology Stack Overview Section -->
+  <section class="py-14 sm:py-20 bg-zinc-50 border-b-2 border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-2 mb-10 text-center sm:text-left">
+        <div class="text-xs font-extrabold tracking-widest text-zinc-500 uppercase">
+          TECNOLOGÍAS DE PRODUCCIÓN
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-zinc-900 font-display">
+          El Stack Tecnológico que Usamos
+        </h2>
+        <p class="text-xs sm:text-sm text-zinc-600 font-medium">
+          Elegimos tecnologías probadas en la industria para garantizar tiempos de carga inferiores a 1 segundo, seguridad y fácil mantenimiento.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {techStack.map(stack => (
+          <div class="card-brutal p-5 bg-white space-y-3">
+            <h3 class="text-sm font-extrabold text-zinc-900 font-display uppercase tracking-wider border-b border-zinc-200 pb-2">
+              {stack.category}
+            </h3>
+            <ul class="space-y-1.5">
+              {stack.items.map(item => (
+                <li class="flex items-center gap-2 text-xs text-zinc-700 font-semibold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Free 24h Website Audit Lead Magnet -->
+  <LeadAuditBanner />
+
+  <!-- Bottom CTA -->
+  <section class="py-14 sm:py-20 bg-white border-b-2 border-zinc-900 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-zinc-900 font-display">
+        ¿Listo para construir una plataforma que destaque en tu rubro?
+      </h2>
+      <p class="text-sm sm:text-base text-zinc-600 max-w-xl mx-auto font-medium">
+        Cuéntanos tu idea. Te entregamos una propuesta clara con arquitectura, cronograma de entregables y costo cerrado.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button 
+          type="button" 
+          data-open-booking-modal
+          class="w-full sm:w-auto px-7 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold bg-emerald-600 hover:bg-emerald-500 text-white border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all"
+        >
+          <span>Agendar Asesoría Técnica Gratuita</span>
+          <span class="ml-1">📅</span>
+        </button>
+
+        <a 
+          href="/servicios/" 
+          class="w-full sm:w-auto px-7 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold bg-zinc-900 text-white hover:bg-indigo-600 border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all"
+        >
+          <span>Ver Paquetes &amp; Precios</span>
+          <span class="ml-1">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

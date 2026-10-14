@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CatalogSection from '../../components/CatalogSection.astro';
+import PricingComparisonTable from '../../components/PricingComparisonTable.astro';
+import ProcessTimeline from '../../components/ProcessTimeline.astro';
+---
+
+<Layout 
+  title="Catálogo de Servicios y Precios — MolinazDev"
+  description="Catálogo completo de desarrollo web, tiendas ecommerce, chatbots con IA y software a medida en Lima, Perú. Precios transparentes con RUC 15613205389 y pagos protegidos."
+  canonicalPath="/servicios/"
+>
+  <!-- Page Header -->
+  <section class="pt-10 pb-12 sm:pt-16 sm:pb-16 bg-white border-b-2 border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-500 mb-6">
+        <a href="/" class="hover:text-indigo-600 transition-colors">Inicio</a>
+        <span>/</span>
+        <span class="text-zinc-900">Servicios &amp; Precios</span>
+      </nav>
+
+      <div class="max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 border-2 border-zinc-900 text-xs font-extrabold uppercase tracking-wider text-indigo-700 shadow-brutal-sm">
+          <span>💼</span> Catálogo Oficial 2026
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-zinc-900 font-display leading-[1.12]">
+          Soluciones Digitales con <span class="text-indigo-600">Todo Incluido</span>
+        </h1>
+
+        <p class="text-sm sm:text-base text-zinc-600 font-medium leading-relaxed">
+          Precios base transparentes, plazos pactados por contrato y entrega llave en mano. Todos los desarrollos web incluyen el <strong>primer año de dominio y hosting gratis</strong>, más <strong>60 días de soporte técnico</strong> tras el lanzamiento.
+        </p>
+
+        <!-- Trust Pill -->
+        <div class="flex flex-wrap items-center gap-3 pt-2 text-xs font-bold text-zinc-700">
+          <div class="flex items-center gap-1.5 px-3 py-1 bg-zinc-100 rounded-full border border-zinc-300">
+            <span>🏛️</span>
+            <span>RUC: <strong class="text-indigo-600">15613205389</strong> (Facturas / Boletas)</span>
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1 bg-zinc-100 rounded-full border border-zinc-300">
+            <span>💳</span>
+            <span>Mercado Pago, Yape, Plin y TC a meses sin intereses</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Full Interactive Catalog with Category Switcher & Direct Checkout -->
+  <CatalogSection />
+
+  <!-- Full Comparison Table -->
+  <PricingComparisonTable />
+
+  <!-- Process Timeline -->
+  <ProcessTimeline />
+
+  <!-- Final Consultation Banner -->
+  <section class="py-14 sm:py-20 bg-zinc-900 border-b-2 border-zinc-900 text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-extrabold uppercase tracking-wider border border-emerald-400/30">
+        <span>🤝</span> Asesoría de 1 a 1
+      </div>
+
+      <h2 class="text-2xl sm:text-4xl font-extrabold font-display leading-tight">
+        ¿Tienes dudas sobre qué paquete elegir para tu empresa?
+      </h2>
+
+      <p class="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto font-medium leading-relaxed">
+        Agenda una asesoría técnica gratuita sin compromiso. Revisamos las necesidades de tu negocio y te recomendamos la solución más rentable y escalable.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+        <button 
+          type="button" 
+          data-open-booking-modal
+          class="w-full sm:w-auto px-7 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold bg-emerald-500 hover:bg-emerald-400 text-zinc-900 border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all"
+        >
+          <span>Agendar Asesoría Técnica Gratuita</span>
+          <span class="text-base ml-1">📅</span>
+        </button>
+
+        <a 
+          href="https://wa.me/51987654321?text=Hola%20MolinazDev,%20quisiera%20consultar%20sobre%20sus%20servicios%20y%20precios"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto px-7 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold bg-white text-zinc-900 hover:bg-zinc-100 border-2 border-zinc-900 shadow-brutal hover:shadow-brutal-lg transition-all"
+        >
+          <span>Consultar por WhatsApp</span>
+          <span class="text-base ml-1">💬</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

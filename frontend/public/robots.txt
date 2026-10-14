@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /checkout/success/
+Disallow: /checkout/pending/
+Disallow: /checkout/failure/
 
 Sitemap: https://molinazdev.lat/sitemap.xml

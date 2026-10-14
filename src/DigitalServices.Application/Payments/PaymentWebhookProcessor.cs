@@ -2,6 +2,8 @@ using DigitalServices.Application.Abstractions.Persistence;
 using DigitalServices.Domain.Entities;
 using Microsoft.Extensions.Logging;
 
+using DigitalServices.Application.Notifications;
+
 namespace DigitalServices.Application.Payments;
 
 public sealed class PaymentWebhookProcessor : IPaymentWebhookProcessor
@@ -11,6 +13,9 @@ public sealed class PaymentWebhookProcessor : IPaymentWebhookProcessor
     private readonly IOrderRepository _orderRepository;
     private readonly IPaymentRepository _paymentRepository;
     private readonly IPaymentWebhookStore _webhookStore;
+    private readonly IOrderNotificationService? _notificationService;
+    private readonly IClientRepository? _clientRepository;
+    private readonly ICatalogRepository? _catalogRepository;
     private readonly ILogger<PaymentWebhookProcessor> _logger;
     private readonly TimeProvider _timeProvider;
 
@@ -21,7 +26,10 @@ public sealed class PaymentWebhookProcessor : IPaymentWebhookProcessor
         IPaymentRepository paymentRepository,
         IPaymentWebhookStore webhookStore,
         ILogger<PaymentWebhookProcessor> logger,
-        TimeProvider? timeProvider = null)
+        TimeProvider? timeProvider = null,
+        IOrderNotificationService? notificationService = null,
+        IClientRepository? clientRepository = null,
+        ICatalogRepository? catalogRepository = null)
     {
         _signatureValidator = signatureValidator;
         _paymentGateway = paymentGateway;
@@ -30,6 +38,9 @@ public sealed class PaymentWebhookProcessor : IPaymentWebhookProcessor
         _webhookStore = webhookStore;
         _logger = logger;
         _timeProvider = timeProvider ?? TimeProvider.System;
+        _notificationService = notificationService;
+        _clientRepository = clientRepository;
+        _catalogRepository = catalogRepository;
     }
 
     public async Task<ProcessPaymentWebhookResult> ProcessAsync(
@@ -196,6 +207,45 @@ public sealed class PaymentWebhookProcessor : IPaymentWebhookProcessor
             dataId,
             order.Id,
             persisted.OrderStatus);
+
+        if (persisted.OrderStatus == Domain.Enums.OrderStatus.Paid && _notificationService is not null)
+        {
+            try
+            {
+                var client = _clientRepository is not null
+                    ? await _clientRepository.GetByIdAsync(order.ClientId, cancellationToken)
+                    : null;
+                var package = _catalogRepository is not null
+                    ? await _catalogRepository.GetActivePackageByIdAsync(order.PackageId, cancellationToken)
+                    : null;
+
+                var clientName = client?.FullName ?? "Cliente";
+                var clientEmail = client?.Email ?? string.Empty;
+                var packageName = package?.Name ?? "Servicio Digital";
+
+                if (!string.IsNullOrWhiteSpace(clientEmail))
+                {
+                    await _notificationService.NotifyOrderPaidAsync(
+                        new OrderPaidNotification(
+                            order.Id,
+                            order.OrderNumber,
+                            order.PackageId,
+                            packageName,
+                            order.TotalAmount,
+                            order.Currency,
+                            clientName,
+                            clientEmail,
+                            client?.PhoneNumber,
+                            client?.CompanyName,
+                            _timeProvider.GetUtcNow()),
+                        cancellationToken);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Failed to dispatch post-payment notifications for order {OrderId}.", order.Id);
+            }
+        }
 
         return new ProcessPaymentWebhookResult(
             PaymentWebhookOutcome.Processed,
