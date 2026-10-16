@@ -11,18 +11,20 @@ interface Props {
   description?: string;
   canonicalPath?: string;
   noindex?: boolean;
+  image?: string;
 }
 
 const {
   title = "MolinazDev — Desarrollo Web, Chatbots IA y Software en Lima",
   description = "Diseño de páginas web, tiendas virtuales ecommerce, chatbots con IA y automatizaciones a medida en Lima, Perú. Precios transparentes, RUC 15613205389 y pagos protegidos.",
   canonicalPath = Astro.url.pathname,
-  noindex = false
+  noindex = false,
+  image = "/og-image.png"
 } = Astro.props;
 
 const siteUrl = 'https://molinazdev.lat';
 const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
-const socialImageUrl = new URL('/og-image.svg', siteUrl).toString();
+const socialImageUrl = new URL(image, siteUrl).toString();
 
 const schemaOrgData = {
   "@context": "https://schema.org",
@@ -76,8 +78,10 @@ const schemaOrgData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#18181b" />
+    <meta name="theme-color" content="#0a0d14" />
     
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -96,7 +100,7 @@ const schemaOrgData = {
     <meta name="geo.position" content="-12.046374;-77.042793" />
     <meta name="ICBM" content="-12.046374, -77.042793" />
     
-    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn, Telegram) -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -104,15 +108,19 @@ const schemaOrgData = {
     <meta property="og:site_name" content="MolinazDev" />
     <meta property="og:locale" content="es_PE" />
     <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:secure_url" content={socialImageUrl} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="MolinazDev — Desarrollo Web, Chatbots IA y Software a Medida" />
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content="MolinazDev — Desarrollo Web, Chatbots IA y Software a Medida" />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -30,10 +30,10 @@
       </div>
     </div>
 
-    <!-- Portfolio Grid (Ready for user URLs and images) -->
+    <!-- Portfolio Grid with Real Client Projects -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
-      <!-- Project 1: E-Commerce -->
+      <!-- Project 1: Valle del Sondondo Expeditions -->
       <div class="bg-zinc-50 rounded-3xl border-3 border-zinc-900 shadow-brutal overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-brutal-lg transition-all duration-200">
         <!-- Browser Header Window -->
         <div class="px-4 py-3 bg-zinc-900 border-b-2 border-zinc-900 flex items-center justify-between">
@@ -42,33 +42,107 @@
             <span class="w-3 h-3 rounded-full bg-amber-400 inline-block border border-zinc-900"></span>
             <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-zinc-900"></span>
           </div>
-          <span class="text-[11px] font-mono text-zinc-400 font-semibold truncate max-w-[200px]">tienda-demo.molinazdev.lat</span>
+          <span class="text-[11px] font-mono text-zinc-400 font-semibold truncate max-w-[200px]">valledelsondondoexpeditions.com</span>
           <span class="text-zinc-500 text-xs">🔒</span>
         </div>
 
-        <!-- Project Visual Placeholder / Banner -->
-        <!-- NOTA: Reemplazar el fondo o insertar imagen real en este contenedor -->
-        <div class="h-48 sm:h-52 bg-gradient-to-br from-indigo-500 via-indigo-600 to-zinc-900 p-6 flex flex-col justify-end text-white relative overflow-hidden">
-          <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-          <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-extrabold uppercase tracking-wider text-white border border-white/30 w-fit mb-2">
-            E-Commerce &middot; Retail &amp; Moda
-          </span>
-          <h3 class="text-xl font-black font-display leading-tight text-white drop-shadow">
-            Plataforma E-Commerce de Alta Velocidad
-          </h3>
+        <!-- Project Visual Banner -->
+        <div class="relative h-48 sm:h-52 overflow-hidden bg-zinc-900">
+          <img 
+            src="/images/portfolio/sondondo.webp" 
+            alt="Valle del Sondondo Expeditions" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent flex items-end p-4">
+            <span class="px-3 py-1 rounded-full bg-emerald-600/90 backdrop-blur-md text-[10px] font-extrabold uppercase tracking-wider text-white border border-emerald-400/40">
+              Turismo &middot; Ayacucho, Perú
+            </span>
+          </div>
         </div>
 
         <!-- Project Body -->
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
           <div class="space-y-2">
+            <h3 class="text-xl font-black font-display leading-tight text-zinc-900 group-hover:text-indigo-600 transition-colors">
+              Valle del Sondondo Expeditions
+            </h3>
             <p class="text-xs sm:text-sm text-zinc-600 font-medium leading-relaxed">
-              Catálogo de +500 productos, pasarela Mercado Pago integrada, sincronización de stock y checkout en 2 pasos para móviles.
+              Plataforma oficial de turismo de aventura y ecoturismo: avistamiento del Cóndor Andino en Mayobamba, trekking al Apu Qarhuarazo (5,112 msnm) y andenerías vivas con sello Safe Travels.
             </p>
             
             <!-- Metrics Pill -->
             <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 flex items-center justify-between text-xs font-bold text-emerald-900">
-              <span>🚀 Rendimiento Móvil:</span>
-              <span class="font-extrabold text-emerald-700">0.8s LCP (Score 98)</span>
+              <span>🏔️ Safe Travels:</span>
+              <span class="font-extrabold text-emerald-700">Operador Turístico Oficial</span>
+            </div>
+          </div>
+
+          <!-- Stack Badges -->
+          <div class="space-y-3 pt-2 border-t border-zinc-200">
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-extrabold uppercase text-zinc-700">
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">Angular</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">PWA</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">SEO Local</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">Schema.org</span>
+            </div>
+
+            <!-- Action Link -->
+            <a 
+              href="https://valledelsondondoexpeditions.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-zinc-900 hover:bg-emerald-600 text-white border-2 border-zinc-900 shadow-brutal-sm hover:shadow-brutal transition-all"
+            >
+              <span>Visitar Sitio Web en Vivo</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Florería La Carreta -->
+      <div class="bg-zinc-50 rounded-3xl border-3 border-zinc-900 shadow-brutal overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-brutal-lg transition-all duration-200">
+        <!-- Browser Header Window -->
+        <div class="px-4 py-3 bg-zinc-900 border-b-2 border-zinc-900 flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-red-500 inline-block border border-zinc-900"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-400 inline-block border border-zinc-900"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-zinc-900"></span>
+          </div>
+          <span class="text-[11px] font-mono text-zinc-400 font-semibold truncate max-w-[200px]">floreria.molinazdev.lat</span>
+          <span class="text-zinc-500 text-xs">🔒</span>
+        </div>
+
+        <!-- Project Visual Banner -->
+        <div class="relative h-48 sm:h-52 overflow-hidden bg-zinc-900">
+          <img 
+            src="/images/portfolio/floreria.webp" 
+            alt="Florería La Carreta" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent flex items-end p-4">
+            <span class="px-3 py-1 rounded-full bg-rose-600/90 backdrop-blur-md text-[10px] font-extrabold uppercase tracking-wider text-white border border-rose-400/40">
+              E-Commerce &middot; Arreglos Florales
+            </span>
+          </div>
+        </div>
+
+        <!-- Project Body -->
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <h3 class="text-xl font-black font-display leading-tight text-zinc-900 group-hover:text-indigo-600 transition-colors">
+              Florería La Carreta
+            </h3>
+            <p class="text-xs sm:text-sm text-zinc-600 font-medium leading-relaxed">
+              Tienda online de arreglos florales artesanales con entrega a domicilio, catálogo interactivo con checkout directo vía WhatsApp y diseño ultra-rápido en móviles.
+            </p>
+            
+            <!-- Metrics Pill -->
+            <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 flex items-center justify-between text-xs font-bold text-emerald-900">
+              <span>🌸 Pedidos WhatsApp:</span>
+              <span class="font-extrabold text-emerald-700">Conversión directa en 1 clic</span>
             </div>
           </div>
 
@@ -76,24 +150,26 @@
           <div class="space-y-3 pt-2 border-t border-zinc-200">
             <div class="flex flex-wrap gap-1.5 text-[10px] font-extrabold uppercase text-zinc-700">
               <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">Astro</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">.NET 8</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">Mercado Pago</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">MySQL</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">TailwindCSS</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">WhatsApp API</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">Mobile-First</span>
             </div>
 
-            <!-- Action Link (Reemplazar href con enlace real cuando lo desees) -->
+            <!-- Action Link -->
             <a 
-              href="#servicios" 
-              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-white hover:bg-zinc-900 hover:text-white text-zinc-900 border-2 border-zinc-900 shadow-brutal-sm transition-all"
+              href="https://floreria.molinazdev.lat/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-zinc-900 hover:bg-rose-600 text-white border-2 border-zinc-900 shadow-brutal-sm hover:shadow-brutal transition-all"
             >
-              <span>Ver Paquetes de E-Commerce</span>
+              <span>Visitar Sitio Web en Vivo</span>
               <span>↗</span>
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Project 2: AI WhatsApp Agent -->
+      <!-- Project 3: Leart Store -->
       <div class="bg-zinc-50 rounded-3xl border-3 border-zinc-900 shadow-brutal overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-brutal-lg transition-all duration-200">
         <!-- Browser Header Window -->
         <div class="px-4 py-3 bg-zinc-900 border-b-2 border-zinc-900 flex items-center justify-between">
@@ -102,118 +178,88 @@
             <span class="w-3 h-3 rounded-full bg-amber-400 inline-block border border-zinc-900"></span>
             <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-zinc-900"></span>
           </div>
-          <span class="text-[11px] font-mono text-zinc-400 font-semibold truncate max-w-[200px]">api-whatsapp.molinazdev.lat</span>
-          <span class="text-zinc-500 text-xs">🤖</span>
+          <span class="text-[11px] font-mono text-zinc-400 font-semibold truncate max-w-[200px]">leart.molinazdev.lat</span>
+          <span class="text-zinc-500 text-xs">🔒</span>
         </div>
 
-        <!-- Project Visual Placeholder / Banner -->
-        <!-- NOTA: Reemplazar el fondo o insertar imagen real en este contenedor -->
-        <div class="h-48 sm:h-52 bg-gradient-to-br from-emerald-600 via-teal-700 to-zinc-900 p-6 flex flex-col justify-end text-white relative overflow-hidden">
-          <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-          <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-extrabold uppercase tracking-wider text-white border border-white/30 w-fit mb-2">
-            Inteligencia Artificial &middot; Salud &amp; Citas
-          </span>
-          <h3 class="text-xl font-black font-display leading-tight text-white drop-shadow">
-            Agente IA de Triaje y Agendamiento 24/7
-          </h3>
+        <!-- Project Visual Banner -->
+        <div class="relative h-48 sm:h-52 overflow-hidden bg-zinc-900">
+          <img 
+            src="/images/portfolio/leart.webp" 
+            alt="Leart Store" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent flex items-end p-4">
+            <span class="px-3 py-1 rounded-full bg-amber-500/90 backdrop-blur-md text-[10px] font-extrabold uppercase tracking-wider text-zinc-950 border border-amber-300/40">
+              E-Commerce &middot; Regalos Personalizados
+            </span>
+          </div>
         </div>
 
         <!-- Project Body -->
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
           <div class="space-y-2">
+            <h3 class="text-xl font-black font-display leading-tight text-zinc-900 group-hover:text-indigo-600 transition-colors">
+              Leart Store
+            </h3>
             <p class="text-xs sm:text-sm text-zinc-600 font-medium leading-relaxed">
-              Bot conversacional en WhatsApp con IA que atiende pacientes, responde sobre especialidades médicas y agenda citas en tiempo real.
+              Tienda online de cuadros y sets armables con minifiguras estilo brick personalizadas. Catálogo interactivo con pedidos directos para toda Colombia.
             </p>
             
             <!-- Metrics Pill -->
             <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 flex items-center justify-between text-xs font-bold text-emerald-900">
-              <span>📈 Impacto en Atención:</span>
-              <span class="font-extrabold text-emerald-700">+4,200 citas/mes</span>
+              <span>🎨 Catálogo Interactivo:</span>
+              <span class="font-extrabold text-emerald-700">Minifiguras &amp; Cuadros 3D</span>
             </div>
           </div>
 
           <!-- Stack Badges -->
           <div class="space-y-3 pt-2 border-t border-zinc-200">
             <div class="flex flex-wrap gap-1.5 text-[10px] font-extrabold uppercase text-zinc-700">
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">WhatsApp API</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">OpenAI</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">Node.js</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">PostgreSQL</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">Angular</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">TypeScript</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">TailwindCSS</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">WhatsApp Business</span>
             </div>
 
             <!-- Action Link -->
             <a 
-              href="#demo-ia" 
-              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-white hover:bg-zinc-900 hover:text-white text-zinc-900 border-2 border-zinc-900 shadow-brutal-sm transition-all"
+              href="https://leart.molinazdev.lat/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-zinc-900 hover:bg-amber-500 hover:text-zinc-950 text-white border-2 border-zinc-900 shadow-brutal-sm hover:shadow-brutal transition-all"
             >
-              <span>Probar Simulador de Chatbot</span>
-              <span>⚡</span>
+              <span>Visitar Sitio Web en Vivo</span>
+              <span>↗</span>
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Project 3: Corporate Portal & Real Estate -->
-      <div class="bg-zinc-50 rounded-3xl border-3 border-zinc-900 shadow-brutal overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-brutal-lg transition-all duration-200">
-        <!-- Browser Header Window -->
-        <div class="px-4 py-3 bg-zinc-900 border-b-2 border-zinc-900 flex items-center justify-between">
-          <div class="flex items-center gap-1.5">
-            <span class="w-3 h-3 rounded-full bg-red-500 inline-block border border-zinc-900"></span>
-            <span class="w-3 h-3 rounded-full bg-amber-400 inline-block border border-zinc-900"></span>
-            <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block border border-zinc-900"></span>
-          </div>
-          <span class="text-[11px] font-mono text-zinc-400 font-semibold truncate max-w-[200px]">inmobiliaria-demo.pe</span>
-          <span class="text-zinc-500 text-xs">🏢</span>
+    </div>
+
+    <!-- Interactive AI Chatbot Banner -->
+    <div class="mt-12 p-6 sm:p-8 rounded-3xl bg-zinc-900 text-white border-3 border-zinc-900 shadow-brutal flex flex-col lg:flex-row items-center justify-between gap-6">
+      <div class="space-y-2 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-black uppercase tracking-wider border border-emerald-400/30">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Demostración Interactiva En Vivo
         </div>
-
-        <!-- Project Visual Placeholder / Banner -->
-        <!-- NOTA: Reemplazar el fondo o insertar imagen real en este contenedor -->
-        <div class="h-48 sm:h-52 bg-gradient-to-br from-amber-500 via-orange-600 to-zinc-900 p-6 flex flex-col justify-end text-white relative overflow-hidden">
-          <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-          <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-extrabold uppercase tracking-wider text-white border border-white/30 w-fit mb-2">
-            Portal Web &middot; Inmobiliario &amp; B2B
-          </span>
-          <h3 class="text-xl font-black font-display leading-tight text-white drop-shadow">
-            Portal Inmobiliario &amp; Cotizador Interactivo
-          </h3>
-        </div>
-
-        <!-- Project Body -->
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div class="space-y-2">
-            <p class="text-xs sm:text-sm text-zinc-600 font-medium leading-relaxed">
-              Sitio corporativo con catálogo interactivo de propiedades, simulador de cuotas bancarias y derivación inteligente de leads a ejecutivos de venta.
-            </p>
-            
-            <!-- Metrics Pill -->
-            <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 flex items-center justify-between text-xs font-bold text-emerald-900">
-              <span>🎯 Generación de Leads:</span>
-              <span class="font-extrabold text-emerald-700">+125% prospectos</span>
-            </div>
-          </div>
-
-          <!-- Stack Badges -->
-          <div class="space-y-3 pt-2 border-t border-zinc-200">
-            <div class="flex flex-wrap gap-1.5 text-[10px] font-extrabold uppercase text-zinc-700">
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">Astro SSG</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">TailwindCSS</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">SEO Schema</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-zinc-200 border border-zinc-300">Lead CRM</span>
-            </div>
-
-            <!-- Action Link -->
-            <button 
-              type="button"
-              data-open-booking-modal
-              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-white hover:bg-zinc-900 hover:text-white text-zinc-900 border-2 border-zinc-900 shadow-brutal-sm transition-all"
-            >
-              <span>Consultar por este Formato</span>
-              <span>💬</span>
-            </button>
-          </div>
-        </div>
+        <h3 class="text-xl sm:text-2xl font-black font-display">
+          ¿Quieres ver cómo funciona un Chatbot con Inteligencia Artificial?
+        </h3>
+        <p class="text-xs sm:text-sm text-zinc-300 max-w-2xl font-medium leading-relaxed">
+          Prueba nuestro simulador conectado a WhatsApp API y LLM que atiende consultas técnicas, cotiza proyectos y califica prospectos las 24 horas del día.
+        </p>
       </div>
-
+      <a 
+        href="/demo-ia/" 
+        class="shrink-0 px-6 py-3.5 rounded-full text-xs font-extrabold uppercase tracking-wider bg-emerald-500 hover:bg-emerald-400 text-zinc-950 border-2 border-emerald-400 shadow-brutal-sm hover:shadow-brutal transition-all flex items-center gap-2"
+      >
+        <span>Probar Simulador de IA</span>
+        <span>⚡</span>
+      </a>
     </div>
 
     <!-- Bottom Notice for User Customization -->
