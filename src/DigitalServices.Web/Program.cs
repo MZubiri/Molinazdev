@@ -4,6 +4,7 @@ using DigitalServices.Application.Catalog;
 using DigitalServices.Application.Checkout;
 using DigitalServices.Application.Payments;
 using DigitalServices.Infrastructure;
+using DigitalServices.Infrastructure.Chatbot;
 using DigitalServices.Infrastructure.Notifications;
 using DigitalServices.Infrastructure.Payments;
 using DigitalServices.Web.Health;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("appsettings.Local.json", optional: true, reloadOnChange: true);
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -65,6 +67,16 @@ builder.Services.AddRateLimiter(options =>
                 QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
                 QueueLimit = 0
             }));
+    options.AddPolicy("ChatPolicy", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 15,
+                Window = TimeSpan.FromMinutes(1),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }));
 });
 
 builder.Services.AddControllersWithViews();
@@ -79,7 +91,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "MolinazDev Digital Services API",
         Version = "v1",
-        Description = "API de catálogo, checkout y webhooks para servicios digitales y pagos con Mercado Pago."
+        Description = "API de catálogo, checkout, chatbot con IA y webhooks para servicios digitales y pagos con Mercado Pago."
     });
 });
 
@@ -87,6 +99,8 @@ builder.Services.Configure<NotificationOptions>(
     builder.Configuration.GetSection(NotificationOptions.SectionName));
 builder.Services.Configure<PaymentReconciliationOptions>(
     builder.Configuration.GetSection(PaymentReconciliationOptions.SectionName));
+builder.Services.Configure<GeminiOptions>(
+    builder.Configuration.GetSection(GeminiOptions.SectionName));
 
 builder.Services
     .AddOptions<MercadoPagoOptions>()

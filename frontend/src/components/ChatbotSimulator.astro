@@ -198,6 +198,8 @@
       }
     ];
 
+    const conversationHistory = [];
+
     function appendMessage(text, isUser = false) {
       if (!chatBox) return;
 
@@ -211,10 +213,13 @@
           </div>
         `;
       } else {
-        // Simple markdown parsing for bold & links
+        // Markdown parsing for bold, links, bullet lists, and paragraphs
         let formatted = escapeHtml(text)
           .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-          .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-indigo-600 underline font-bold">$1</a>');
+          .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-indigo-600 underline font-bold">$1</a>')
+          .replace(/^\s*[-•*]\s+(.*)$/gm, '<li class="ml-4 list-disc">$1</li>')
+          .replace(/\n\n+/g, '</p><p class="mt-2">')
+          .replace(/\n/g, '<br/>');
 
         msgDiv.innerHTML = `
           <div class="w-7 h-7 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xs shrink-0 font-bold border border-zinc-900">
@@ -236,28 +241,53 @@
       return p.innerHTML;
     }
 
-    function findResponse(query) {
+    function findLocalResponse(query) {
       const normalized = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       for (const item of KNOWLEDGE) {
         if (item.keywords.some(k => normalized.includes(k))) {
           return item.response;
         }
       }
-      return `Comprendo tu consulta sobre "${query}". Para proyectos específicos o arquitecturas a medida, nuestro equipo puede preparar una cotización exacta. ¿Te gustaría agendar una asesoría técnica gratuita de 1 a 1?`;
+      return `Comprendo tu consulta sobre "${query}". En MolinazDev diseñamos soluciones a medida con arquitectura moderna y precios claros. ¿Te gustaría agendar una asesoría técnica gratuita de 15 minutos o escribirnos al WhatsApp oficial?`;
     }
 
-    function handleUserQuery(query) {
+    async function handleUserQuery(query) {
       if (!query) return;
       appendMessage(query, true);
+      conversationHistory.push({ role: 'user', content: query });
 
       if (typingIndicator) typingIndicator.classList.remove('hidden');
       chatBox.scrollTop = chatBox.scrollHeight;
 
-      setTimeout(() => {
-        if (typingIndicator) typingIndicator.classList.add('hidden');
-        const reply = findResponse(query);
-        appendMessage(reply, false);
-      }, 700);
+      let reply = '';
+      try {
+        const response = await fetch('/api/chat/message', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: query,
+            history: conversationHistory.slice(-8)
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.reply) {
+            reply = data.reply;
+          }
+        }
+      } catch (err) {
+        console.warn('API chat offline o no disponible, usando respuesta local:', err);
+      }
+
+      // If network failed or server did not return text, use knowledge fallback
+      if (!reply) {
+        reply = findLocalResponse(query);
+      }
+
+      if (typingIndicator) typingIndicator.classList.add('hidden');
+      appendMessage(reply, false);
+      conversationHistory.push({ role: 'model', content: reply });
     }
 
     // Quick chips click

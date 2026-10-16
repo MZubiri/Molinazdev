@@ -1,6 +1,8 @@
 using DigitalServices.Application.Abstractions.Persistence;
+using DigitalServices.Application.Chatbot;
 using DigitalServices.Application.Notifications;
 using DigitalServices.Application.Payments;
+using DigitalServices.Infrastructure.Chatbot;
 using DigitalServices.Infrastructure.Notifications;
 using DigitalServices.Infrastructure.Payments;
 using DigitalServices.Infrastructure.Persistence;
@@ -45,6 +47,10 @@ public static class DependencyInjection
         services.AddSingleton<IPaymentWebhookSignatureValidator, MercadoPagoWebhookSignatureValidator>();
 
         services.AddHttpClient<IOrderNotificationService, OrderNotificationService>();
+        services.AddHttpClient<IChatbotService, GeminiChatbotService>(client =>
+        {
+            client.Timeout = TimeSpan.FromSeconds(20);
+        });
         services.AddHostedService<PaymentReconciliationWorker>();
 
         return services;
