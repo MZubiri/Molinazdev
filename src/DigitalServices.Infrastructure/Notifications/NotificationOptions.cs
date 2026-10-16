@@ -38,5 +38,5 @@ public sealed class AdminAlertOptions
 
     public string? TelegramChatId { get; init; }
 
-    public string AdminEmail { get; init; } = "contacto@molinazdev.lat";
+    public string AdminEmail { get; init; } = "Molinazdepe@gmail.com";
 }
