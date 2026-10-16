@@ -21,7 +21,7 @@ public sealed class GeminiChatbotService(
 
     private const string DefaultFriendlyFallback =
         "¡Hola! Nuestro asistente con IA está experimentando una alta demanda de consultas en este momento. " +
-        "Puedes agendar una asesoría técnica gratuita directamente con nuestro equipo o contactarnos vía WhatsApp al +51 987 654 321 para cotizar tu proyecto.";
+        "Puedes agendar una asesoría técnica gratuita directamente con nuestro equipo o contactarnos vía WhatsApp al +51 983 529 230 para cotizar tu proyecto.";
 
     public async Task<ChatResponseDto> GenerateReplyAsync(
         ChatRequestDto request,

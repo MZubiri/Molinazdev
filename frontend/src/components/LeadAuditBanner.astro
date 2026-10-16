@@ -120,10 +120,11 @@
     const waDirectLink = document.getElementById('audit-wa-direct');
 
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const urlInput = document.getElementById('audit-url');
         const contactInput = document.getElementById('audit-contact');
+        const submitBtn = form.querySelector('button[type="submit"]');
 
         const webUrl = urlInput ? urlInput.value.trim() : '';
         const contact = contactInput ? contactInput.value.trim() : '';
@@ -133,13 +134,29 @@
           return;
         }
 
+        const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>Enviando solicitud...</span> <span>⏳</span>';
+        }
+
+        try {
+          await fetch('/api/leads/audit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ websiteUrl: webUrl, contact: contact })
+          });
+        } catch (err) {
+          console.warn('Lead audit notification warning:', err);
+        }
+
         const msg = `¡Hola MolinazDev! 👋 Solicité la Auditoría Gratuita de 24h para mi web:\n\n` +
                     `🌐 *Sitio Web:* ${webUrl}\n` +
                     `📬 *Contacto:* ${contact}\n\n` +
                     `Quedo a la espera del reporte de velocidad y SEO. ¡Muchas gracias!`;
 
         if (waDirectLink) {
-          waDirectLink.href = `https://wa.me/51987654321?text=${encodeURIComponent(msg)}`;
+          waDirectLink.href = `https://wa.me/51983529230?text=${encodeURIComponent(msg)}`;
         }
 
         form.classList.add('hidden');

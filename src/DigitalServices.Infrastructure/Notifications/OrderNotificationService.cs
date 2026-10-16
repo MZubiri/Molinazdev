@@ -264,7 +264,7 @@ public sealed class OrderNotificationService : IOrderNotificationService
       </div>
 
       <p style='font-size: 13px; color: #71717a;'>
-        Si tienes alguna pregunta urgente, puedes escribirnos respondiendo a este correo o vía WhatsApp al <a href='https://wa.me/51987654321' style='color: #4f46e5; font-weight: 700;'>+51 987 654 321</a>.
+        Si tienes alguna pregunta urgente, puedes escribirnos respondiendo a este correo o vía WhatsApp al <a href='https://wa.me/51983529230' style='color: #4f46e5; font-weight: 700;'>+51 983 529 230</a>.
       </p>
     </div>
     <div class='footer'>
