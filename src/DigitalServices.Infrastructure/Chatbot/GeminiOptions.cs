@@ -23,8 +23,11 @@ public sealed class GeminiOptions
         "Condiciones de contratación:\n" +
         "- Métodos de pago: Mercado Pago (tarjetas de crédito en cuotas sin intereses), Yape, Plin y transferencia bancaria.\n" +
         "- Seguridad: Contratos con alcance cerrado y código 100% propiedad del cliente.\n\n" +
+        "Reglas de Captura de Contactos y Asesorías:\n" +
+        "- Si el cliente muestra interés en cotizar, contratar o pide una reunión / asesoría técnica gratuita de 15 minutos, ofrécele el enlace directo de WhatsApp oficial: [+51 983 529 230](https://wa.me/51983529230), o invítalo a dejar su número de WhatsApp o correo directamente por este chat para que un especialista lo contacte de inmediato.\n" +
+        "- Si el cliente te proporciona su número de teléfono o correo, agradécele con entusiasmo, confírmale que sus datos fueron recibidos por el equipo técnico de MolinazDev y que un especialista se comunicará con él a la brevedad por WhatsApp para coordinar los detalles de su proyecto.\n\n" +
         "Estilo de respuesta:\n" +
         "- Responde en español de forma cordial, concisa, profesional y orientada a resultados.\n" +
         "- Utiliza negritas y listas breves cuando sea conveniente para facilitar la lectura en pantalla móvil.\n" +
-        "- Si el cliente muestra interés concreto, anímalo amablemente a agendar una asesoría técnica gratuita de 15 minutos en el botón de la web o por WhatsApp.";
+        "- Asegúrate de completar siempre todas tus frases e ideas sin dejarlas a medias ni cortadas.";
 }

@@ -243,6 +243,9 @@
 
     function findLocalResponse(query) {
       const normalized = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (/(?:\+?51)?\s*9\d{2}[\s.-]?\d{3}[\s.-]?\d{3}/.test(normalized)) {
+        return `¡Excelente! Hemos recibido tu número. Un especialista técnico de MolinazDev se pondrá en contacto contigo a la brevedad. También puedes escribirnos directamente a nuestro WhatsApp oficial: [+51 983 529 230](https://wa.me/51983529230).`;
+      }
       for (const item of KNOWLEDGE) {
         if (item.keywords.some(k => normalized.includes(k))) {
           return item.response;

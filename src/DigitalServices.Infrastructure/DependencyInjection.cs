@@ -49,6 +49,7 @@ public static class DependencyInjection
 
         services.AddHttpClient<IOrderNotificationService, OrderNotificationService>();
         services.AddHttpClient<IAuditLeadNotificationService, AuditLeadNotificationService>();
+        services.AddHttpClient<IChatLeadNotificationService, ChatLeadNotificationService>();
         services.AddHttpClient<IChatbotService, GeminiChatbotService>(client =>
         {
             client.Timeout = TimeSpan.FromSeconds(20);

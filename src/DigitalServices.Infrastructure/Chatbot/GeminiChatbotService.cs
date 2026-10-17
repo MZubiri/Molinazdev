@@ -102,9 +102,22 @@ public sealed class GeminiChatbotService(
         }
 
         var result = await response.Content.ReadFromJsonAsync<GeminiApiResponse>(JsonOptions, cancellationToken);
-        var text = result?.Candidates?.FirstOrDefault()?.Content?.Parts?.FirstOrDefault()?.Text;
+        var candidate = result?.Candidates?.FirstOrDefault();
+        if (candidate?.Content?.Parts is { Count: > 0 } parts)
+        {
+            var text = string.Concat(parts.Select(p => p.Text));
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                if (string.Equals(candidate.FinishReason, "MAX_TOKENS", StringComparison.OrdinalIgnoreCase))
+                {
+                    logger.LogWarning("Gemini response for model {Model} was cut off due to MAX_TOKENS limit.", model);
+                }
 
-        return string.IsNullOrWhiteSpace(text) ? null : text.Trim();
+                return text.Trim();
+            }
+        }
+
+        return null;
     }
 
     private GeminiRequestPayload BuildGeminiPayload(ChatRequestDto request)
@@ -152,7 +165,7 @@ public sealed class GeminiChatbotService(
             GenerationConfig = new GeminiGenerationConfig
             {
                 Temperature = 0.7f,
-                MaxOutputTokens = 800
+                MaxOutputTokens = 2048
             }
         };
     }

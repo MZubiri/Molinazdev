@@ -18,8 +18,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="../../src/DigitalServices.Application/DigitalServices.Application.csproj" />
     <ProjectReference Include="../../src/DigitalServices.Domain/DigitalServices.Domain.csproj" />
     <ProjectReference Include="../../src/DigitalServices.Infrastructure/DigitalServices.Infrastructure.csproj" />
+    <ProjectReference Include="../../src/DigitalServices.Web/DigitalServices.Web.csproj" />
   </ItemGroup>
 </Project>
