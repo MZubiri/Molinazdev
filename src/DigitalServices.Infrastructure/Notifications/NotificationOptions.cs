@@ -21,7 +21,7 @@ public sealed class EmailOptions
 
     public string SmtpPassword { get; init; } = string.Empty;
 
-    public string FromAddress { get; init; } = "noreply@molinazdev.lat";
+    public string FromAddress { get; init; } = "molinazdevpe@gmail.com";
 
     public string FromName { get; init; } = "MolinazDev";
 
@@ -38,5 +38,5 @@ public sealed class AdminAlertOptions
 
     public string? TelegramChatId { get; init; }
 
-    public string AdminEmail { get; init; } = "Molinazdepe@gmail.com";
+    public string AdminEmail { get; init; } = "molinazdevpe@gmail.com";
 }

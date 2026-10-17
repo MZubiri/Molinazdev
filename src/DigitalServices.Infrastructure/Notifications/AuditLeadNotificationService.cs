@@ -23,7 +23,7 @@ public sealed class AuditLeadNotificationService(
         ArgumentNullException.ThrowIfNull(lead);
 
         var recipientEmail = string.IsNullOrWhiteSpace(_options.AdminAlert.AdminEmail)
-            ? "Molinazdepe@gmail.com"
+            ? "molinazdevpe@gmail.com"
             : _options.AdminAlert.AdminEmail;
 
         logger.LogInformation(

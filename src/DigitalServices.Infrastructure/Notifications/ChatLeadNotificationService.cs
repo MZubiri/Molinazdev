@@ -22,7 +22,7 @@ public sealed class ChatLeadNotificationService(
         ArgumentNullException.ThrowIfNull(lead);
 
         var recipientEmail = string.IsNullOrWhiteSpace(_options.AdminAlert.AdminEmail)
-            ? "Molinazdepe@gmail.com"
+            ? "molinazdevpe@gmail.com"
             : _options.AdminAlert.AdminEmail;
 
         logger.LogInformation(
@@ -44,7 +44,7 @@ public sealed class ChatLeadNotificationService(
 
         var isEmailConfigured = emailOpts.Enabled || (!string.IsNullOrWhiteSpace(smtpHost) && !string.IsNullOrWhiteSpace(smtpPassword));
 
-        // 1. Send Email Notification to Admin (Molinazdepe@gmail.com)
+        // 1. Send Email Notification to Admin (molinazdevpe@gmail.com)
         if (isEmailConfigured && !string.IsNullOrWhiteSpace(smtpHost))
         {
             try
@@ -97,7 +97,7 @@ public sealed class ChatLeadNotificationService(
         };
 
         var fromAddress = new MailAddress(
-            string.IsNullOrWhiteSpace(emailOpts.FromAddress) ? "Molinazdepe@gmail.com" : emailOpts.FromAddress,
+            string.IsNullOrWhiteSpace(emailOpts.FromAddress) ? "molinazdevpe@gmail.com" : emailOpts.FromAddress,
             string.IsNullOrWhiteSpace(emailOpts.FromName) ? "MolinazDev AI" : emailOpts.FromName);
 
         var toAddress = new MailAddress(recipientEmail, "MolinazDev Admin");
